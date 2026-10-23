@@ -373,7 +373,7 @@ class MapController(
             .accuracyColor(0xFF1A73E8.toInt())
             .accuracyAlpha(if (navigating) 0f else 0.12f)
             .pulseEnabled(false)
-            .compassAnimationEnabled(false)
+            .compassAnimationEnabled(!navigating) // smooth compass turning while the car follows the phone
             .elevation(if (navigating) 0f else 3f)
             // your chosen 3D car ("me-car" layer) is always drawn; the built-in dot / arrow stay hidden
             .gpsDrawable(com.drivemap.app.R.drawable.puck_none)
@@ -404,6 +404,7 @@ class MapController(
         lastRawFix = fix
         navSpeed = fix.speedMps
         hadFirstFix = true
+        updateMyCar() // switches between compass (standing / walking) and driving direction
         if (!locationReady) return
         // While navigating on the route, the navigation loop draws the car snapped to the route.
         if (navRoute != null && !navOffRoute) return
@@ -1045,6 +1046,14 @@ class MapController(
         updateMyCar()
     }
 
+    /**
+     * Your car points where the phone points (compass) while you stand or walk, like Google Maps'
+     * blue dot; while driving or navigating it points along your travel direction. Turning the map
+     * with your fingers never turns the car: it keeps its real-world direction.
+     */
+    private fun carFollowsCompass(): Boolean =
+        navRoute == null && (lastRawFix?.speedMps ?: 0.0) < 2.5
+
     /** Picks the frame of your car for the current camera; the heading comes from the source itself. */
     private fun updateMyCar() {
         val s = style ?: return
@@ -1052,11 +1061,13 @@ class MapController(
         val cp = map.cameraPosition
         val tilted = cp.tilt >= Car3D.TILT_MIN
         val mb = Math.round(cp.bearing).toDouble()
-        val key = "$myLook|$tilted|$mb"
+        val compass = carFollowsCompass()
+        val key = "$myLook|$tilted|$mb|$compass"
         if (key == myCarKey) return
         myCarKey = key
+        val heading = if (compass) Expression.coalesce(get(COMPASS_BEARING), get(GPS_BEARING), literal(0.0)) else get(GPS_BEARING)
         val rel = Expression.mod(
-            Expression.sum(Expression.subtract(Expression.toNumber(get(GPS_BEARING)), literal(mb)), literal(720.0)), literal(360.0),
+            Expression.sum(Expression.subtract(Expression.toNumber(heading), literal(mb)), literal(720.0)), literal(360.0),
         )
         if (tilted) {
             val idx = Expression.round(Expression.division(rel, literal(Car3D.STEP)))
@@ -1204,3 +1215,5 @@ class MapController(
 private const val NAV_TILT = 52.0
 private const val LOCATION_SOURCE = "mapbox-location-source"
 private const val GPS_BEARING = "mapbox-property-gps-bearing"
+/** Phone compass direction, filled in by the location component in COMPASS render mode. */
+private const val COMPASS_BEARING = "mapbox-property-compass-bearing"
