@@ -53,19 +53,31 @@ object Updates {
         _available.value = null
     }
 
+    /** The daily background check. */
     suspend fun check(context: Context) {
         val p = prefs(context)
-        val now = System.currentTimeMillis()
-        if (now - p.getLong("checked", 0) < 24 * 3600_000L) return
-        try {
-            val json = JSONObject(Http.get(API, mapOf("Accept" to "application/vnd.github+json"), timeoutSec = 15))
-            p.edit().putLong("checked", now).apply()
-            val latest = json.optString("tag_name").removePrefix("v").trim()
-            val mine = context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: return
-            if (latest.isNotEmpty() && newer(latest, mine) && p.getString("skipped", null) != latest) _available.value = latest
-        } catch (_: Exception) {
-        }
+        if (System.currentTimeMillis() - p.getLong("checked", 0) < 24 * 3600_000L) return
+        try { checkNow(context, manual = false) } catch (_: Exception) {}
     }
+
+    /**
+     * Ask GitHub for the latest release. Returns true when a newer version is out (the Update
+     * prompt then shows). [manual]: the user tapped "Check for updates", so a version they
+     * skipped with "Later" is offered again. Throws when GitHub can't be reached.
+     */
+    suspend fun checkNow(context: Context, manual: Boolean = true): Boolean {
+        val p = prefs(context)
+        val json = JSONObject(Http.get(API, mapOf("Accept" to "application/vnd.github+json"), timeoutSec = 15))
+        p.edit().putLong("checked", System.currentTimeMillis()).apply()
+        val latest = json.optString("tag_name").removePrefix("v").trim()
+        val mine = currentVersion(context)
+        val newer = latest.isNotEmpty() && newer(latest, mine)
+        if (newer && (manual || p.getString("skipped", null) != latest)) _available.value = latest
+        return newer
+    }
+
+    fun currentVersion(context: Context): String =
+        try { context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "" } catch (_: Exception) { "" }
 
     private fun prefs(c: Context) = c.getSharedPreferences("updates", Context.MODE_PRIVATE)
 

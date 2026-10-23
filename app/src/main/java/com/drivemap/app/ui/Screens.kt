@@ -30,6 +30,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import kotlinx.coroutines.launch
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -409,6 +410,25 @@ fun SettingsScreen() {
             }
 
             SectionTitle(t("About"))
+            val updScope = androidx.compose.runtime.rememberCoroutineScope()
+            var checking by remember { mutableStateOf(false) }
+            SettingRow(
+                Icons.Default.Refresh, t("Check for updates"),
+                if (checking) t("Checking…") else t("Version {0}", com.drivemap.app.core.Updates.currentVersion(ctx)),
+            ) {
+                if (!checking) {
+                    checking = true
+                    updScope.launch {
+                        try {
+                            // a newer version opens the Update prompt by itself
+                            if (!com.drivemap.app.core.Updates.checkNow(ctx)) Core.message(t("You have the latest version"))
+                        } catch (_: Exception) {
+                            Core.message(t("Couldn't check for updates. Are you online?"))
+                        }
+                        checking = false
+                    }
+                }
+            }
             Text(
                 t("Map data © OpenStreetMap contributors. Tiles: OpenFreeMap / OpenMapTiles. Routing: Valhalla (FOSSGIS). Search: Photon (komoot) and Nominatim. Speed cameras: OpenStreetMap. Fines and vignette prices are estimates researched in October 2026. Convoy positions are end-to-end encrypted; the relay only sees random bytes."),
                 Modifier.padding(horizontal = 16.dp), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant,
