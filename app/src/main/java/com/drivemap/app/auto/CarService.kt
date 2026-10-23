@@ -75,7 +75,7 @@ class DriveMapSession : Session() {
     }
 
     override fun onCarConfigurationChanged(newConfiguration: Configuration) {
-        surface.setNight(carContext.isDarkMode)
+        surface.setNight(surface.wantNight())
     }
 
     /** "Navigate to …" from Google Assistant / other apps: geo:lat,lon or geo:0,0?q=address. */

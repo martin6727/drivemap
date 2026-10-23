@@ -187,7 +187,7 @@ fun MainScreen() {
     }
 }
 
-private fun isNightNow(theme: MapTheme): Boolean {
+fun isNightNow(theme: MapTheme): Boolean {
     val f = Core.location.fix.value
     return when (theme) {
         MapTheme.DAY -> false

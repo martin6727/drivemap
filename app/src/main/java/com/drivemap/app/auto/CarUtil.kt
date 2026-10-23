@@ -25,7 +25,38 @@ import java.util.TimeZone
 /** Conversions from DriveMap navigation state to Android Auto templates. */
 object CarUtil {
 
-    fun icon(ctx: CarContext, res: Int): CarIcon = CarIcon.Builder(IconCompat.createWithResource(ctx, res)).build()
+    private val iconCache = HashMap<Int, CarIcon>()
+
+    /**
+     * Car icons are sent as bitmaps: with resource ids the car host can keep showing a previous
+     * app version's icons after an update (ids shift between builds).
+     */
+    fun icon(ctx: CarContext, res: Int): CarIcon = iconCache.getOrPut(res) {
+        val d = androidx.core.content.ContextCompat.getDrawable(ctx, res)
+        if (d == null) CarIcon.Builder(IconCompat.createWithResource(ctx, res)).build()
+        else {
+            val px = (48 * ctx.resources.displayMetrics.density).toInt().coerceAtLeast(48)
+            val bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888)
+            d.setBounds(0, 0, px, px)
+            d.draw(android.graphics.Canvas(bmp))
+            CarIcon.Builder(IconCompat.createWithBitmap(bmp)).build()
+        }
+    }
+
+    /** A round-button icon that is just short text, e.g. "3D". */
+    fun textIcon(ctx: CarContext, text: String): CarIcon {
+        val px = (48 * ctx.resources.displayMetrics.density).toInt().coerceAtLeast(48)
+        val bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888)
+        val p = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+            color = android.graphics.Color.WHITE
+            textSize = px * 0.5f
+            typeface = android.graphics.Typeface.DEFAULT_BOLD
+            textAlign = android.graphics.Paint.Align.CENTER
+        }
+        val c = android.graphics.Canvas(bmp)
+        c.drawText(text, px / 2f, px / 2f - (p.descent() + p.ascent()) / 2, p)
+        return CarIcon.Builder(IconCompat.createWithBitmap(bmp)).build()
+    }
 
     fun distance(m: Double): Distance = when {
         m < 1000 -> Distance.create(((m / 10).toInt() * 10).toDouble().coerceAtLeast(0.0), Distance.UNIT_METERS)
@@ -136,4 +167,18 @@ object CarUtil {
             distance(nav.remainingM),
             DateTimeWithZone.create(nav.etaMs, TimeZone.getDefault()),
         ).setRemainingTimeSeconds(nav.remainingS.toLong().coerceAtLeast(0)).build()
+}
+
+/**
+ * Row text for a place on the car screen: "1.2 km · address" with the distance as a
+ * DistanceSpan, which Android Auto requires on every row of a place list.
+ */
+fun placeRowText(from: com.drivemap.app.geo.LatLon?, place: com.drivemap.app.route.Place): androidx.car.app.model.CarText {
+    val m = if (from != null) com.drivemap.app.geo.Geo.dist(from, place.pos) else 0.0
+    val distance = if (m >= 1000) androidx.car.app.model.Distance.create(m / 1000, androidx.car.app.model.Distance.UNIT_KILOMETERS)
+    else androidx.car.app.model.Distance.create(Math.round(m / 10) * 10.0, androidx.car.app.model.Distance.UNIT_METERS)
+    val tail = place.address.ifBlank { null }?.let { " · $it" } ?: ""
+    val s = android.text.SpannableString(" $tail")
+    s.setSpan(androidx.car.app.model.DistanceSpan.create(distance), 0, 1, android.text.Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+    return androidx.car.app.model.CarText.create(s)
 }

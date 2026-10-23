@@ -45,6 +45,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -114,11 +115,12 @@ fun Speedometer(speedKmh: Int, limit: Int?, speeding: Boolean, diameter: Dp = 78
     val numberColor by animateColorAsState(
         if (speeding) Color(SpeedoPainter.NUMBER_OVER) else Color(SpeedoPainter.NUMBER), tween(350), label = "number",
     )
-    Canvas(Modifier.size(diameter).shadow(8.dp, CircleShape)) {
+    val clear = com.drivemap.app.core.Core.settings.state.collectAsState().value.let { it.glass && it.clearGlass }
+    Canvas(Modifier.size(diameter).then(if (clear) Modifier else Modifier.shadow(8.dp, CircleShape))) {
         drawIntoCanvas {
             SpeedoPainter.drawSpeedo(
                 it.nativeCanvas, size.width / 2, size.height / 2, size.minDimension / 2,
-                shown.roundToInt(), numberColor.toArgb(), fill, over, hasLimit,
+                shown.roundToInt(), numberColor.toArgb(), fill, over, hasLimit, glass = clear,
             )
         }
     }

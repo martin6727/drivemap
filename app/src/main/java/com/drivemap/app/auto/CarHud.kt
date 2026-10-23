@@ -53,10 +53,14 @@ class CarHud(context: Context) : View(context) {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val a = area ?: Rect(0, 0, width, height)
+        val visible = area ?: Rect(0, 0, width, height)
         val s = state
         val margin = 8 * d
         val size = 46 * d
+        // navigating: stay in the bottom-left corner, just above the host's arrival-time card
+        // (the visible area starts right of the guidance panel, which would push us to the middle)
+        val a = if (com.drivemap.app.core.Core.navigator.state.value != null)
+            Rect(0, visible.top, visible.right, height - (96 * d).toInt()) else visible
         val bottom = a.bottom - margin
 
         // Waze-style speedometer (same painter as the phone): the ring fills towards the limit and
@@ -67,12 +71,13 @@ class CarHud(context: Context) : View(context) {
         val gr = 31 * d
         val gcx = a.left + margin + gr
         val gcy = bottom - gr
+        val clear = com.drivemap.app.core.Core.settings.value.let { it.glass && it.clearGlass }
         fillPaint.color = Color.argb(70, 0, 0, 0) // soft shadows
-        canvas.drawCircle(gcx, gcy + 1.5f * d, gr + 1.5f * d, fillPaint)
+        if (!clear) canvas.drawCircle(gcx, gcy + 1.5f * d, gr + 1.5f * d, fillPaint)
         val ringFill = if (hasLimit) (s.speed.toFloat() / limit!!).coerceIn(0f, 1f) else 0f
         val over = if (hasLimit) ((s.speed - limit!!) / limit.toFloat()).coerceIn(0f, 1f) else 0f
         SpeedoPainter.drawSpeedo(
-            canvas, gcx, gcy, gr, s.speed, if (speeding) SpeedoPainter.NUMBER_OVER else SpeedoPainter.NUMBER, ringFill, over, hasLimit,
+            canvas, gcx, gcy, gr, s.speed, if (speeding) SpeedoPainter.NUMBER_OVER else SpeedoPainter.NUMBER, ringFill, over, hasLimit, glass = clear,
         )
         var rowTop = gcy - gr
         if (speeding && limit != null) {
@@ -103,7 +108,16 @@ class CarHud(context: Context) : View(context) {
                 amount > 0 -> Color.rgb(227, 116, 0)
                 else -> Color.rgb(24, 128, 56)
             }
-            canvas.drawRoundRect(r, 12 * d, 12 * d, fillPaint)
+            if (clear) {
+                // clear glass: tinted see-through box with a light rim
+                fillPaint.alpha = 120
+                canvas.drawRoundRect(r, 12 * d, 12 * d, fillPaint)
+                strokePaint.strokeWidth = 1.5f * d
+                strokePaint.color = Color.argb(170, 255, 255, 255)
+                canvas.drawRoundRect(r, 12 * d, 12 * d, strokePaint)
+            } else {
+                canvas.drawRoundRect(r, 12 * d, 12 * d, fillPaint)
+            }
             text.color = Color.WHITE
             canvas.drawText(label, r.centerX(), r.centerY() + 2 * d, text)
             text.textSize = 9 * d

@@ -47,16 +47,24 @@ object SpeedoPainter {
      * orange→red from the bottom again ([over] 0..1, full at double the limit). With no known limit the
      * ring stays neutral. Fractional values light the last tick partly, so the arcs glide.
      */
-    fun drawSpeedo(c: Canvas, cx: Float, cy: Float, r: Float, speed: Int, numberColor: Int, fill: Float, over: Float, hasLimit: Boolean) {
-        // dial face: soft top-to-bottom gradient + dark rim
-        matrix.setScale(r, r)
-        matrix.postTranslate(cx, cy)
-        faceShader.setLocalMatrix(matrix)
-        paint.shader = faceShader
-        c.drawCircle(cx, cy, r, paint)
-        paint.shader = null
-        stroke.strokeWidth = r * 0.045f
-        stroke.color = RIM
+    fun drawSpeedo(c: Canvas, cx: Float, cy: Float, r: Float, speed: Int, numberColor: Int, fill: Float, over: Float, hasLimit: Boolean, glass: Boolean = false) {
+        if (glass) {
+            // clear glass: a faint tint so the map shows through, bright glass rim
+            paint.color = android.graphics.Color.argb(56, 0, 0, 0)
+            c.drawCircle(cx, cy, r, paint)
+            stroke.strokeWidth = r * 0.045f
+            stroke.color = android.graphics.Color.argb(170, 255, 255, 255)
+        } else {
+            // dial face: soft top-to-bottom gradient + dark rim
+            matrix.setScale(r, r)
+            matrix.postTranslate(cx, cy)
+            faceShader.setLocalMatrix(matrix)
+            paint.shader = faceShader
+            c.drawCircle(cx, cy, r, paint)
+            paint.shader = null
+            stroke.strokeWidth = r * 0.045f
+            stroke.color = RIM
+        }
         c.drawCircle(cx, cy, r - stroke.strokeWidth / 2, stroke)
 
         // tick ring

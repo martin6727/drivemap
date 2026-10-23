@@ -316,7 +316,7 @@ class MapController(
                 iconImage(get("icon")), iconRotate(Expression.toNumber(get("rot"))), iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
                 iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),
                 iconAllowOverlap(true), iconIgnorePlacement(true),
-                iconSize(Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(11, 0.65f), Expression.stop(15, 1.0f))),
+                iconSize(Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(10, 0.4f), Expression.stop(14, 0.7f), Expression.stop(16, 0.95f), Expression.stop(18, 1.3f))),
                 textField(get("name")), textFont(arrayOf("Noto Sans Bold")), textSize(12.5f),
                 textAnchor(Property.TEXT_ANCHOR_BOTTOM), textOffset(arrayOf(0f, -2.2f)), textAllowOverlap(true),
                 textColor(Expression.toColor(get("color"))), textHaloColor(if (night) "#17202B" else "#FFFFFF"), textHaloWidth(2f),
@@ -375,8 +375,13 @@ class MapController(
             .pulseEnabled(false)
             .compassAnimationEnabled(false)
             .elevation(if (navigating) 0f else 3f)
-            // while navigating the 3D car layer ("me-car") draws you; the built-in arrow is hidden
-            .gpsDrawable(if (navigating) com.drivemap.app.R.drawable.puck_none else com.drivemap.app.R.drawable.nav_puck)
+            // your chosen 3D car ("me-car" layer) is always drawn; the built-in dot / arrow stay hidden
+            .gpsDrawable(com.drivemap.app.R.drawable.puck_none)
+            .foregroundDrawable(com.drivemap.app.R.drawable.puck_none)
+            .foregroundDrawableStale(com.drivemap.app.R.drawable.puck_none)
+            .bearingDrawable(com.drivemap.app.R.drawable.puck_none)
+            .backgroundDrawable(com.drivemap.app.R.drawable.puck_none)
+            .backgroundDrawableStale(com.drivemap.app.R.drawable.puck_none)
         if (navigating) b.backgroundTintColor(Color.TRANSPARENT).backgroundStaleTintColor(Color.TRANSPARENT)
         return b.build()
     }
@@ -387,7 +392,6 @@ class MapController(
             val lc = map.locationComponent
             lc.applyStyle(puckOptions(navigating))
             lc.renderMode = if (navigating) RenderMode.GPS else RenderMode.COMPASS
-            style?.getLayer("me-car")?.setProperties(visibility(if (navigating) Property.VISIBLE else Property.NONE))
         } catch (_: Exception) {
         }
     }
@@ -530,7 +534,7 @@ class MapController(
             if (routes.size < 2 && i == selected) return@mapNotNull null
             val p = labelPoint(r, routes) ?: return@mapNotNull null
             Feature.fromGeometry(Point.fromLngLat(p.lon, p.lat)).also {
-                it.addStringProperty("text", Geo.formatDuration(r.timeS))
+                it.addStringProperty("text", (if (routeLetters) "${'A' + i} · " else "") + Geo.formatDuration(r.timeS))
                 it.addStringProperty("bg", if (i == selected) "bubble-sel" else "bubble")
                 it.addStringProperty("color", if (i == selected) "#FFFFFF" else if (night) "#E8EAED" else "#3C4043")
                 it.addNumberProperty("idx", i)
@@ -972,6 +976,9 @@ class MapController(
         s.getSourceAs<GeoJsonSource>("cameras")?.setGeoJson(FeatureCollection.fromFeatures(f))
     }
 
+    /** Car screen: route bubbles start with A, B, C… to match the route list. */
+    var routeLetters = false
+
     // ---------------------------------------------------------------- 3D cars
 
     /** Navigation camera tilted (3D) or flat (2D). */
@@ -1007,22 +1014,23 @@ class MapController(
 
     private fun ensureLook(s: Style, name: String, body: Car3D.Body, color: Int, lengthDp: Float) {
         if (!looks.add(name)) return
-        Car3D.frames(context, name, body, color, lengthDp).forEach { (n, b) -> s.addImage(n, b) }
+        val dpi = context.resources.displayMetrics.densityDpi
+        // tag each frame with this screen's density, or the car screen (other density) shows it tiny
+        Car3D.frames(context, name, body, color, lengthDp).forEach { (n, b) -> b.density = dpi; s.addImage(n, b) }
     }
 
     /** Your car: drawn from the location component's own (smoothly animated) source. */
     private fun setupMyCar(s: Style) {
         val sk = Car3D.skin(mySkin)
         myLook = "me-${sk.id}"
-        ensureLook(s, myLook, sk.body, sk.color, 46f)
+        ensureLook(s, myLook, sk.body, sk.color, 56f)
         if (s.getLayer("me-car") == null && s.getSource(LOCATION_SOURCE) != null) {
             s.addLayer(
                 SymbolLayer("me-car", LOCATION_SOURCE).withProperties(
                     iconAllowOverlap(true), iconIgnorePlacement(true),
-                    iconSize(Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(11, 0.6f), Expression.stop(15, 1.0f))),
+                    iconSize(Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(10, 0.4f), Expression.stop(14, 0.7f), Expression.stop(16, 0.95f), Expression.stop(18, 1.35f))),
                     iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
                     iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),
-                    visibility(if (navRoute != null) Property.VISIBLE else Property.NONE),
                 )
             )
         }
@@ -1060,7 +1068,7 @@ class MapController(
         val body = sk?.body ?: Car3D.Body.HATCH
         val color = if (m.stale) 0xFF8A8F96.toInt() else sk?.color ?: m.color
         val name = "cv-${body.name}-${Integer.toHexString(color)}"
-        ensureLook(s, name, body, color, 40f)
+        ensureLook(s, name, body, color, 48f)
         return name
     }
 

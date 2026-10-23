@@ -351,6 +351,14 @@ internal val SK: Map<String, String> = hashMapOf(
     "2D / 3D view" to "Zobrazenie 2D / 3D",
     "Sent to your convoy" to "Odoslané konvoju",
     "Drive with me" to "Poď so mnou",
+    "Join or create a convoy on your phone (menu → Convoy)" to "Pridaj sa ku konvoju alebo ho vytvor v telefóne (menu → Konvoj)",
+    "Challenge sends your route — accepting starts their navigation." to "Výzva pošle tvoju trasu – po prijatí sa im spustí navigácia.",
+    "Start navigating, then challenge to share your route." to "Najprv spusti navigáciu, potom pošli výzvu s tvojou trasou.",
+    "3D view" to "3D zobrazenie",
+    "More" to "Viac",
+    "Voice level" to "Úroveň hlasu",
+    "Speed camera alerts" to "Upozornenia na radary",
+    "Recommended" to "Odporúčaná",
     "Send your destination to the whole convoy" to "Pošli svoj cieľ celému konvoju",
     "tap to challenge" to "ťukni pre výzvu",
     "offline" to "offline",
@@ -541,6 +549,7 @@ internal val SK: Map<String, String> = hashMapOf(
 
 /** Slovak 1 / 2–4 / 5+ forms, keyed by the English plural. */
 internal val SK_PLURAL: Map<String, List<String>> = hashMapOf(
+    "{0} other drivers" to listOf("{0} ďalší vodič", "{0} ďalší vodiči", "{0} ďalších vodičov"),
     "Expires in {0} days" to listOf("Vyprší o {0} deň", "Vyprší o {0} dni", "Vyprší o {0} dní"),
     "expires in {0} days" to listOf("vyprší o {0} deň", "vyprší o {0} dni", "vyprší o {0} dní"),
     "Police measured here on {0} days" to listOf("Polícia tu merala počas {0} dňa", "Polícia tu merala počas {0} dní", "Polícia tu merala počas {0} dní"),

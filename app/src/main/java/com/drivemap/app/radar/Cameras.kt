@@ -303,7 +303,7 @@ class CameraRepository(private val context: Context) {
         val now = System.currentTimeMillis()
         val stale = keys.filter { k ->
             val age = tileAge[k]
-            age == null || now - age > 14L * 24 * 3600 * 1000
+            age == null || now - age > 7L * 24 * 3600 * 1000
         }.take(maxTiles)
         for (k in stale) {
             if (!inFlight.add(k)) continue

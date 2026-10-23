@@ -105,7 +105,7 @@ fun RoundTextButton(text: String, contentDescription: String, onClick: () -> Uni
 
 
 /** Cuts the empty margin off a sprite so previews fill their card. */
-private fun cropTransparent(b: android.graphics.Bitmap): android.graphics.Bitmap {
+internal fun cropTransparent(b: android.graphics.Bitmap): android.graphics.Bitmap {
     val w = b.width
     val h = b.height
     val px = IntArray(w * h)

@@ -95,6 +95,7 @@ object Core {
         planner = RoutePlanner(valhalla, settings, vignettes, cameras)
         voice = Voice(app).also { it.init(settings.value.voiceLang) }
         navigator = Navigator(scope, planner, voice, settings)
+        navigator.carConnected = { carActive }
         simulator = Simulator(scope)
         speedLimits = SpeedLimitProvider(valhalla, scope)
         mqtt = MqttHub(scope) { settings.value.mqttUrl }

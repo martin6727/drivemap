@@ -103,13 +103,17 @@ class CarMapSurface(private val carContext: CarContext, lifecycle: Lifecycle) : 
             val ms = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
             mapScope = ms
             val c = MapController(ctx, mv, map, ms)
+            c.routeLetters = true
             c.onTrackingDismissed = { panned.value = true }
             c.onCameraIdle = { refreshCameras(c) }
             Core.location.fix.value?.let { c.moveTo(it.pos, 15.0, animate = false) }
-            c.loadStyle(carContext.isDarkMode) {
+            c.loadStyle(wantNight()) {
                 controller = c
                 applyInsets()
                 ms.syncMapWithCore(c) { if (!panned.value) c.followNavigation() }
+                // re-check day/night every minute and when the setting changes
+                ms.launch { Core.settings.state.collect { setNight(wantNight()) } }
+                ms.launch { while (true) { kotlinx.coroutines.delay(60_000); setNight(wantNight()) } }
                 if (Core.navigator.active) c.followNavigation() else c.followUser(15.0)
                 readyCallbacks.forEach { it(c) }
                 readyCallbacks.clear()
@@ -158,6 +162,14 @@ class CarMapSurface(private val carContext: CarContext, lifecycle: Lifecycle) : 
         else c.map.moveCamera(CameraUpdateFactory.zoomBy(delta, Point(focusX.toInt(), focusY.toInt())))
     }
 
+    /** Browse map tilted (3D)? */
+    var tilted3d = false
+        private set
+
+    fun toggleTilt() {
+        tilted3d = controller?.toggleBrowseTilt() ?: false
+    }
+
     fun zoom(by: Double) {
         controller?.map?.animateCamera(CameraUpdateFactory.zoomBy(by), 300)
     }
@@ -166,6 +178,13 @@ class CarMapSurface(private val carContext: CarContext, lifecycle: Lifecycle) : 
         val c = controller ?: return
         panned.value = false
         if (Core.navigator.active) c.followNavigation() else c.followUser(15.0)
+    }
+
+    /** Same day/night rule as the phone (Auto = sunset at your position), or the car's night signal. */
+    fun wantNight(): Boolean = when (Core.settings.value.mapTheme) {
+        com.drivemap.app.data.MapTheme.DAY -> false
+        com.drivemap.app.data.MapTheme.NIGHT -> true
+        com.drivemap.app.data.MapTheme.AUTO -> carContext.isDarkMode || com.drivemap.app.ui.isNightNow(com.drivemap.app.data.MapTheme.AUTO)
     }
 
     fun setNight(night: Boolean) {

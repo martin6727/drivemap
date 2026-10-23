@@ -51,6 +51,13 @@ class Navigator(
     private val _state = MutableStateFlow<NavState?>(null)
     val state: StateFlow<NavState?> = _state
 
+    /** True while Android Auto is connected: there "Full" narration is shortened to "Normal". */
+    var carConnected: () -> Boolean = { false }
+
+    private fun voiceLevel(): VoiceLevel = settings.value.voiceLevel.let {
+        if (it == VoiceLevel.FULL && carConnected()) VoiceLevel.NORMAL else it
+    }
+
     private var route: Route? = null
     private var request: RoutePlanner.Request? = null
     private var seg = 0
@@ -111,7 +118,7 @@ class Navigator(
         spoken.clear()
         version++
         val first = r.geometry.maneuvers.firstOrNull()
-        if (settings.value.voice && settings.value.voiceLevel == VoiceLevel.FULL && first != null) voice.speak(first.verbalPre ?: first.instruction, flush = true)
+        if (settings.value.voice && voiceLevel() == VoiceLevel.FULL && first != null) voice.speak(first.verbalPre ?: first.instruction, flush = true)
         spoken[0] = 2
         publish(r.geometry.shape.firstOrNull() ?: req.origin, 0.0, 0.0)
         loadLanes(r, req)
@@ -255,7 +262,7 @@ class Navigator(
     }
 
     private fun speakFor(mans: List<Maneuver>, dist: Double, speedMps: Double, along: Double) {
-        val level = settings.value.voiceLevel
+        val level = voiceLevel()
         if (level == VoiceLevel.ALERTS) return // radar warnings are spoken by the radar alerter
         val full = level == VoiceLevel.FULL
         val lang = settings.value.voiceLang
@@ -290,7 +297,7 @@ class Navigator(
         val r = route ?: return
         lastReroute = System.currentTimeMillis()
         rerouting = true
-        if (settings.value.voice && settings.value.voiceLevel != VoiceLevel.ALERTS) voice.speak(Phrases.get(settings.value.voiceLang, "reroute"), flush = true)
+        if (settings.value.voice && voiceLevel() != VoiceLevel.ALERTS) voice.speak(Phrases.get(settings.value.voiceLang, "reroute"), flush = true)
         val remaining = req.stops.drop(nextWp.coerceAtMost(req.stops.size - 1))
         val req2 = req.copy(
             origin = fix.pos,
