@@ -77,10 +77,11 @@ class MainActivity : ComponentActivity() {
         if (i == null) return
         if (i.getStringExtra("open") == "vignettes") Ui.screen.value = Screen.VIGNETTES
         val data = i.data ?: return
-        when (data.scheme) {
-            "drivemap" -> if (data.host == "convoy") {
-                val code = data.lastPathSegment ?: return
-                if (!ConvoyCrypto.isValid(code)) return
+        // convoy invite: https://martin6727.github.io/convoy/#CODE (or drivemap://convoy/CODE)
+        val invite = ConvoyCrypto.fromLink(data)
+        when {
+            invite != null -> {
+                val code = invite
                 if (Core.settings.value.userName.isBlank()) {
                     Ui.pendingJoinCode.value = ConvoyCrypto.pretty(code)
                     Ui.screen.value = Screen.CONVOY
@@ -89,9 +90,10 @@ class MainActivity : ComponentActivity() {
                     Core.convoy.join(code)
                     Core.updateService()
                     Ui.screen.value = Screen.CONVOY
+                    Core.message(t("Joined convoy {0}", ConvoyCrypto.pretty(code)))
                 }
             }
-            "geo" -> openGeo(data.schemeSpecificPart ?: return)
+            data.scheme == "geo" -> openGeo(data.schemeSpecificPart ?: return)
         }
     }
 

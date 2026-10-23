@@ -614,7 +614,12 @@ fun ConvoyScreen() {
     val s by Core.settings.state.collectAsState()
     val fix by Core.location.fix.collectAsState()
     val context = LocalContext.current
-    var joinCode by remember { mutableStateOf(Ui.pendingJoinCode.value ?: "") }
+    // just the 12 code characters; the dashes are drawn by CodeDashes
+    var joinField by remember {
+        val c = ConvoyCrypto.fromInput(Ui.pendingJoinCode.value ?: "")
+        mutableStateOf(androidx.compose.ui.text.input.TextFieldValue(c, androidx.compose.ui.text.TextRange(c.length)))
+    }
+    val joinCode = joinField.text
     LaunchedEffect(Unit) { Ui.pendingJoinCode.value = null }
     var confirmLeave by remember { mutableStateOf(false) }
 
@@ -643,8 +648,22 @@ fun ConvoyScreen() {
                 Text(t("Join with a code"), fontWeight = FontWeight.Bold)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
-                        value = joinCode, onValueChange = { joinCode = it.uppercase().take(16) },
+                        // typing or pasting a code or a whole invite link both work; dashes appear by themselves
+                        value = joinField,
+                        onValueChange = { v ->
+                            val clean = ConvoyCrypto.fromInput(v.text)
+                            // keep the cursor after the same characters it was after (lowercase / spaces / dashes are cleaned up)
+                            val cursor = if (clean.length == ConvoyCrypto.normalize(v.text).length) ConvoyCrypto.normalize(v.text.take(v.selection.end)).length.coerceAtMost(clean.length) else clean.length
+                            joinField = androidx.compose.ui.text.input.TextFieldValue(clean, androidx.compose.ui.text.TextRange(cursor))
+                        },
                         placeholder = { Text(t("XXXX-XXXX-XXXX")) }, singleLine = true, modifier = Modifier.weight(1f),
+                        visualTransformation = CodeDashes,
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                            capitalization = androidx.compose.ui.text.input.KeyboardCapitalization.Characters,
+                            autoCorrectEnabled = false,
+                            keyboardType = androidx.compose.ui.text.input.KeyboardType.Ascii,
+                        ),
+                        textStyle = androidx.compose.ui.text.TextStyle(fontFamily = FontFamily.Monospace, fontSize = 18.sp, letterSpacing = 1.sp),
                     )
                     Spacer(Modifier.width(8.dp))
                     Button(onClick = {
@@ -668,7 +687,8 @@ fun ConvoyScreen() {
                         Core.message(t("Code copied"))
                     }) { Icon(Glyphs.Copy, null, Modifier.size(18.dp)); Spacer(Modifier.width(6.dp)); Text(t("Copy")) }
                     Button(onClick = {
-                        val text = t("Join my DriveMap convoy!") + "\n" + t("Code:") + " ${ConvoyCrypto.pretty(c.code)}\ndrivemap://convoy/${c.code}"
+                        // a normal https link (chat apps make it tappable); it opens DriveMap and joins
+                        val text = t("Join my DriveMap convoy!") + "\n" + ConvoyCrypto.inviteLink(c.code) + "\n" + t("Code:") + " ${ConvoyCrypto.pretty(c.code)}"
                         context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text), t("Invite to convoy")))
                     }) { Icon(Icons.Default.Share, null, Modifier.size(18.dp)); Spacer(Modifier.width(6.dp)); Text(t("Invite")) }
                 }
@@ -760,4 +780,23 @@ private fun NameFieldPlain(value: String, onSave: (String) -> Unit) {
         singleLine = true,
         modifier = Modifier.fillMaxWidth(),
     )
+}
+
+/** Shows a convoy code as XXXX-XXXX-XXXX while typing: a dash appears after every 4 characters. */
+private object CodeDashes : androidx.compose.ui.text.input.VisualTransformation {
+    override fun filter(text: androidx.compose.ui.text.AnnotatedString): androidx.compose.ui.text.input.TransformedText {
+        val raw = text.text
+        val out = StringBuilder()
+        raw.forEachIndexed { i, ch ->
+            out.append(ch)
+            if ((i + 1) % 4 == 0 && i + 1 < 12) out.append('-')
+        }
+        val map = object : androidx.compose.ui.text.input.OffsetMapping {
+            override fun originalToTransformed(offset: Int) =
+                offset + (if (offset >= 4) 1 else 0) + (if (offset >= 8) 1 else 0)
+            override fun transformedToOriginal(offset: Int) =
+                (offset - (if (offset > 4) 1 else 0) - (if (offset > 9) 1 else 0)).coerceIn(0, raw.length)
+        }
+        return androidx.compose.ui.text.input.TransformedText(androidx.compose.ui.text.AnnotatedString(out.toString()), map)
+    }
 }

@@ -29,6 +29,27 @@ object ConvoyCrypto {
 
     fun pretty(code: String): String = normalize(code).chunked(4).joinToString("-")
 
+    /** What the user typed or pasted (a code, or a whole invite link) as up to 12 code characters. */
+    fun fromInput(input: String): String {
+        // a pasted message or link: take the XXXX-XXXX-XXXX in it
+        Regex("[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}").find(input)?.let { return normalize(it.value).take(12) }
+        val tail = input.substringAfterLast('#').substringAfterLast('/').substringAfterLast('=')
+        return normalize(tail).take(12)
+    }
+
+    /** Invite link: opens DriveMap and joins (the code is in the #fragment, so web servers never see it). */
+    fun inviteLink(code: String): String = "https://martin6727.github.io/convoy/#" + pretty(code)
+
+    /** The code from an invite link (https://martin6727.github.io/convoy/#CODE or drivemap://convoy/CODE), or null. */
+    fun fromLink(uri: android.net.Uri): String? {
+        val c = when (uri.scheme) {
+            "drivemap" -> if (uri.host == "convoy") uri.lastPathSegment else null
+            "https", "http" -> if (uri.host == "martin6727.github.io" && uri.path.orEmpty().startsWith("/convoy")) uri.fragment ?: uri.getQueryParameter("c") else null
+            else -> null
+        } ?: return null
+        return if (isValid(c)) normalize(c) else null
+    }
+
     fun deriveKey(code: String): SecretKey {
         val spec = PBEKeySpec(normalize(code).toCharArray(), "drivemap.convoy.v1".toByteArray(), 20_000, 256)
         val bytes = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(spec).encoded

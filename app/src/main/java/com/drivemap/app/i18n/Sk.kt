@@ -357,6 +357,7 @@ internal val SK: Map<String, String> = hashMapOf(
     "Use DriveMap in your car?" to "Používať DriveMap v aute?",
     "Android Auto only shows navigation apps installed from the Play Store. Tap Enable and then Update — DriveMap reinstalls itself so Android Auto shows it. Your settings and places stay." to "Android Auto zobrazuje len navigácie nainštalované z Obchodu Play. Ťukni na Zapnúť a potom na Aktualizovať – DriveMap sa preinštaluje, aby ho Android Auto zobrazil. Nastavenia aj miesta ostanú.",
     "Enable" to "Zapnúť",
+    "Joined convoy {0}" to "Pripojený ku konvoju {0}",
     "Your roads" to "Tvoje cesty",
     "Via your roads" to "Cez tvoje cesty",
     "I can drive here" to "Tadiaľto sa dá jazdiť",

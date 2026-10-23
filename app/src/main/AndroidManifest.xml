@@ -36,6 +36,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- Convoy invite links: https://martin6727.github.io/convoy/#CODE open the app directly
+                 (verified by /.well-known/assetlinks.json on that site) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="martin6727.github.io" android:pathPrefix="/convoy" />
+            </intent-filter>
             <!-- Convoy invite links: drivemap://convoy/CODE -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
