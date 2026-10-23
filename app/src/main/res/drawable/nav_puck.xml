@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Navigation arrow (Google-style chevron): dark edge + white border + blue body -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="52"
+    android:viewportHeight="52">
+    <!-- soft drop shadow -->
+    <path android:fillColor="#38000000"
+        android:strokeColor="#38000000"
+        android:strokeWidth="6"
+        android:strokeLineJoin="round"
+        android:pathData="M26,8 L39.5,43.5 L26,36.5 L12.5,43.5 Z" />
+    <!-- thin dark outline so the white border also shows on light maps -->
+    <path android:fillColor="#00000000"
+        android:strokeColor="#73000000"
+        android:strokeWidth="7.5"
+        android:strokeLineJoin="round"
+        android:pathData="M26,5.5 L39,40.5 L26,33 L13,40.5 Z" />
+    <!-- white border + blue body -->
+    <path android:fillColor="#1A73E8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4.5"
+        android:strokeLineJoin="round"
+        android:pathData="M26,5.5 L39,40.5 L26,33 L13,40.5 Z" />
+</vector>

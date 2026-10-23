@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#F1F3F4" android:pathData="M0,0h108v108h-108z" />
+    <!-- park -->
+    <path android:fillColor="#C8E8C4" android:pathData="M0,64 L30,58 L44,108 L0,108 Z" />
+    <!-- water -->
+    <path android:fillColor="#AAD3F7" android:pathData="M72,0 L108,0 L108,40 Q90,30 80,14 Z" />
+    <!-- motorway -->
+    <path android:fillColor="#00000000" android:strokeColor="#E8B33E" android:strokeWidth="11"
+        android:pathData="M-4,92 C30,80 60,70 112,30" />
+    <path android:fillColor="#00000000" android:strokeColor="#FCE08A" android:strokeWidth="8"
+        android:pathData="M-4,92 C30,80 60,70 112,30" />
+    <!-- minor road -->
+    <path android:fillColor="#00000000" android:strokeColor="#FFFFFF" android:strokeWidth="5"
+        android:pathData="M20,-4 C30,30 40,50 70,112" />
+</vector>

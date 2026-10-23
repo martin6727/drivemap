@@ -1,0 +1,1390 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.4 2390de5a",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-21T19:56:31Z",
+    "timestamp_areas_base": "2026-10-21T17:45:56Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 11115779305,
+  "lat": 48.1415237,
+  "lon": 17.0878877,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12484114640,
+  "lat": 48.1274237,
+  "lon": 17.0995503,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 439356087,
+  "lat": 48.1632102,
+  "lon": 17.0905600,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 2311187465,
+  "lat": 48.1604763,
+  "lon": 17.1045768
+},
+{
+  "type": "node",
+  "id": 29062335,
+  "lat": 48.1634685,
+  "lon": 17.1155762,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 26610651,
+  "lat": 48.2052516,
+  "lon": 17.1484471,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13294131552,
+  "lat": 48.0908270,
+  "lon": 17.3071655,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8999614527,
+  "lat": 48.1974722,
+  "lon": 17.2113665,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3506712927,
+  "lat": 48.2196033,
+  "lon": 17.4106901,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 10052126455,
+  "lat": 47.7811037,
+  "lon": 18.1627788,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "Ortofotomozaika SR;Mapillary"
+  }
+},
+{
+  "type": "node",
+  "id": 7419720090,
+  "lat": 47.8543649,
+  "lon": 17.7916208,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "Ortofotomozaika SR"
+  }
+},
+{
+  "type": "node",
+  "id": 10052126454,
+  "lat": 47.8362183,
+  "lon": 18.1710877,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "Ortofotomozaika SR;Mapillary"
+  }
+},
+{
+  "type": "node",
+  "id": 10052126453,
+  "lat": 47.9913537,
+  "lon": 18.3213262,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "Ortofotomozaika SR;Mapillary"
+  }
+},
+{
+  "type": "node",
+  "id": 201598055,
+  "lat": 48.2989139,
+  "lon": 17.3439036
+},
+{
+  "type": "node",
+  "id": 2661651424,
+  "lat": 48.2987011,
+  "lon": 17.3444189
+},
+{
+  "type": "node",
+  "id": 3402831177,
+  "lat": 48.2988232,
+  "lon": 17.3442263,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 6565291194,
+  "lat": 48.3058673,
+  "lon": 17.3474767,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 248916437,
+  "lat": 48.2648758,
+  "lon": 17.4239748,
+  "tags": {
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 281323195,
+  "lat": 48.2649868,
+  "lon": 17.4240151,
+  "tags": {
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3728301292,
+  "lat": 48.2649024,
+  "lon": 17.4240903,
+  "tags": {
+    "direction": "5",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 281288138,
+  "lat": 48.2932889,
+  "lon": 17.4575133
+},
+{
+  "type": "node",
+  "id": 3728301293,
+  "lat": 48.2933861,
+  "lon": 17.4575744,
+  "tags": {
+    "direction": "60",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 11374329728,
+  "lat": 48.4283878,
+  "lon": 17.5331811,
+  "tags": {
+    "direction": "180",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 3370819976,
+  "lat": 48.7926975,
+  "lon": 17.1298338,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 1828995995,
+  "lat": 48.6749144,
+  "lon": 17.3290042
+},
+{
+  "type": "node",
+  "id": 5045479427,
+  "lat": 48.6749620,
+  "lon": 17.3292913
+},
+{
+  "type": "node",
+  "id": 5062126353,
+  "lat": 48.6749325,
+  "lon": 17.3295300
+},
+{
+  "type": "node",
+  "id": 3752878273,
+  "lat": 48.6740494,
+  "lon": 17.5370415,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5314703917,
+  "lat": 48.7458912,
+  "lon": 17.5556216,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 2604524724,
+  "lat": 48.4725164,
+  "lon": 17.7742920,
+  "tags": {
+    "direction": "215",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 32001401,
+  "lat": 48.5780630,
+  "lon": 17.6442718,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3098766974,
+  "lat": 48.5984446,
+  "lon": 17.8256822,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 26449938,
+  "lat": 48.5487251,
+  "lon": 17.9457153
+},
+{
+  "type": "node",
+  "id": 361381214,
+  "lat": 48.5490305,
+  "lon": 17.9467957
+},
+{
+  "type": "node",
+  "id": 3712820366,
+  "lat": 48.5488115,
+  "lon": 17.9455959,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3725133472,
+  "lat": 48.5659330,
+  "lon": 17.8385975
+},
+{
+  "type": "node",
+  "id": 3725133473,
+  "lat": 48.5662151,
+  "lon": 17.8387251,
+  "tags": {
+    "highway": "traffic_signals"
+  }
+},
+{
+  "type": "node",
+  "id": 3725133474,
+  "lat": 48.5664630,
+  "lon": 17.8388382
+},
+{
+  "type": "node",
+  "id": 2409826377,
+  "lat": 48.6499479,
+  "lon": 17.8495502,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "130",
+    "maxspeed:type": "SK:motorway"
+  }
+},
+{
+  "type": "node",
+  "id": 60366479,
+  "lat": 48.3113989,
+  "lon": 18.1119126
+},
+{
+  "type": "node",
+  "id": 469730370,
+  "lat": 48.3103789,
+  "lon": 18.1132354
+},
+{
+  "type": "node",
+  "id": 3380355417,
+  "lat": 48.3105726,
+  "lon": 18.1128915,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 524695127,
+  "lat": 48.3055013,
+  "lon": 18.1164904
+},
+{
+  "type": "node",
+  "id": 2892301210,
+  "lat": 48.3058617,
+  "lon": 18.1163875
+},
+{
+  "type": "node",
+  "id": 2892301212,
+  "lat": 48.3059416,
+  "lon": 18.1164550,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1826039989,
+  "lat": 48.3799572,
+  "lon": 18.3987175
+},
+{
+  "type": "node",
+  "id": 1864139435,
+  "lat": 48.3788068,
+  "lon": 18.4003206,
+  "tags": {
+    "name": "Zlaté Moravce",
+    "traffic_sign": "city_limit"
+  }
+},
+{
+  "type": "node",
+  "id": 4911651738,
+  "lat": 48.3794798,
+  "lon": 18.3994187,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 14111338883,
+  "lat": 48.7507911,
+  "lon": 17.6654843,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3739402853,
+  "lat": 48.7731337,
+  "lon": 17.6935943,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8677776761,
+  "lat": 48.7559615,
+  "lon": 17.8136444,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13008837996,
+  "lat": 48.7585038,
+  "lon": 17.8257300,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3739402870,
+  "lat": 48.7779036,
+  "lon": 17.7009392,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 2408871936,
+  "lat": 48.7276137,
+  "lon": 17.8400368,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4072608978,
+  "lat": 48.7438491,
+  "lon": 17.8600403,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "130"
+  }
+},
+{
+  "type": "node",
+  "id": 11147915383,
+  "lat": 48.8064770,
+  "lon": 17.8584165,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12148196128,
+  "lat": 48.8216107,
+  "lon": 17.9392214,
+  "tags": {
+    "fixme": "resurvey,vyzerá to ako rýchlostná kamera umiestnená na tyčy vo výške cca 1,5m nad zemou",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 298418732,
+  "lat": 48.8779537,
+  "lon": 18.0309310
+},
+{
+  "type": "node",
+  "id": 3292637461,
+  "lat": 48.8780181,
+  "lon": 18.0309439,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3292637462,
+  "lat": 48.8783427,
+  "lon": 18.0314378
+},
+{
+  "type": "node",
+  "id": 8500271215,
+  "lat": 48.8804345,
+  "lon": 18.0343205,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 297135793,
+  "lat": 48.8718797,
+  "lon": 18.0408051
+},
+{
+  "type": "node",
+  "id": 622538219,
+  "lat": 48.8724535,
+  "lon": 18.0418380,
+  "tags": {
+    "crossing": "marked",
+    "crossing:markings": "yes",
+    "crossing_ref": "zebra",
+    "highway": "crossing"
+  }
+},
+{
+  "type": "node",
+  "id": 2717373745,
+  "lat": 48.8721596,
+  "lon": 18.0413963,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5157862121,
+  "lat": 48.7058656,
+  "lon": 18.4052044,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3395263027,
+  "lat": 48.9003211,
+  "lon": 18.0608883,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3395263028,
+  "lat": 48.9003664,
+  "lon": 18.0608958
+},
+{
+  "type": "node",
+  "id": 3395263029,
+  "lat": 48.9003904,
+  "lon": 18.0605951
+},
+{
+  "type": "node",
+  "id": 5768451933,
+  "lat": 48.9622323,
+  "lon": 18.1364373,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "130",
+    "name": "Dubnica nad Váhom"
+  }
+},
+{
+  "type": "node",
+  "id": 449762781,
+  "lat": 49.0612292,
+  "lon": 18.2781603,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7333111209,
+  "lat": 49.0773878,
+  "lon": 18.3029814,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3022082911,
+  "lat": 49.0684792,
+  "lon": 18.3360685
+},
+{
+  "type": "node",
+  "id": 3022082912,
+  "lat": 49.0686789,
+  "lon": 18.3364888,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 2422608172,
+  "lat": 49.0689063,
+  "lon": 18.3371206
+},
+{
+  "type": "node",
+  "id": 2721504489,
+  "lat": 49.1834301,
+  "lon": 18.2448972,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5155894254,
+  "lat": 48.7752418,
+  "lon": 18.7290045,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3021706008,
+  "lat": 49.0797189,
+  "lon": 18.5202172
+},
+{
+  "type": "node",
+  "id": 3021706009,
+  "lat": 49.0800196,
+  "lon": 18.5200580
+},
+{
+  "type": "node",
+  "id": 3021706010,
+  "lat": 49.0799061,
+  "lon": 18.5201531,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 37515920,
+  "lat": 48.3548082,
+  "lon": 19.5729753
+},
+{
+  "type": "node",
+  "id": 37515922,
+  "lat": 48.3550428,
+  "lon": 19.5728824
+},
+{
+  "type": "node",
+  "id": 13596568475,
+  "lat": 48.3547287,
+  "lon": 19.5729603,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 59983403,
+  "lat": 48.3525884,
+  "lon": 19.5762380
+},
+{
+  "type": "node",
+  "id": 13568510736,
+  "lat": 48.3527463,
+  "lon": 19.5759762
+},
+{
+  "type": "node",
+  "id": 13568510737,
+  "lat": 48.3528081,
+  "lon": 19.5759952,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 301624241,
+  "lat": 48.3299506,
+  "lon": 19.6546550,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 301624242,
+  "lat": 48.3297743,
+  "lon": 19.6569847,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8093531640,
+  "lat": 48.9473278,
+  "lon": 19.7651651,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 5029960400,
+  "lat": 48.9517411,
+  "lon": 19.7714600,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 3186696767,
+  "lat": 49.0576140,
+  "lon": 19.8335008
+},
+{
+  "type": "node",
+  "id": 431693770,
+  "lat": 49.0971734,
+  "lon": 18.4693393
+},
+{
+  "type": "node",
+  "id": 1711348910,
+  "lat": 49.0968366,
+  "lon": 18.4702264
+},
+{
+  "type": "node",
+  "id": 3021729088,
+  "lat": 49.0971616,
+  "lon": 18.4694426,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7616813145,
+  "lat": 49.2069532,
+  "lon": 18.4931379,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 7616813152,
+  "lat": 49.2046038,
+  "lon": 18.4991281,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2371045710,
+  "lat": 49.2718231,
+  "lon": 18.5345310,
+  "tags": {
+    "direction": "backward",
+    "maxspeed": "70",
+    "traffic_sign": "maxspeed",
+    "traffic_sign:direction": "backward"
+  }
+},
+{
+  "type": "node",
+  "id": 4119531716,
+  "lat": 48.6589692,
+  "lon": 21.2710645,
+  "tags": {
+    "highway": "speed_camera",
+    "source": "Survey 2015 (drive-by)"
+  }
+},
+{
+  "type": "node",
+  "id": 9416383252,
+  "lat": 48.6931833,
+  "lon": 21.2051259,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7787982361,
+  "lat": 48.7356304,
+  "lon": 21.2433321,
+  "tags": {
+    "direction": "250",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13333366187,
+  "lat": 48.7384168,
+  "lon": 21.2515493,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "250",
+    "enforcement": "traffic_signals",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5768502725,
+  "lat": 49.1312154,
+  "lon": 20.4345780,
+  "tags": {
+    "highway": "speed_camera",
+    "name": "Kezmarok, Ľubická cesta"
+  }
+},
+{
+  "type": "node",
+  "id": 4124131171,
+  "lat": 49.1138665,
+  "lon": 21.5169374,
+  "tags": {
+    "highway": "speed_camera",
+    "note": "Cam at southern side of the road",
+    "source": "Survey 2015 (drive-by)"
+  }
+},
+{
+  "type": "node",
+  "id": 4124131172,
+  "lat": 49.1171108,
+  "lon": 21.5217885,
+  "tags": {
+    "highway": "speed_camera",
+    "note": "Cam at northern side of the road",
+    "source": "Survey 2015 (drive-by)"
+  }
+},
+{
+  "type": "relation",
+  "id": 2939964,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2311187465,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4679023,
+  "members": [
+    {
+      "type": "node",
+      "ref": 201598055,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3402831177,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 2661651424,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "source:maxspeed": "SK:urban",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5482107,
+  "members": [
+    {
+      "type": "node",
+      "ref": 281323195,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3728301292,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 248916437,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5482106,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3728301293,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 281288138,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7513565,
+  "members": [
+    {
+      "type": "node",
+      "ref": 5062126353,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 1828995995,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 5045479427,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5461726,
+  "members": [
+    {
+      "type": "node",
+      "ref": 26449938,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3712820366,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 361381214,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5478160,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3725133474,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3725133473,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 3725133472,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4642690,
+  "members": [
+    {
+      "type": "node",
+      "ref": 60366479,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3380355417,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 469730370,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3787713,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2892301212,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 2892301210,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 524695127,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7328529,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1864139435,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 4911651738,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 1826039989,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4492508,
+  "members": [
+    {
+      "type": "node",
+      "ref": 298418732,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3292637461,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 3292637462,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3576070,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2717373745,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 297135793,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 622538219,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4666787,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3395263027,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 3395263028,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3395263029,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3966639,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3022082912,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 3022082911,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 2422608172,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3966067,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3021706010,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 3021706009,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3021706008,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 20258384,
+  "members": [
+    {
+      "type": "node",
+      "ref": 13596568475,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 37515922,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 37515920,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "source": "survey",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 20223974,
+  "members": [
+    {
+      "type": "node",
+      "ref": 13568510737,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 59983403,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 13568510736,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "source": "Mapillary",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4783632,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3186696767,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3966085,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3021729088,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 431693770,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 1711348910,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 4783631,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2371045710,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+}
+
+  ]
+}

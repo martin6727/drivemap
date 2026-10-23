@@ -1,0 +1,9119 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-05-31T22:37:44Z",
+    "timestamp_areas_base": "2026-05-31T22:37:44Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 12366333406,
+  "lat": 43.0589020,
+  "lon": 16.1809916,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12349569618,
+  "lat": 42.9483369,
+  "lon": 16.7681550,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12366307686,
+  "lat": 43.1799961,
+  "lon": 16.5780681,
+  "tags": {
+    "direction": "93",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12977617834,
+  "lat": 43.1639597,
+  "lon": 16.6793870,
+  "tags": {
+    "direction": "274",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12349557468,
+  "lat": 42.9484417,
+  "lon": 17.1376864,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421631943,
+  "lat": 42.9757736,
+  "lon": 17.1809932,
+  "tags": {
+    "description": "fix speedcam, Orebić, GATSO127@50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349522608,
+  "lat": 42.8579779,
+  "lon": 17.5751975,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 12790185348,
+  "lat": 42.8642848,
+  "lon": 17.5653337,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349516846,
+  "lat": 42.9251410,
+  "lon": 17.4528206,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 13266870298,
+  "lat": 42.9051865,
+  "lon": 17.5406760,
+  "tags": {
+    "direction": "135",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6421659716,
+  "lat": 43.1243875,
+  "lon": 17.3017124,
+  "tags": {
+    "description": "fix speedcam, Podaca, GATSO088@50",
+    "direction": "330;150",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366359397,
+  "lat": 43.2040628,
+  "lon": 17.3766879,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421654450,
+  "lat": 43.0546424,
+  "lon": 17.4506359,
+  "tags": {
+    "description": "Stabline, GATSO095@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349572352,
+  "lat": 43.0463626,
+  "lon": 17.4805592,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6432715973,
+  "lat": 42.7285931,
+  "lon": 17.9577205,
+  "tags": {
+    "direction": "310;130",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 8324109319,
+  "lat": 42.5787840,
+  "lon": 18.2286532,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8325341432,
+  "lat": 42.5784121,
+  "lon": 18.2421982,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 12349585872,
+  "lat": 42.5506342,
+  "lon": 18.2850213,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1713435543,
+  "lat": 42.5163859,
+  "lon": 18.3706038,
+  "tags": {
+    "direction": "290",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421607001,
+  "lat": 42.5156044,
+  "lon": 18.3734562,
+  "tags": {
+    "direction": "295;115",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349537733,
+  "lat": 42.6597554,
+  "lon": 18.0732349,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349506688,
+  "lat": 42.6525756,
+  "lon": 18.0897137,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421611714,
+  "lat": 42.6515621,
+  "lon": 18.0986219,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7002967216,
+  "lat": 42.6462434,
+  "lon": 18.1036956,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8644366906,
+  "lat": 42.6745636,
+  "lon": 18.0920865,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421612355,
+  "lat": 42.6706897,
+  "lon": 18.1163013,
+  "tags": {
+    "direction": "280;105",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8643705041,
+  "lat": 42.6723421,
+  "lon": 18.1275658,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7001531639,
+  "lat": 42.6225654,
+  "lon": 18.1819018,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6432905438,
+  "lat": 42.6111800,
+  "lon": 18.2276614,
+  "tags": {
+    "description": "fix speedcam, Plat, GATSO198@60",
+    "direction": "340;160",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421628091,
+  "lat": 42.8297436,
+  "lon": 17.7527717,
+  "tags": {
+    "direction": "320;140",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 6421644487,
+  "lat": 43.0499837,
+  "lon": 17.6260873,
+  "tags": {
+    "description": "fix speedcam, Metković, GATSO100@50",
+    "direction": "230;50",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421639768,
+  "lat": 43.0526719,
+  "lon": 17.6349347,
+  "tags": {
+    "description": "fix speedcam, Metković, GATSO099@50",
+    "direction": "245;65",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12351785355,
+  "lat": 44.8529515,
+  "lon": 13.8397323,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351832511,
+  "lat": 44.8568536,
+  "lon": 13.8340721,
+  "tags": {
+    "direction": "290",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 12377240514,
+  "lat": 44.8403133,
+  "lon": 13.8500479,
+  "tags": {
+    "direction": "70",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 517809261,
+  "lat": 44.8256041,
+  "lon": 13.8704498
+},
+{
+  "type": "node",
+  "id": 1876863588,
+  "lat": 44.8257431,
+  "lon": 13.8707369
+},
+{
+  "type": "node",
+  "id": 12377218866,
+  "lat": 44.8255234,
+  "lon": 13.8703956,
+  "tags": {
+    "direction": "45",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 2492695736,
+  "lat": 44.8054741,
+  "lon": 13.9093770
+},
+{
+  "type": "node",
+  "id": 12323381431,
+  "lat": 44.8060351,
+  "lon": 13.9091507
+},
+{
+  "type": "node",
+  "id": 12377231146,
+  "lat": 44.8054592,
+  "lon": 13.9093012,
+  "tags": {
+    "direction": "350",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 12351830841,
+  "lat": 44.8699653,
+  "lon": 13.8534635,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1041607804,
+  "lat": 44.8547377,
+  "lon": 13.9292734
+},
+{
+  "type": "node",
+  "id": 2841374482,
+  "lat": 44.8548686,
+  "lon": 13.9287646
+},
+{
+  "type": "node",
+  "id": 12377244173,
+  "lat": 44.8547626,
+  "lon": 13.9293073,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12362678021,
+  "lat": 44.5343755,
+  "lon": 14.4717031,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12801265317,
+  "lat": 44.5327153,
+  "lon": 14.4738784,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421351720,
+  "lat": 44.5528251,
+  "lon": 15.0407097,
+  "tags": {
+    "description": "fix speedcam, Ribarica, GATSO0135@60",
+    "direction": "270;90",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12362650480,
+  "lat": 44.7499378,
+  "lon": 14.7861030,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12789855778,
+  "lat": 43.6239751,
+  "lon": 15.9224697,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1309495022,
+  "lat": 43.6250740,
+  "lon": 15.9205196,
+  "tags": {
+    "description": "fix speedcam, Bilo, GATSO084@60",
+    "direction": "305;125",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6423073230,
+  "lat": 43.9410868,
+  "lon": 15.4614926,
+  "tags": {
+    "description": "Biograd, GATSO068@70",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6423070115,
+  "lat": 43.9129396,
+  "lon": 15.5120877,
+  "tags": {
+    "description": "Pakoštane, GATSO069@50",
+    "direction": "310;130",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423078112,
+  "lat": 44.0363974,
+  "lon": 15.3310151,
+  "tags": {
+    "description": "Sukošan, GATSO067@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423075456,
+  "lat": 44.0043816,
+  "lon": 15.3682047,
+  "tags": {
+    "direction": "335;155",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374626259,
+  "lat": 43.9658488,
+  "lon": 15.4170849,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13716531558,
+  "lat": 43.7993745,
+  "lon": 15.6419293,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 11242016282,
+  "lat": 43.8020977,
+  "lon": 15.6495568,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 13716579237,
+  "lat": 43.8178599,
+  "lon": 15.6753284,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12367734156,
+  "lat": 43.8248081,
+  "lon": 15.6590668,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12367702992,
+  "lat": 43.8154941,
+  "lon": 15.7072166,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12789833103,
+  "lat": 43.8370714,
+  "lon": 15.7249754,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12367757546,
+  "lat": 43.6809212,
+  "lon": 15.9170537,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 3431371559,
+  "lat": 43.6779434,
+  "lon": 15.9214449,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11795954641,
+  "lat": 43.7191264,
+  "lon": 15.9157220,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 6996385961,
+  "lat": 43.7257478,
+  "lon": 15.9147429,
+  "tags": {
+    "description": "ex speedcam GATSO211@80, Šibenik D8",
+    "direction": "110",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 6423047832,
+  "lat": 43.7374392,
+  "lon": 15.9356217,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 6423053911,
+  "lat": 43.7677531,
+  "lon": 15.7706041,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423062566,
+  "lat": 43.7755141,
+  "lon": 15.7709470,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6432969101,
+  "lat": 43.7642349,
+  "lon": 15.7932187,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6626904872,
+  "lat": 43.7744252,
+  "lon": 15.7832661,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 12367759468,
+  "lat": 43.7477665,
+  "lon": 15.8893234,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12367758492,
+  "lat": 43.7579110,
+  "lon": 15.8999551,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423063544,
+  "lat": 43.8815768,
+  "lon": 15.5491718,
+  "tags": {
+    "description": "fix speedcam, Drage, GATSO076@50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12367787878,
+  "lat": 43.8537482,
+  "lon": 15.7616190,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6423015488,
+  "lat": 43.5303449,
+  "lon": 16.0274210,
+  "tags": {
+    "description": "fix speedcam, Podorljak, GATSO082@70",
+    "direction": "265;85",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12790124987,
+  "lat": 43.5302618,
+  "lon": 16.0253029,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6422645802,
+  "lat": 43.5136765,
+  "lon": 16.1830758,
+  "tags": {
+    "description": "Seget Vranjic, GATSO092@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6980397889,
+  "lat": 43.5199389,
+  "lon": 16.2572875,
+  "tags": {
+    "description": "GATSO207@50, Trogir",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12367680276,
+  "lat": 43.5287785,
+  "lon": 16.2644190,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8807085504,
+  "lat": 43.5131259,
+  "lon": 16.3028600,
+  "tags": {
+    "description": "stacionarni radar, GATSO117@30, Čiovo-Cesta Domovinske Zahvalnosti",
+    "direction": "both",
+    "fixme": "fix speedcam;maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 6539201282,
+  "lat": 43.5525161,
+  "lon": 16.2750071,
+  "tags": {
+    "description": "Plano, GATSO201@40",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366347242,
+  "lat": 43.5401870,
+  "lon": 16.3092515,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366364423,
+  "lat": 43.3330806,
+  "lon": 16.5765593,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12790161176,
+  "lat": 43.4092119,
+  "lon": 16.7490468,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421674391,
+  "lat": 43.4082469,
+  "lon": 16.7527382,
+  "tags": {
+    "description": "fix speedcam, Ruskamen, GATSO090@60",
+    "direction": "280;100",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8255367349,
+  "lat": 43.5170906,
+  "lon": 16.4456012,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10293303091,
+  "lat": 43.4757461,
+  "lon": 16.5647856,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1171848062,
+  "lat": 43.5059345,
+  "lon": 16.5083237,
+  "tags": {
+    "description": "Sirobuja, GATSO030@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6433024690,
+  "lat": 43.5059302,
+  "lon": 16.5083425
+},
+{
+  "type": "node",
+  "id": 278704664,
+  "lat": 43.5082566,
+  "lon": 16.4724907,
+  "tags": {
+    "description": "fix speedcam, Split, Poljička cesta, GATSO028@60",
+    "direction": "60",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 278683694,
+  "lat": 43.5191344,
+  "lon": 16.4724985,
+  "tags": {
+    "direction": "272",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 278495089,
+  "lat": 43.5210466,
+  "lon": 16.4837575,
+  "tags": {
+    "direction": "220",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 278701029,
+  "lat": 43.5210259,
+  "lon": 16.4837304
+},
+{
+  "type": "node",
+  "id": 6520955084,
+  "lat": 43.5210830,
+  "lon": 16.4836343
+},
+{
+  "type": "node",
+  "id": 6521130220,
+  "lat": 43.5088467,
+  "lon": 16.4955744,
+  "tags": {
+    "description": "Split-Lovrinac, GATSO128a@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6521248042,
+  "lat": 43.5089364,
+  "lon": 16.4956122,
+  "tags": {
+    "description": "Split-Lovrinac, GATSO128@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 278701651,
+  "lat": 43.5067571,
+  "lon": 16.5047089
+},
+{
+  "type": "node",
+  "id": 12789880259,
+  "lat": 43.5285605,
+  "lon": 16.4910716,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12790136449,
+  "lat": 43.4880675,
+  "lon": 16.5455385,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 2528357144,
+  "lat": 43.4823150,
+  "lon": 16.5561443,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10293303074,
+  "lat": 43.5072833,
+  "lon": 16.5366774,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13727534538,
+  "lat": 43.5573519,
+  "lon": 16.3755398,
+  "tags": {
+    "direction": "95",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "ref": "GATSO940@70"
+  }
+},
+{
+  "type": "node",
+  "id": 8443156080,
+  "lat": 43.5586828,
+  "lon": 16.3586532,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12367702951,
+  "lat": 43.5409835,
+  "lon": 16.4560046,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 472120741,
+  "lat": 43.5422109,
+  "lon": 16.4645654
+},
+{
+  "type": "node",
+  "id": 2521418628,
+  "lat": 43.5408240,
+  "lon": 16.4673175,
+  "tags": {
+    "description": "Solin, GATSO058@100",
+    "direction": "forward",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 60051328,
+  "lat": 43.5447756,
+  "lon": 16.5290081,
+  "tags": {
+    "description": "fix speedcam, tunel Mačkovac, GATSO063@80",
+    "direction": "80",
+    "highway": "speed_camera",
+    "maxspeed": "80",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6451263355,
+  "lat": 43.5580484,
+  "lon": 16.5222288,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 60051962,
+  "lat": 43.5771646,
+  "lon": 16.5444978
+},
+{
+  "type": "node",
+  "id": 278664090,
+  "lat": 43.5784328,
+  "lon": 16.5481822
+},
+{
+  "type": "node",
+  "id": 13266870299,
+  "lat": 43.6270749,
+  "lon": 16.4863151,
+  "tags": {
+    "direction": "145",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13266870300,
+  "lat": 43.6321338,
+  "lon": 16.4817782,
+  "tags": {
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12367680283,
+  "lat": 43.6181098,
+  "lon": 16.4927757,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366304597,
+  "lat": 43.4646867,
+  "lon": 16.5866568,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366332735,
+  "lat": 43.4689120,
+  "lon": 16.5759135,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366333405,
+  "lat": 43.4586426,
+  "lon": 16.6069914,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366334395,
+  "lat": 43.4509665,
+  "lon": 16.6263578,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366290386,
+  "lat": 43.4440448,
+  "lon": 16.6412858,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366307891,
+  "lat": 43.4399207,
+  "lon": 16.6702985,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421677789,
+  "lat": 43.4411629,
+  "lon": 16.6576307,
+  "tags": {
+    "description": "fix speedcam, Omiš, GATSO091@60",
+    "direction": "280;100",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366159841,
+  "lat": 43.5860034,
+  "lon": 16.5900305,
+  "tags": {
+    "direction": "270",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366158498,
+  "lat": 43.5978570,
+  "lon": 16.5831165,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366082449,
+  "lat": 43.5992564,
+  "lon": 16.5915401,
+  "tags": {
+    "direction": "260",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6520826881,
+  "lat": 43.6165619,
+  "lon": 16.5973025,
+  "tags": {
+    "direction": "347;168",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12803645985,
+  "lat": 43.6298682,
+  "lon": 16.5950896,
+  "tags": {
+    "direction": "180;360",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12799890295,
+  "lat": 43.5840872,
+  "lon": 16.6732463,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12366128752,
+  "lat": 43.5722214,
+  "lon": 16.7593414,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10275086579,
+  "lat": 43.6195764,
+  "lon": 16.7225629,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "Fixed speed camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7005748338,
+  "lat": 43.6270794,
+  "lon": 16.7090131,
+  "tags": {
+    "description": "fix speedcam, GATSO215@50, Košute",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 10275131608,
+  "lat": 43.6155577,
+  "lon": 16.7291736,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10275138393,
+  "lat": 43.6214616,
+  "lon": 16.7351801,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "Fixed speed camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6996431197,
+  "lat": 43.6415809,
+  "lon": 15.9585750,
+  "tags": {
+    "description": "fix speedcam, GATSO212@60, Grebaštica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12346923538,
+  "lat": 43.6793875,
+  "lon": 15.9829237,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12367752165,
+  "lat": 43.7821878,
+  "lon": 16.0158864,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12367689498,
+  "lat": 43.8588428,
+  "lon": 16.1396434,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12367730367,
+  "lat": 43.9823755,
+  "lon": 15.9679124,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12367787694,
+  "lat": 43.8621140,
+  "lon": 16.1678846,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 9051249371,
+  "lat": 43.9234177,
+  "lon": 16.2061772,
+  "tags": {
+    "direction": "0",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7162567140,
+  "lat": 44.0390906,
+  "lon": 16.2070072,
+  "tags": {
+    "description": "fix speedcam, GATSO235@50, Knin-Ulica 4. gardijske brigade",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7525446267,
+  "lat": 44.0482274,
+  "lon": 16.2104328,
+  "tags": {
+    "description": "fix speedcam, GATSO248@50, Knin",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6449920305,
+  "lat": 44.0526392,
+  "lon": 16.2065383,
+  "tags": {
+    "description": "fix speedcam, Knin, Ulica kralja Tomislava 131, GATSO200@50",
+    "direction": "25;205",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12367614970,
+  "lat": 43.6772374,
+  "lon": 16.4940322,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 9966274006,
+  "lat": 43.6841753,
+  "lon": 16.6495812,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "Brnaze"
+  }
+},
+{
+  "type": "node",
+  "id": 12366189502,
+  "lat": 43.6988498,
+  "lon": 16.6504792,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366150760,
+  "lat": 43.7044041,
+  "lon": 16.6484197,
+  "tags": {
+    "direction": "270;90",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366351337,
+  "lat": 43.7344376,
+  "lon": 16.6364316,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8643705081,
+  "lat": 43.6863850,
+  "lon": 16.7298822,
+  "tags": {
+    "description": "stacionarni radar, GATSO293@50, Otok-Ulica Ivana Pavla II.",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8321451144,
+  "lat": 43.6831293,
+  "lon": 16.7355034,
+  "tags": {
+    "description": "fix speedcam, GATSO280@50, Otok-Ulica Alojzija Stepinca",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366189399,
+  "lat": 43.7267687,
+  "lon": 16.6858177,
+  "tags": {
+    "direction": "240;60",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8321395294,
+  "lat": 43.7218077,
+  "lon": 16.7112385,
+  "tags": {
+    "description": "fix speedcamp, GATSO279@50, Gala",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366160807,
+  "lat": 43.9035581,
+  "lon": 16.4111900,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8137398911,
+  "lat": 43.9698654,
+  "lon": 16.3626348,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12374643878,
+  "lat": 44.0783946,
+  "lon": 15.1859185,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 849335892,
+  "lat": 44.1004864,
+  "lon": 15.2475278,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8280706267,
+  "lat": 44.1025276,
+  "lon": 15.2480164,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423085689,
+  "lat": 44.0683027,
+  "lon": 15.2920401,
+  "tags": {
+    "description": "Bibinje, GATSO72@60",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6423088060,
+  "lat": 44.1002106,
+  "lon": 15.2681281,
+  "tags": {
+    "direction": "310",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6624935705,
+  "lat": 44.1002690,
+  "lon": 15.2681873,
+  "tags": {
+    "direction": "130",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8280681145,
+  "lat": 44.1027422,
+  "lon": 15.2750594,
+  "tags": {
+    "description": "fix speedcam, GATSO271@50, Zadar-Benkovačka cesta",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8280712316,
+  "lat": 44.1333997,
+  "lon": 15.2135346,
+  "tags": {
+    "direction": "both",
+    "fixme": "check maxspeeds on this road, road has limit of 30, camera limit of 50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8270454788,
+  "lat": 44.1256839,
+  "lon": 15.2230574,
+  "tags": {
+    "description": "fix speedcam, GATSO268@40, Zadar-Obala kneza Trpimira",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8280728455,
+  "lat": 44.1170063,
+  "lon": 15.2353180,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8270421505,
+  "lat": 44.1115593,
+  "lon": 15.2497160,
+  "tags": {
+    "direction": "45",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8270421506,
+  "lat": 44.1114823,
+  "lon": 15.2498156,
+  "tags": {
+    "description": "fix speedcam, GATSO267@60, Ulica Ante Starčevića",
+    "direction": "230",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8280705023,
+  "lat": 44.1199386,
+  "lon": 15.2481633,
+  "tags": {
+    "description": "fix speedcam, GATSO270@50, Zadar-Splitska ulica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12374590327,
+  "lat": 44.1191131,
+  "lon": 15.2523730,
+  "tags": {
+    "direction": "150",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 8280671475,
+  "lat": 44.1253297,
+  "lon": 15.2353037,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8280726923,
+  "lat": 44.1342336,
+  "lon": 15.2476811,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8280712368,
+  "lat": 44.1372976,
+  "lon": 15.2405118,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423089675,
+  "lat": 44.1160454,
+  "lon": 15.2617781,
+  "tags": {
+    "direction": "255",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374577259,
+  "lat": 44.1187887,
+  "lon": 15.2847018,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374630392,
+  "lat": 44.1796829,
+  "lon": 15.1630812,
+  "tags": {
+    "direction": "30",
+    "highway": "speed_camera",
+    "maxspeed": "20"
+  }
+},
+{
+  "type": "node",
+  "id": 12374577260,
+  "lat": 44.1720410,
+  "lon": 15.1934327,
+  "tags": {
+    "direction": "320",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8269698023,
+  "lat": 44.1642323,
+  "lon": 15.2620119,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 13740451844,
+  "lat": 44.0911912,
+  "lon": 15.3134985,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "both",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "80",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6423094118,
+  "lat": 44.1435058,
+  "lon": 15.3182236,
+  "tags": {
+    "description": "fix speedcam, Murvica, GATSO071@50",
+    "direction": "45;225",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12374723932,
+  "lat": 44.1000691,
+  "lon": 15.4792846,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12374603760,
+  "lat": 44.1155503,
+  "lon": 15.4230531,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423098401,
+  "lat": 44.1712266,
+  "lon": 15.3741498,
+  "tags": {
+    "description": "fix speedcam, Poličnik, GATSO073@50",
+    "direction": "80;260",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12073242831,
+  "lat": 44.2526633,
+  "lon": 15.3830280,
+  "tags": {
+    "direction": "145",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421809585,
+  "lat": 44.2135706,
+  "lon": 15.4810747,
+  "tags": {
+    "direction": "270;95",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12374667819,
+  "lat": 44.2918155,
+  "lon": 15.1199716,
+  "tags": {
+    "direction": "330",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12073242830,
+  "lat": 44.3576835,
+  "lon": 15.1895524,
+  "tags": {
+    "direction": "315",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12073242832,
+  "lat": 44.3017972,
+  "lon": 15.2898681,
+  "tags": {
+    "direction": "130",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13650387749,
+  "lat": 44.4003824,
+  "lon": 15.2407201,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "both",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12789833101,
+  "lat": 44.3224592,
+  "lon": 15.3934928,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421595362,
+  "lat": 44.2944598,
+  "lon": 15.4395684,
+  "tags": {
+    "description": "Starigrad, GATSO070@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7064112812,
+  "lat": 44.2762212,
+  "lon": 15.4774025,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356879154,
+  "lat": 44.3598044,
+  "lon": 15.6913030,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12316726360,
+  "lat": 44.3131725,
+  "lon": 15.8607843,
+  "tags": {
+    "check_date": "2024-11-26",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356908443,
+  "lat": 44.5270558,
+  "lon": 15.1593771,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12356898864,
+  "lat": 44.5180591,
+  "lon": 15.3080401,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12356896448,
+  "lat": 44.5524309,
+  "lon": 15.3568763,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356898803,
+  "lat": 44.5389643,
+  "lon": 15.3850491,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7527484136,
+  "lat": 44.5447302,
+  "lon": 15.3645789,
+  "tags": {
+    "description": "fix speedcam, GATSO249@50, Gospić",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421594300,
+  "lat": 44.5732975,
+  "lon": 15.3896526,
+  "tags": {
+    "description": "fix speedcam, Gospić, GATSO130@60",
+    "direction": "12;195",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421591756,
+  "lat": 44.5977813,
+  "lon": 15.4060414,
+  "tags": {
+    "direction": "30;215",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 8771999535,
+  "lat": 44.6304616,
+  "lon": 15.3992398,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6421590522,
+  "lat": 44.6490785,
+  "lon": 15.3841329,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6468504168,
+  "lat": 44.6659349,
+  "lon": 15.3817500,
+  "tags": {
+    "direction": "360;180",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6468482814,
+  "lat": 44.8665398,
+  "lon": 15.2545675,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421580279,
+  "lat": 44.8048575,
+  "lon": 15.3237794,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7814882613,
+  "lat": 44.8558401,
+  "lon": 15.3410601,
+  "tags": {
+    "description": "fix speedcam, GATSO256@60, Zalužnica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7814881373,
+  "lat": 44.8511718,
+  "lon": 15.4272558,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7814860180,
+  "lat": 44.8438341,
+  "lon": 15.4821294,
+  "tags": {
+    "description": "fix speedcam, GATSO258@60, Babin Potok",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12356943823,
+  "lat": 44.5795541,
+  "lon": 15.7447608,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6421582669,
+  "lat": 44.7545408,
+  "lon": 15.7000224,
+  "tags": {
+    "description": "Korenica, GATSO132v50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6421586554,
+  "lat": 44.7406271,
+  "lon": 15.7127469,
+  "tags": {
+    "description": "Korenica, GATSO131@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6996357728,
+  "lat": 44.9091523,
+  "lon": 13.8218553,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351867704,
+  "lat": 45.0957022,
+  "lon": 13.6759865,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 8357004919,
+  "lat": 45.0625912,
+  "lon": 13.6915882,
+  "tags": {
+    "direction": "-35;155",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11547059007,
+  "lat": 45.0039142,
+  "lon": 13.8288032,
+  "tags": {
+    "direction": "225",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12351776221,
+  "lat": 45.1731814,
+  "lon": 13.6060811,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351886357,
+  "lat": 45.2949087,
+  "lon": 13.6216054,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12377161529,
+  "lat": 45.1642901,
+  "lon": 13.6650810,
+  "tags": {
+    "direction": "240",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421421370,
+  "lat": 45.1068101,
+  "lon": 13.7458329,
+  "tags": {
+    "description": "fix speedcam, Kanfanar, Putini 2a, GATSO144@60",
+    "direction": "270;90",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421418839,
+  "lat": 45.2174007,
+  "lon": 13.6543529,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "ref": "D302"
+  }
+},
+{
+  "type": "node",
+  "id": 6421415361,
+  "lat": 45.2658636,
+  "lon": 13.6382512,
+  "tags": {
+    "description": "fix speedcam, Stranići kod Nove vasi, GATSO147@50",
+    "direction": "230;50",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "note": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12351863308,
+  "lat": 45.2955171,
+  "lon": 13.6924636,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351996030,
+  "lat": 45.2470267,
+  "lon": 13.7505107,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351852684,
+  "lat": 44.8975423,
+  "lon": 13.8508435,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10037739339,
+  "lat": 44.9280618,
+  "lon": 13.8513398,
+  "tags": {
+    "description": "fix speedcam, GATSO208@60, Galižana",
+    "direction": "both",
+    "fixme": "exact position",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6421429144,
+  "lat": 44.9176316,
+  "lon": 13.9071201,
+  "tags": {
+    "description": "fix speedcam, Marčana, Loborika 31, GATSO142@50",
+    "direction": "220;40",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 11547072513,
+  "lat": 44.9592174,
+  "lon": 13.8542484,
+  "tags": {
+    "direction": "200",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11547079175,
+  "lat": 44.9547958,
+  "lon": 13.8492623,
+  "tags": {
+    "direction": "315",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11547064470,
+  "lat": 44.9629700,
+  "lon": 13.8581597,
+  "tags": {
+    "direction": "75",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11547071199,
+  "lat": 44.9842530,
+  "lon": 13.8770888,
+  "tags": {
+    "direction": "210",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351753234,
+  "lat": 44.9571891,
+  "lon": 13.9548226,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421427309,
+  "lat": 45.0190393,
+  "lon": 13.8718696,
+  "tags": {
+    "direction": "10",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12084661789,
+  "lat": 45.0190531,
+  "lon": 13.8718053
+},
+{
+  "type": "node",
+  "id": 12084661790,
+  "lat": 45.0199202,
+  "lon": 13.8722075
+},
+{
+  "type": "node",
+  "id": 11547098273,
+  "lat": 45.0796617,
+  "lon": 13.9637553,
+  "tags": {
+    "direction": "280",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 11547006063,
+  "lat": 45.0995270,
+  "lon": 13.9941916,
+  "tags": {
+    "direction": "180",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 9959070544,
+  "lat": 45.0638917,
+  "lon": 14.0170074,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 10028158336,
+  "lat": 45.0638980,
+  "lon": 14.0169086
+},
+{
+  "type": "node",
+  "id": 10028158337,
+  "lat": 45.0638879,
+  "lon": 14.0170664
+},
+{
+  "type": "node",
+  "id": 12374842397,
+  "lat": 45.0801950,
+  "lon": 14.0824820,
+  "tags": {
+    "direction": "230",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12917337216,
+  "lat": 45.0881051,
+  "lon": 14.1082262,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6421439698,
+  "lat": 45.0985060,
+  "lon": 14.1098883,
+  "tags": {
+    "description": "fix speedcam, Labin, Vinež, GATSO140@50",
+    "direction": "245;65",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6988171073,
+  "lat": 45.1298410,
+  "lon": 13.8653856,
+  "tags": {
+    "description": "fix speedcam, GATSO209@50, Debeljuhi",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12351741198,
+  "lat": 45.1794655,
+  "lon": 13.9045987,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 10652589965,
+  "lat": 45.2612024,
+  "lon": 13.8711454,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12351958052,
+  "lat": 45.2474041,
+  "lon": 13.8956366,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12351961827,
+  "lat": 45.2786050,
+  "lon": 14.0135958,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12351930830,
+  "lat": 45.1927060,
+  "lon": 14.0948397,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351972691,
+  "lat": 45.1983184,
+  "lon": 14.1337995,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12951665699,
+  "lat": 45.1991989,
+  "lon": 14.1339615,
+  "tags": {
+    "direction": "340",
+    "fixme": "Looks like a speedcam, but had no data about it.",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12351933153,
+  "lat": 45.1384473,
+  "lon": 14.1799191,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 11001551089,
+  "lat": 45.3284795,
+  "lon": 13.5627839,
+  "tags": {
+    "direction": "350",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "ref": "D75"
+  }
+},
+{
+  "type": "node",
+  "id": 9434486729,
+  "lat": 45.3339205,
+  "lon": 13.5780772,
+  "tags": {
+    "direction": "20",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "start_date": "2021-12-16"
+  }
+},
+{
+  "type": "node",
+  "id": 11428692701,
+  "lat": 45.3203230,
+  "lon": 13.5831560,
+  "tags": {
+    "direction": "245",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "start_date": "2023-12-14"
+  }
+},
+{
+  "type": "node",
+  "id": 12351785354,
+  "lat": 45.4466025,
+  "lon": 13.5211900,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351776234,
+  "lat": 45.4338224,
+  "lon": 13.5296787,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351753055,
+  "lat": 45.4241935,
+  "lon": 13.5585441,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12351810770,
+  "lat": 45.4511911,
+  "lon": 13.5833174,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351917407,
+  "lat": 45.3825427,
+  "lon": 13.6905389,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12351981856,
+  "lat": 45.3301437,
+  "lon": 13.7560128,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12351870565,
+  "lat": 45.3327110,
+  "lon": 13.8252892,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 12351908844,
+  "lat": 45.4089316,
+  "lon": 13.9737189,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12351954520,
+  "lat": 45.3586170,
+  "lon": 14.1003834,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12362606603,
+  "lat": 45.4796113,
+  "lon": 14.2590912,
+  "tags": {
+    "direction": "105;285",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12362664537,
+  "lat": 44.9638482,
+  "lon": 14.4129692,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12801170169,
+  "lat": 44.9614729,
+  "lon": 14.4130231,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12362710256,
+  "lat": 45.0794543,
+  "lon": 14.4982650,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12362517216,
+  "lat": 45.3040312,
+  "lon": 14.2813396,
+  "tags": {
+    "direction": "340",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 8725835797,
+  "lat": 45.3107291,
+  "lon": 14.2858125,
+  "tags": {
+    "description": "stacionarni radar, GATSO299@40, Ičići",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12362699958,
+  "lat": 45.1356010,
+  "lon": 14.5460611,
+  "tags": {
+    "direction": "25;180",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12289889477,
+  "lat": 45.2394848,
+  "lon": 14.5598524,
+  "tags": {
+    "direction": "180",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 3625489491,
+  "lat": 45.3018398,
+  "lon": 14.5028238
+},
+{
+  "type": "node",
+  "id": 6421490724,
+  "lat": 45.3017830,
+  "lon": 14.5028915,
+  "tags": {
+    "description": "fix speedcam, Kostrena, GATSO001@50",
+    "direction": "320;140",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12362655178,
+  "lat": 45.2741173,
+  "lon": 14.5746230,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12212647810,
+  "lat": 45.3112368,
+  "lon": 14.5385265,
+  "tags": {
+    "direction": "80",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 3584999808,
+  "lat": 45.2213167,
+  "lon": 14.6381470
+},
+{
+  "type": "node",
+  "id": 494880284,
+  "lat": 45.2248391,
+  "lon": 14.6349718
+},
+{
+  "type": "node",
+  "id": 3584999809,
+  "lat": 45.2231493,
+  "lon": 14.6363904
+},
+{
+  "type": "node",
+  "id": 3584999812,
+  "lat": 45.2236530,
+  "lon": 14.6359559
+},
+{
+  "type": "node",
+  "id": 6421400455,
+  "lat": 45.2234414,
+  "lon": 14.6361350,
+  "tags": {
+    "description": "fix speedcam, Crobenz, GATSO037@60",
+    "direction": "325;145",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 11401169797,
+  "lat": 45.2235328,
+  "lon": 14.6361557,
+  "tags": {
+    "direction": "160",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 12314471207,
+  "lat": 45.2869692,
+  "lon": 14.5912940,
+  "tags": {
+    "direction": "160",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12212647811,
+  "lat": 45.2709450,
+  "lon": 14.6023915,
+  "tags": {
+    "direction": "325",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 1423341554,
+  "lat": 44.9878945,
+  "lon": 14.7220080
+},
+{
+  "type": "node",
+  "id": 1424384622,
+  "lat": 44.9897976,
+  "lon": 14.7206225
+},
+{
+  "type": "node",
+  "id": 1568471189,
+  "lat": 44.9881745,
+  "lon": 14.7218066
+},
+{
+  "type": "node",
+  "id": 1568471219,
+  "lat": 44.9912077,
+  "lon": 14.7197239
+},
+{
+  "type": "node",
+  "id": 6421452587,
+  "lat": 44.9895127,
+  "lon": 14.7208611,
+  "tags": {
+    "description": "fix speedcam, Draga Baščanska, GATSO062@40",
+    "direction": "330;150",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421365863,
+  "lat": 44.9303926,
+  "lon": 14.9213588,
+  "tags": {
+    "description": "fix speedcam, Sveti Juraj, GATSO134@50",
+    "direction": "350;170",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12271991854,
+  "lat": 44.9883383,
+  "lon": 14.9070551,
+  "tags": {
+    "description": "Speed camera",
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6428876422,
+  "lat": 45.0042884,
+  "lon": 14.8957814,
+  "tags": {
+    "description": "fix speedcam, Senj, GATSO133@50",
+    "direction": "368;188",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12271897690,
+  "lat": 45.1289298,
+  "lon": 14.7813591,
+  "tags": {
+    "description": "Jadranska magistrala - speed camera CRO-GATSO",
+    "direction": "305",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421394218,
+  "lat": 45.1653874,
+  "lon": 14.7111988,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13789658562,
+  "lat": 45.1103388,
+  "lon": 14.8502428,
+  "tags": {
+    "highway": "speed_camera",
+    "name": "Traffipax"
+  }
+},
+{
+  "type": "node",
+  "id": 8705203637,
+  "lat": 45.3432364,
+  "lon": 14.3101309,
+  "tags": {
+    "description": "stacionarni radar, GATSO297@40, Opatija-Nova cesta",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12775605197,
+  "lat": 45.3482018,
+  "lon": 14.3002888,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12135918476,
+  "lat": 45.3484232,
+  "lon": 14.3183471,
+  "tags": {
+    "direction": "25",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12776514671,
+  "lat": 45.3650591,
+  "lon": 14.3301762,
+  "tags": {
+    "direction": "65",
+    "highway": "speed_camera",
+    "note": "Nije definirana brzina kretanja.",
+    "start_date": "2025-04-22"
+  }
+},
+{
+  "type": "node",
+  "id": 1568317204,
+  "lat": 45.3474962,
+  "lon": 14.3510660
+},
+{
+  "type": "node",
+  "id": 3625489604,
+  "lat": 45.3471196,
+  "lon": 14.3517208
+},
+{
+  "type": "node",
+  "id": 3625489608,
+  "lat": 45.3481120,
+  "lon": 14.3500028
+},
+{
+  "type": "node",
+  "id": 12248018857,
+  "lat": 45.3906960,
+  "lon": 14.3004441,
+  "tags": {
+    "direction": "0",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 12362643315,
+  "lat": 45.3875598,
+  "lon": 14.3120556,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12776514670,
+  "lat": 45.3800769,
+  "lon": 14.3171828,
+  "tags": {
+    "direction": "165",
+    "highway": "speed_camera",
+    "note": "Nije definirana brzina kretanja."
+  }
+},
+{
+  "type": "node",
+  "id": 7787751802,
+  "lat": 45.3396767,
+  "lon": 14.3914827
+},
+{
+  "type": "node",
+  "id": 2835823491,
+  "lat": 45.3395675,
+  "lon": 14.3927705
+},
+{
+  "type": "node",
+  "id": 3625489600,
+  "lat": 45.3394537,
+  "lon": 14.3942071
+},
+{
+  "type": "node",
+  "id": 4975900279,
+  "lat": 45.3395754,
+  "lon": 14.3926634,
+  "tags": {
+    "direction": "275;95",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421512543,
+  "lat": 45.3395975,
+  "lon": 14.3923815
+},
+{
+  "type": "node",
+  "id": 9986090922,
+  "lat": 45.3409488,
+  "lon": 14.4013676
+},
+{
+  "type": "node",
+  "id": 1979812156,
+  "lat": 45.3386883,
+  "lon": 14.4166380
+},
+{
+  "type": "node",
+  "id": 2710642573,
+  "lat": 45.3399299,
+  "lon": 14.4133675
+},
+{
+  "type": "node",
+  "id": 5943025062,
+  "lat": 45.3391602,
+  "lon": 14.4154236,
+  "tags": {
+    "description": "Ulica Franje Čandeka 8b, GATSO011@40",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 1963726861,
+  "lat": 45.3472865,
+  "lon": 14.3889800
+},
+{
+  "type": "node",
+  "id": 3625489606,
+  "lat": 45.3475992,
+  "lon": 14.3852229
+},
+{
+  "type": "node",
+  "id": 3625489607,
+  "lat": 45.3475704,
+  "lon": 14.3855899,
+  "tags": {
+    "description": "Diračje, GATSO004@90",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 6521715635,
+  "lat": 45.3475313,
+  "lon": 14.3861237
+},
+{
+  "type": "node",
+  "id": 12362616793,
+  "lat": 45.3650283,
+  "lon": 14.3828941,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 419451889,
+  "lat": 45.3417550,
+  "lon": 14.3990131
+},
+{
+  "type": "node",
+  "id": 419451891,
+  "lat": 45.3421496,
+  "lon": 14.3983285
+},
+{
+  "type": "node",
+  "id": 6421506770,
+  "lat": 45.3416106,
+  "lon": 14.3995742
+},
+{
+  "type": "node",
+  "id": 6421506771,
+  "lat": 45.3418672,
+  "lon": 14.3987925,
+  "tags": {
+    "description": "Gradska toplana, GATSO009@60",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 1677915110,
+  "lat": 45.3430619,
+  "lon": 14.4106851
+},
+{
+  "type": "node",
+  "id": 674049981,
+  "lat": 45.3433952,
+  "lon": 14.4128321,
+  "tags": {
+    "description": "tunel Škurinje II, GATSO005@70",
+    "direction": "250",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 3625489603,
+  "lat": 45.3434727,
+  "lon": 14.4132245
+},
+{
+  "type": "node",
+  "id": 3474922119,
+  "lat": 45.3553982,
+  "lon": 14.3918959
+},
+{
+  "type": "node",
+  "id": 4987317200,
+  "lat": 45.3542023,
+  "lon": 14.3941737
+},
+{
+  "type": "node",
+  "id": 6421518749,
+  "lat": 45.3543593,
+  "lon": 14.3938881,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 1631990302,
+  "lat": 45.3354190,
+  "lon": 14.4185001
+},
+{
+  "type": "node",
+  "id": 6421494712,
+  "lat": 45.3355166,
+  "lon": 14.4182200,
+  "tags": {
+    "description": "Crodux, GATSO008@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12236153187,
+  "lat": 45.3362038,
+  "lon": 14.4435954,
+  "tags": {
+    "check_date": "2025-03-09",
+    "direction": "135",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 3625489595,
+  "lat": 45.3182662,
+  "lon": 14.4695875
+},
+{
+  "type": "node",
+  "id": 12362498877,
+  "lat": 45.3358133,
+  "lon": 14.4462560,
+  "tags": {
+    "direction": "320",
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 12362365778,
+  "lat": 45.3505240,
+  "lon": 14.4305426,
+  "tags": {
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12212647812,
+  "lat": 45.3499114,
+  "lon": 14.4702666,
+  "tags": {
+    "direction": "115",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 1737060923,
+  "lat": 45.3168283,
+  "lon": 14.4728621
+},
+{
+  "type": "node",
+  "id": 1737060973,
+  "lat": 45.3170934,
+  "lon": 14.4720707
+},
+{
+  "type": "node",
+  "id": 1737061039,
+  "lat": 45.3176153,
+  "lon": 14.4709608
+},
+{
+  "type": "node",
+  "id": 12135929685,
+  "lat": 45.3167479,
+  "lon": 14.4756584,
+  "tags": {
+    "check_date": "2024-08-25",
+    "description": "Fiksna kamera za kontrulu brzine na ulazu u tunel Pećine (D404) na semaforskom stupu. Kamera za kontrulu brzine mjeri brzinu vozila u oba smjera (kretanje u smjeru terminala Brajdica i u smjeru čvora Rijeka istok). Ograničenje brzine na dionici je 60 km/h",
+    "direction": "95",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "power": "pole"
+  }
+},
+{
+  "type": "node",
+  "id": 12967049601,
+  "lat": 45.3224530,
+  "lon": 14.4944124,
+  "tags": {
+    "direction": "130",
+    "fixme": "Nepoznato ograničenje brzine / Unknown speed limit",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12362455816,
+  "lat": 45.3315501,
+  "lon": 14.5079023,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12271836455,
+  "lat": 45.3928257,
+  "lon": 14.7978663,
+  "tags": {
+    "description": "Lujzijana ul. CRO-GATSO",
+    "direction": "65",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421571375,
+  "lat": 44.9149848,
+  "lon": 15.1577273,
+  "tags": {
+    "description": "fix speedcam, Kompolje, GATSO137@50",
+    "direction": "310;140",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 13740796906,
+  "lat": 45.0049099,
+  "lon": 15.1382379,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "forward",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "surveillance": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13740796986,
+  "lat": 45.0012175,
+  "lon": 15.1348847,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "both",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12356691404,
+  "lat": 45.0269961,
+  "lon": 15.1652206,
+  "tags": {
+    "direction": "60",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8733630250,
+  "lat": 45.1836447,
+  "lon": 15.2872839,
+  "tags": {
+    "direction": "0",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421545042,
+  "lat": 45.2014795,
+  "lon": 15.2833260,
+  "tags": {
+    "description": "fix speedcam, GATSO057@50, Josipdol, Ogulinska",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7097723977,
+  "lat": 45.2677244,
+  "lon": 15.2123287,
+  "tags": {
+    "description": "fix speedcam, GATSO234@50, Ogulin-Stara cesta",
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12789841232,
+  "lat": 45.2139372,
+  "lon": 15.3139512,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356912618,
+  "lat": 44.8992360,
+  "lon": 15.7240883,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13017154657,
+  "lat": 44.9549566,
+  "lon": 15.6407540,
+  "tags": {
+    "direction": "0",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 2210367383,
+  "lat": 44.9945761,
+  "lon": 15.6505638,
+  "tags": {
+    "description": "fix speedcam, Rakovica, GATSO039@60",
+    "direction": "15",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "source": "Mapillary"
+  }
+},
+{
+  "type": "node",
+  "id": 6421565993,
+  "lat": 45.1070233,
+  "lon": 15.5862564,
+  "tags": {
+    "direction": "160",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12385214243,
+  "lat": 45.3781695,
+  "lon": 15.1347457,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 12362645251,
+  "lat": 45.3786876,
+  "lon": 15.1479401,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 12346923544,
+  "lat": 45.4633980,
+  "lon": 15.5177295,
+  "tags": {
+    "direction": "270",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 9974667444,
+  "lat": 45.5064934,
+  "lon": 15.4628554,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 9974667445,
+  "lat": 45.5088379,
+  "lon": 15.4652506,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 13740505794,
+  "lat": 45.6136074,
+  "lon": 15.3259735,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "forward",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6421534695,
+  "lat": 45.3838152,
+  "lon": 15.6130428,
+  "tags": {
+    "description": "fix speedcam, Tušilović, GATSO042@50",
+    "direction": "15;195",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6421528968,
+  "lat": 45.4604617,
+  "lon": 15.5700555,
+  "tags": {
+    "description": "Turanj, GATSO003@50",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421532113,
+  "lat": 45.4279146,
+  "lon": 15.6052378,
+  "tags": {
+    "direction": "320;140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352477276,
+  "lat": 45.4659144,
+  "lon": 15.5774637,
+  "tags": {
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 6430623903,
+  "lat": 45.4662236,
+  "lon": 15.5867683,
+  "tags": {
+    "description": "fix speedcam, Turanj, GATSO197@50",
+    "direction": "60",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12377030440,
+  "lat": 45.4993708,
+  "lon": 15.5259325,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363385321,
+  "lat": 45.3506895,
+  "lon": 15.8562332,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 4298821540,
+  "lat": 45.6011014,
+  "lon": 15.5985227,
+  "tags": {
+    "description": "fix speedcam, Draganići, GATSO043@50",
+    "direction": "175",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6423158105,
+  "lat": 45.6251042,
+  "lon": 15.6037556,
+  "tags": {
+    "description": "fix speedcam, Čeglje, GATSO018@40",
+    "direction": "210",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6423173051,
+  "lat": 45.7000877,
+  "lon": 15.7671952,
+  "tags": {
+    "description": "fix speedcam, Pavučnjak, GATSO016@50",
+    "direction": "50",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12363417806,
+  "lat": 45.2860780,
+  "lon": 15.9694682,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363384062,
+  "lat": 45.2649209,
+  "lon": 16.4833871,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363348483,
+  "lat": 45.2277110,
+  "lon": 16.5714788,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423170585,
+  "lat": 45.3417279,
+  "lon": 16.0653372,
+  "tags": {
+    "direction": "270;90",
+    "fixme": "fix speedcam, Glina, GATSO172@50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423163713,
+  "lat": 45.3674424,
+  "lon": 16.1235333,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363366929,
+  "lat": 45.4402295,
+  "lon": 16.2699436,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363400918,
+  "lat": 45.4236775,
+  "lon": 16.2855925,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363350820,
+  "lat": 45.4424978,
+  "lon": 16.3291151,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363375323,
+  "lat": 45.5041881,
+  "lon": 16.2626034,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12849472137,
+  "lat": 45.6980717,
+  "lon": 15.9850162,
+  "tags": {
+    "direction": "SSW",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6942800285,
+  "lat": 45.7155926,
+  "lon": 16.0222393,
+  "tags": {
+    "direction": "NNW",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 3871352381,
+  "lat": 45.6333001,
+  "lon": 16.0506579,
+  "tags": {
+    "direction": "S",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12374678181,
+  "lat": 45.6443132,
+  "lon": 16.1160763,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12374818723,
+  "lat": 45.7219954,
+  "lon": 16.0505890,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6423782520,
+  "lat": 45.5447926,
+  "lon": 16.2350528,
+  "tags": {
+    "description": "fix speedcam, Lekenik, GATSO169@50",
+    "direction": "345;165",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 13057929687,
+  "lat": 45.7286106,
+  "lon": 16.2232352,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6423784580,
+  "lat": 45.4590048,
+  "lon": 16.3715788,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423787016,
+  "lat": 45.4878154,
+  "lon": 16.4421101,
+  "tags": {
+    "description": "Sisak, GATSO170@60",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6426459610,
+  "lat": 45.5221341,
+  "lon": 16.6902621,
+  "tags": {
+    "description": "fix speedcam, Popovača, GATSO174@70",
+    "direction": "340;160",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12374819604,
+  "lat": 45.6984356,
+  "lon": 16.3846559,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363393344,
+  "lat": 45.5627968,
+  "lon": 16.6074635,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374737728,
+  "lat": 45.7568662,
+  "lon": 15.8489140,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11837381436,
+  "lat": 45.7974973,
+  "lon": 15.8754235,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 13730367523,
+  "lat": 45.7973791,
+  "lon": 15.8756296,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6447170133,
+  "lat": 45.8154346,
+  "lon": 15.8422132,
+  "tags": {
+    "description": "Zagreb-Podsused, GATSO199@60",
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 3676037617,
+  "lat": 45.8138612,
+  "lon": 15.8707559,
+  "tags": {
+    "description": "Aleja grada Bolonje-Gajnice, GATSO014@60",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 3676037618,
+  "lat": 45.8137370,
+  "lon": 15.8730268
+},
+{
+  "type": "node",
+  "id": 11837381437,
+  "lat": 45.7945487,
+  "lon": 15.9271408,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7188002017,
+  "lat": 45.8114933,
+  "lon": 15.9134127,
+  "tags": {
+    "description": "GATSO237@50, Zagreb-Ilica",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374700377,
+  "lat": 45.8711880,
+  "lon": 15.7526722,
+  "tags": {
+    "direction": "340",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374710835,
+  "lat": 45.8789451,
+  "lon": 15.7315334,
+  "tags": {
+    "direction": "280",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11821522125,
+  "lat": 45.8607509,
+  "lon": 15.7830303,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13725420508,
+  "lat": 45.8643313,
+  "lon": 15.7913482,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13725508491,
+  "lat": 45.8598167,
+  "lon": 15.7904252,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13725508492,
+  "lat": 45.8567092,
+  "lon": 15.7970599,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424026212,
+  "lat": 45.8437901,
+  "lon": 15.8154435,
+  "tags": {
+    "description": "Zaprešić, GATSO050@60",
+    "direction": "155",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 13725420507,
+  "lat": 45.8709537,
+  "lon": 15.7811212,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6424020544,
+  "lat": 45.8699046,
+  "lon": 15.7887691,
+  "tags": {
+    "description": "fix speedcam, Zaprešić, GATSO053@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 13725437074,
+  "lat": 45.8694740,
+  "lon": 15.7996050,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13725437075,
+  "lat": 45.8709863,
+  "lon": 15.7996518,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13725508493,
+  "lat": 45.8665176,
+  "lon": 15.7964511,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 687427311,
+  "lat": 45.8672847,
+  "lon": 15.8022910,
+  "tags": {
+    "direction": "10;192",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1535794468,
+  "lat": 45.8725165,
+  "lon": 15.7945063,
+  "tags": {
+    "direction": "5;185",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374811573,
+  "lat": 45.9355042,
+  "lon": 15.8137131,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7630046949,
+  "lat": 45.9336716,
+  "lon": 15.8197153,
+  "tags": {
+    "description": "fix speedcam, GATSO251@60, Kupljenovo",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8705235686,
+  "lat": 45.8497192,
+  "lon": 15.8341653,
+  "tags": {
+    "description": "stacionarni radar, GATSO298@50, Ivanec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12374816949,
+  "lat": 45.8759381,
+  "lon": 15.8491348,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374811574,
+  "lat": 45.9097909,
+  "lon": 15.8464348,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356666357,
+  "lat": 45.9839731,
+  "lon": 15.7278067,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6424012230,
+  "lat": 45.9923493,
+  "lon": 15.8443832,
+  "tags": {
+    "description": "fix speedcam, Veliko Trgovišče, GATSO151@50",
+    "direction": "20;200",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 11459824070,
+  "lat": 45.9928484,
+  "lon": 15.8545773,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12356547437,
+  "lat": 45.9767673,
+  "lon": 15.8775309,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424014081,
+  "lat": 45.9927909,
+  "lon": 15.9148305,
+  "tags": {
+    "description": "fix speedcam, Oroslavje, GATSO149@50",
+    "direction": "340;160",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6424009134,
+  "lat": 46.0224920,
+  "lon": 15.8975569,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356464968,
+  "lat": 46.0821385,
+  "lon": 15.7467946,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356583951,
+  "lat": 46.0765381,
+  "lon": 15.9068409,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6423864998,
+  "lat": 46.1525758,
+  "lon": 15.8783113,
+  "tags": {
+    "direction": "350;170",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356545452,
+  "lat": 46.1388862,
+  "lon": 15.8946054,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356629329,
+  "lat": 46.2132026,
+  "lon": 15.6768436,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12356605723,
+  "lat": 46.1539330,
+  "lon": 15.7570352,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356639213,
+  "lat": 46.2033335,
+  "lon": 15.8249198,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356586229,
+  "lat": 46.2075109,
+  "lon": 15.7519333,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6423859730,
+  "lat": 46.1677323,
+  "lon": 15.8626576,
+  "tags": {
+    "description": "Krapina, GATSO150@40",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12356510420,
+  "lat": 46.1938805,
+  "lon": 15.8418896,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356673719,
+  "lat": 46.2039777,
+  "lon": 15.8454928,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "110"
+  }
+},
+{
+  "type": "node",
+  "id": 12356648836,
+  "lat": 46.2424756,
+  "lon": 15.8459724,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 11837381426,
+  "lat": 45.7756043,
+  "lon": 15.9470808,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 1544895773,
+  "lat": 45.7941165,
+  "lon": 15.9635157
+},
+{
+  "type": "node",
+  "id": 3675585555,
+  "lat": 45.7941203,
+  "lon": 15.9622605
+},
+{
+  "type": "node",
+  "id": 6423835006,
+  "lat": 45.7940611,
+  "lon": 15.9621166,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6512929505,
+  "lat": 45.8117421,
+  "lon": 15.9418756,
+  "tags": {
+    "description": "fix speedcam, Zagreb, Prilaz Baruna Filipovića, GATSO125@50",
+    "direction": "275",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6705205921,
+  "lat": 45.8073841,
+  "lon": 15.9672683,
+  "tags": {
+    "description": "fix speedcam, GATSO204@50",
+    "direction": "275",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 3675597217,
+  "lat": 45.7965625,
+  "lon": 15.9987304
+},
+{
+  "type": "node",
+  "id": 3675597218,
+  "lat": 45.7976452,
+  "lon": 15.9978828
+},
+{
+  "type": "node",
+  "id": 6423826525,
+  "lat": 45.7966829,
+  "lon": 15.9986361,
+  "tags": {
+    "description": "fix speedcam, Avenija Marina Držića, GATSO012@70",
+    "direction": "330",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam",
+    "support": "street_lamp"
+  }
+},
+{
+  "type": "node",
+  "id": 3675589948,
+  "lat": 45.7962175,
+  "lon": 16.0086033
+},
+{
+  "type": "node",
+  "id": 3675589949,
+  "lat": 45.7961043,
+  "lon": 16.0063643
+},
+{
+  "type": "node",
+  "id": 6423815573,
+  "lat": 45.7962361,
+  "lon": 16.0089720,
+  "tags": {
+    "direction": "265",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 3542763129,
+  "lat": 45.7964290,
+  "lon": 16.0114625,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 3077894030,
+  "lat": 45.7538796,
+  "lon": 16.0763837,
+  "tags": {
+    "description": "fix speedcam, Zagreb, A3, GATSO013@130",
+    "direction": "50",
+    "highway": "speed_camera",
+    "maxspeed": "130"
+  }
+},
+{
+  "type": "node",
+  "id": 11821522122,
+  "lat": 45.8278940,
+  "lon": 16.0494712,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12486978823,
+  "lat": 45.8278103,
+  "lon": 16.0495717,
+  "tags": {
+    "direction": "265",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423808530,
+  "lat": 45.8284915,
+  "lon": 16.0707954,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12095329403,
+  "lat": 45.8054491,
+  "lon": 16.1073731,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 11837381435,
+  "lat": 45.8050510,
+  "lon": 16.1087977,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "80"
+  }
+},
+{
+  "type": "node",
+  "id": 11837381438,
+  "lat": 45.7904161,
+  "lon": 16.1264281,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "100"
+  }
+},
+{
+  "type": "node",
+  "id": 10138334919,
+  "lat": 45.7927507,
+  "lon": 16.1292274,
+  "tags": {
+    "highway": "speed_camera",
+    "lamp_type": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13057940988,
+  "lat": 45.7829066,
+  "lon": 16.1527914,
+  "tags": {
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13057929686,
+  "lat": 45.7680231,
+  "lon": 16.1825999,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13057929685,
+  "lat": 45.7781301,
+  "lon": 16.1763674,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13057929688,
+  "lat": 45.7836767,
+  "lon": 16.1743848,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7674109620,
+  "lat": 45.8357573,
+  "lon": 16.1763460,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 11821522124,
+  "lat": 45.8107065,
+  "lon": 16.2670716,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6423803950,
+  "lat": 45.8719839,
+  "lon": 16.1615422,
+  "tags": {
+    "direction": "210",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374811570,
+  "lat": 45.8570100,
+  "lon": 16.3234263,
+  "tags": {
+    "direction": "220",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6424016558,
+  "lat": 45.9812097,
+  "lon": 15.9619166,
+  "tags": {
+    "description": "fix speedcam, Donja Stubica, GATSO152@40",
+    "direction": "280;100",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6423996498,
+  "lat": 46.0449849,
+  "lon": 16.0048651,
+  "tags": {
+    "description": "Bedekovčina, GATSO153@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356490066,
+  "lat": 46.0475821,
+  "lon": 16.0847772,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356652109,
+  "lat": 46.0209148,
+  "lon": 16.1040474,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356524021,
+  "lat": 46.0927225,
+  "lon": 16.0496101,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424003023,
+  "lat": 46.0824713,
+  "lon": 16.0794702,
+  "tags": {
+    "description": "fix speedcam, Zlatar, GATSO155@50",
+    "direction": "335;155",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8097336314,
+  "lat": 46.0502596,
+  "lon": 16.1167243,
+  "tags": {
+    "description": "fix speedcam, GATSO262@50, Veleškovec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12999223063,
+  "lat": 45.9645898,
+  "lon": 16.2509336,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13207595727,
+  "lat": 46.0359274,
+  "lon": 16.2446387,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11795905262,
+  "lat": 45.9778551,
+  "lon": 16.2674639,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356499092,
+  "lat": 46.0559885,
+  "lon": 16.1794104,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12356545461,
+  "lat": 46.1237579,
+  "lon": 16.2013023,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11821522123,
+  "lat": 45.8805128,
+  "lon": 16.4042675,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12374718503,
+  "lat": 45.8842836,
+  "lon": 16.4042032,
+  "tags": {
+    "direction": "250",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12374719889,
+  "lat": 45.8923476,
+  "lon": 16.4242489,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426454333,
+  "lat": 45.7543568,
+  "lon": 16.6241088,
+  "tags": {
+    "direction": "235;55",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12346987586,
+  "lat": 45.8312909,
+  "lon": 16.7618101,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6426474841,
+  "lat": 45.9403041,
+  "lon": 16.7518142,
+  "tags": {
+    "description": "fix speedcam, Rovišće, GATSO174@70",
+    "direction": "280;100",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8567570383,
+  "lat": 45.9964222,
+  "lon": 16.4969737,
+  "tags": {
+    "description": "stacionarni radar, GATSO286@50, Bojnikovec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7797073525,
+  "lat": 46.0049917,
+  "lon": 16.5512900,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7797073526,
+  "lat": 46.0044760,
+  "lon": 16.5519665,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 8567536328,
+  "lat": 46.0189918,
+  "lon": 16.5503027,
+  "tags": {
+    "description": "stacionarni radar, GATSO284@50, Križevci-Ulica Ivana Gundulića",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8567518372,
+  "lat": 46.0252631,
+  "lon": 16.5392468,
+  "tags": {
+    "description": "stacionarni radar, GATSO285@50, Križevci-Ulica branitelja Hrvatske",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8273814431,
+  "lat": 46.0396289,
+  "lon": 16.5351825,
+  "tags": {
+    "description": "fix speedcam, GATSO269@50, Križevci-Kalnička ulica",
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 11366335969,
+  "lat": 46.0465187,
+  "lon": 16.5416577,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426484135,
+  "lat": 46.0303191,
+  "lon": 16.5942159,
+  "tags": {
+    "description": "fix speedcam, Majurec, GATSO121@60",
+    "direction": "30;210",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426478407,
+  "lat": 45.9495762,
+  "lon": 16.6752605,
+  "tags": {
+    "description": "fix speedcam, Kenđelovac, GATSO119@70",
+    "direction": "265;85",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12352212548,
+  "lat": 46.0713965,
+  "lon": 16.6448150,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12368626349,
+  "lat": 46.2053004,
+  "lon": 16.0301532,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368632171,
+  "lat": 46.2070687,
+  "lon": 16.0293836,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368611243,
+  "lat": 46.2142380,
+  "lon": 16.0356975,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12368631005,
+  "lat": 46.2129066,
+  "lon": 16.0438132,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7812275930,
+  "lat": 46.2493809,
+  "lon": 16.1181786,
+  "tags": {
+    "description": "fix speedcam, GATSO255@50, Horvatsko",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368579070,
+  "lat": 46.2486665,
+  "lon": 16.1614389,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368644743,
+  "lat": 46.2539305,
+  "lon": 16.1958712,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368665664,
+  "lat": 46.1648837,
+  "lon": 16.3244131,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368664749,
+  "lat": 46.1781423,
+  "lon": 16.3397327,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368660436,
+  "lat": 46.2555648,
+  "lon": 16.2674846,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6790388572,
+  "lat": 46.2453246,
+  "lon": 16.3549515,
+  "tags": {
+    "description": "fix speedcam, GATSO205@70, Križanec",
+    "direction": "216",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7941181767,
+  "lat": 46.2961296,
+  "lon": 16.1781091,
+  "tags": {
+    "description": "fix speedcam, GATSO260@50, Koretinec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7903047100,
+  "lat": 46.2827799,
+  "lon": 16.2170797,
+  "tags": {
+    "description": "fix speecam, GATSO259@50, Jukretinec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7525298522,
+  "lat": 46.2859704,
+  "lon": 16.2439529,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7525287345,
+  "lat": 46.2859612,
+  "lon": 16.2699677,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424078914,
+  "lat": 46.2806304,
+  "lon": 16.3502387,
+  "tags": {
+    "description": "fix speedcam, Varaždin, GATSO048@60",
+    "direction": "340;160",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 3696248371,
+  "lat": 46.2964811,
+  "lon": 16.3122144
+},
+{
+  "type": "node",
+  "id": 12368568235,
+  "lat": 46.2938874,
+  "lon": 16.3244528,
+  "tags": {
+    "direction": "200",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 486091326,
+  "lat": 46.2983428,
+  "lon": 16.3151403
+},
+{
+  "type": "node",
+  "id": 6424069080,
+  "lat": 46.2985327,
+  "lon": 16.3154356,
+  "tags": {
+    "description": "fix speedcam, Varaždin, GATSO045@50",
+    "direction": "50;230",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368534255,
+  "lat": 46.2961520,
+  "lon": 16.3359457,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368509942,
+  "lat": 46.3016026,
+  "lon": 16.3358486,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368594271,
+  "lat": 46.3001605,
+  "lon": 16.3364038,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424055017,
+  "lat": 46.3233689,
+  "lon": 16.2980160,
+  "tags": {
+    "direction": "290",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12368530934,
+  "lat": 46.3152799,
+  "lon": 16.3342966,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424083748,
+  "lat": 46.3148411,
+  "lon": 16.3474398,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424083749,
+  "lat": 46.3145492,
+  "lon": 16.3509733,
+  "tags": {
+    "description": "fix speedcam, Varaždin, GATSO046@50",
+    "direction": "35",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6467762222,
+  "lat": 46.3147799,
+  "lon": 16.3473673,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8612038832,
+  "lat": 46.3777690,
+  "lon": 16.3394714,
+  "tags": {
+    "description": "stacionarni radar, GATSO288@50, Gornji Hrašćan",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 2125982713,
+  "lat": 46.5218868,
+  "lon": 16.3424934,
+  "tags": {
+    "description": "Montiran na banderi",
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368568251,
+  "lat": 46.1586268,
+  "lon": 16.3762803,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368630319,
+  "lat": 46.2088043,
+  "lon": 16.4467632,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368549701,
+  "lat": 46.2535610,
+  "lon": 16.4179106,
+  "tags": {
+    "direction": "45",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368669135,
+  "lat": 46.2111441,
+  "lon": 16.4733804,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424081371,
+  "lat": 46.2716924,
+  "lon": 16.3622367,
+  "tags": {
+    "description": "Varaždin, GATSO124@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6467789779,
+  "lat": 46.2716843,
+  "lon": 16.3620838,
+  "tags": {
+    "description": "Varaždin, GATSO124a@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 12368628159,
+  "lat": 46.2833948,
+  "lon": 16.3710375,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368530942,
+  "lat": 46.3081645,
+  "lon": 16.3717792,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424071794,
+  "lat": 46.2992214,
+  "lon": 16.4001715,
+  "tags": {
+    "description": "fix speedcam, Varaždin, GATSO047@70",
+    "direction": "270;90",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368582446,
+  "lat": 46.2974812,
+  "lon": 16.4388335,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 8612073643,
+  "lat": 46.3435020,
+  "lon": 16.3622068,
+  "tags": {
+    "description": "stacionarni radar, GATSO289@60, Pušćine",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360105583,
+  "lat": 46.3489582,
+  "lon": 16.3598998,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360029091,
+  "lat": 46.3322180,
+  "lon": 16.4109870,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8612028702,
+  "lat": 46.3491960,
+  "lon": 16.4122303,
+  "tags": {
+    "description": "stacionarni radar, GATSO290@50, Strahoninec-Dravska ulica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368550995,
+  "lat": 46.2603433,
+  "lon": 16.4742873,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368525767,
+  "lat": 46.3019389,
+  "lon": 16.4754075,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12368511083,
+  "lat": 46.2901701,
+  "lon": 16.4998298,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12368580302,
+  "lat": 46.2669593,
+  "lon": 16.5166963,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360131099,
+  "lat": 46.3290908,
+  "lon": 16.4826594,
+  "tags": {
+    "direction": "220",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12360046975,
+  "lat": 46.3291204,
+  "lon": 16.5067141,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360180802,
+  "lat": 46.3269259,
+  "lon": 16.5194697,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "130"
+  }
+},
+{
+  "type": "node",
+  "id": 8612117762,
+  "lat": 46.3293149,
+  "lon": 16.6153203,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424039765,
+  "lat": 46.3399315,
+  "lon": 16.6042219,
+  "tags": {
+    "description": "fix speedcam, Prelog, GATSO162@50",
+    "direction": "315;135",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360165830,
+  "lat": 46.3273792,
+  "lon": 16.6850084,
+  "tags": {
+    "direction": "75",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6424050848,
+  "lat": 46.3700157,
+  "lon": 16.3749423,
+  "tags": {
+    "description": "fix speedcam, Nedelišće, GATSO157@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8612001932,
+  "lat": 46.3778773,
+  "lon": 16.3784897,
+  "tags": {
+    "description": "stacionarni radar, GATSO287@40, Nedelišće-Vladimira Nazora",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360080722,
+  "lat": 46.3642840,
+  "lon": 16.4151664,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360065011,
+  "lat": 46.3717265,
+  "lon": 16.4258145,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13739233952,
+  "lat": 46.3827172,
+  "lon": 16.4230388,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424054011,
+  "lat": 46.3872026,
+  "lon": 16.4229361,
+  "tags": {
+    "description": "Čakovec, GATSO163@50",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6468292270,
+  "lat": 46.3872806,
+  "lon": 16.4229278,
+  "tags": {
+    "description": "Čakovec, GATSO163a@50",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6424053146,
+  "lat": 46.3733386,
+  "lon": 16.4531907,
+  "tags": {
+    "description": "Čakovec, GATSO159@90",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6424052281,
+  "lat": 46.4097132,
+  "lon": 16.4224161,
+  "tags": {
+    "description": "fix speedcam, Šenkovec, GATSO158@50",
+    "direction": "20;200",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360094784,
+  "lat": 46.4039958,
+  "lon": 16.4291861,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6424050245,
+  "lat": 46.4210286,
+  "lon": 16.3955347,
+  "tags": {
+    "description": "fix speedcam, Brezje, GATSO164@60",
+    "direction": "315;135",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360120392,
+  "lat": 46.4254071,
+  "lon": 16.4288112,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12360076543,
+  "lat": 46.3715055,
+  "lon": 16.4689952,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360145032,
+  "lat": 46.3753488,
+  "lon": 16.4893839,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12360042430,
+  "lat": 46.4009178,
+  "lon": 16.5004275,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424046945,
+  "lat": 46.3805728,
+  "lon": 16.5425452,
+  "tags": {
+    "direction": "55;235",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360070342,
+  "lat": 46.4213148,
+  "lon": 16.4693311,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8791437095,
+  "lat": 46.4692505,
+  "lon": 16.4255373,
+  "tags": {
+    "description": "stacionarni radar, GATSO302@50, Štrukovec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6424029738,
+  "lat": 46.5065942,
+  "lon": 16.4320496,
+  "tags": {
+    "description": "fix speedcam, Mursko Središće, GATSO161@50",
+    "direction": "10;190",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 10715770450,
+  "lat": 46.5092316,
+  "lon": 16.4333261,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 8791464792,
+  "lat": 46.5156569,
+  "lon": 16.4278051,
+  "tags": {
+    "description": "stacionarni radar, GATSO303@50, Mursko Središće",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 13766053746,
+  "lat": 46.5261803,
+  "lon": 16.3622294,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 1885213626,
+  "lat": 46.5237393,
+  "lon": 16.3704129,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12360199145,
+  "lat": 46.4101899,
+  "lon": 16.5966949,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "130"
+  }
+},
+{
+  "type": "node",
+  "id": 8814701942,
+  "lat": 46.3660083,
+  "lon": 16.6498361,
+  "tags": {
+    "description": "stacionarni radar, GATSO304@50, Donji Kraljevec",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360103511,
+  "lat": 46.4248282,
+  "lon": 16.5970408,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 11178768549,
+  "lat": 46.3901052,
+  "lon": 16.6783735,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "Speed camera"
+  }
+},
+{
+  "type": "node",
+  "id": 282018409,
+  "lat": 43.2995659,
+  "lon": 16.8494113,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 2402619279,
+  "lat": 43.4022612,
+  "lon": 16.8294873
+},
+{
+  "type": "node",
+  "id": 455352697,
+  "lat": 43.4022990,
+  "lon": 16.8303822
+},
+{
+  "type": "node",
+  "id": 12367705991,
+  "lat": 43.3708271,
+  "lon": 16.9324256,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366125092,
+  "lat": 43.2342195,
+  "lon": 17.0829553,
+  "tags": {
+    "direction": "300",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6421661701,
+  "lat": 43.2898584,
+  "lon": 17.0296772,
+  "tags": {
+    "description": "fix speedcam, Makarska, GATSO064@50",
+    "direction": "350;170",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366308948,
+  "lat": 43.2740001,
+  "lon": 17.0522112,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366219035,
+  "lat": 43.3976324,
+  "lon": 17.0539695,
+  "tags": {
+    "direction": "110",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7014138278,
+  "lat": 43.4214990,
+  "lon": 17.1160697,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12991533055,
+  "lat": 43.4225224,
+  "lon": 17.1207538,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366229491,
+  "lat": 43.4662250,
+  "lon": 16.8895431,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366150795,
+  "lat": 43.5260002,
+  "lon": 16.9027633,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12366151467,
+  "lat": 43.4899979,
+  "lon": 16.9822376,
+  "tags": {
+    "direction": "320",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366210659,
+  "lat": 43.5105557,
+  "lon": 16.9372294,
+  "tags": {
+    "direction": "110",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 9238497443,
+  "lat": 43.6256142,
+  "lon": 16.7846019,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12366149340,
+  "lat": 43.4647189,
+  "lon": 17.0495311,
+  "tags": {
+    "direction": "100",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7544693159,
+  "lat": 43.4596444,
+  "lon": 17.1669544,
+  "tags": {
+    "description": "fix speedcam, GATSO250@50, Donji Proložac",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12366287280,
+  "lat": 43.3961552,
+  "lon": 17.2174107,
+  "tags": {
+    "direction": "140",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366302539,
+  "lat": 43.3864175,
+  "lon": 17.2428591,
+  "tags": {
+    "direction": "110",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366214649,
+  "lat": 43.3918990,
+  "lon": 17.2280432,
+  "tags": {
+    "direction": "260",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366279304,
+  "lat": 43.4213863,
+  "lon": 17.2120554,
+  "tags": {
+    "direction": "320",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12366253814,
+  "lat": 43.3793745,
+  "lon": 17.2510625,
+  "tags": {
+    "direction": "130",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 103684718,
+  "lat": 43.4392758,
+  "lon": 17.2033539,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366269214,
+  "lat": 43.4359620,
+  "lon": 17.2418989,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6421669820,
+  "lat": 43.4289916,
+  "lon": 17.2532622,
+  "tags": {
+    "description": "Imotski, GATSO129@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12366263428,
+  "lat": 43.4558979,
+  "lon": 17.2517424,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12349394773,
+  "lat": 45.2579847,
+  "lon": 17.2052767,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349063768,
+  "lat": 45.2761575,
+  "lon": 17.2069163,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426390964,
+  "lat": 45.2655137,
+  "lon": 17.3567513,
+  "tags": {
+    "description": "Kovačevac, GATSO189@50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7038166632,
+  "lat": 45.2559721,
+  "lon": 17.4336211,
+  "tags": {
+    "description": "fix speedcam, GATSO223@50, Rešetari",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7043192705,
+  "lat": 45.3051530,
+  "lon": 17.4309424,
+  "tags": {
+    "description": "fix speedcam, GATSO226@50, Baćin Dol",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12349103995,
+  "lat": 45.2103183,
+  "lon": 17.6137645,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12363326655,
+  "lat": 45.3655179,
+  "lon": 16.9355573,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12363407613,
+  "lat": 45.4080492,
+  "lon": 16.9052342,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6426458816,
+  "lat": 45.4851799,
+  "lon": 16.7808154,
+  "tags": {
+    "description": "fix speedcam, Kutina, GATSO175@50",
+    "direction": "190;10",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426458918,
+  "lat": 45.5104228,
+  "lon": 16.7877553,
+  "tags": {
+    "description": "fix speedcam, Kutina, GATSO176@50",
+    "direction": "50;230",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12363355583,
+  "lat": 45.4406107,
+  "lon": 16.8994117,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12352478738,
+  "lat": 45.4691517,
+  "lon": 16.9756235,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363375322,
+  "lat": 45.3202734,
+  "lon": 17.0374947,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 7036385965,
+  "lat": 45.4173799,
+  "lon": 17.1694695,
+  "tags": {
+    "description": "GATSO218@50, Lipik",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426456611,
+  "lat": 45.5911487,
+  "lon": 16.9386231,
+  "tags": {
+    "direction": "350;170",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6426457378,
+  "lat": 45.5518123,
+  "lon": 16.9881727,
+  "tags": {
+    "description": "fix speedcam, Garešnica, GATSO182@50",
+    "direction": "310;130",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426446754,
+  "lat": 45.6844245,
+  "lon": 17.1292919,
+  "tags": {
+    "description": "fix speedcam, Grubišno Polje, GATSO180@60",
+    "direction": "230;50",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426427538,
+  "lat": 45.4499771,
+  "lon": 17.1966749,
+  "tags": {
+    "direction": "15;195",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352479808,
+  "lat": 45.3561938,
+  "lon": 17.5497659,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426387477,
+  "lat": 45.3311925,
+  "lon": 17.5915248,
+  "tags": {
+    "description": "fix speedcam, Brestovac,GATSO193@50",
+    "direction": "280;105",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12346997767,
+  "lat": 45.5922860,
+  "lon": 17.2060491,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426431834,
+  "lat": 45.6083757,
+  "lon": 17.2261249,
+  "tags": {
+    "description": "fix speedcam, Daruvar, GATSO181@50",
+    "direction": "235;55",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12349063849,
+  "lat": 45.1942769,
+  "lon": 17.6491913,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349063767,
+  "lat": 45.2032100,
+  "lon": 17.6442870,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349061970,
+  "lat": 45.1680340,
+  "lon": 17.8003928,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349152644,
+  "lat": 45.2137688,
+  "lon": 17.6946667,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7038297899,
+  "lat": 45.2717774,
+  "lon": 17.7795312,
+  "tags": {
+    "description": "fix speedcam, GATSO224@50, Sulkovci",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426387475,
+  "lat": 45.2996941,
+  "lon": 17.7932679,
+  "tags": {
+    "description": "fix speedcam, Pleternica, GATSO195@50",
+    "direction": "330;150",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12349040075,
+  "lat": 45.1757544,
+  "lon": 17.8457346,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426349824,
+  "lat": 45.1878435,
+  "lon": 17.9007782,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 8647577120,
+  "lat": 45.1356110,
+  "lon": 18.0293229,
+  "tags": {
+    "description": "stacionarni radar, GATSO296@50, Slavonski Brod-Splavarska ulica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 8647577119,
+  "lat": 45.1392505,
+  "lon": 18.0270299,
+  "tags": {
+    "description": "stacionarni radar, GATSO295@50, Slavonski Brod-Splavarska ulica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12349070529,
+  "lat": 45.1520869,
+  "lon": 18.0335569,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349057278,
+  "lat": 45.1803768,
+  "lon": 17.9789915,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349125080,
+  "lat": 45.1624909,
+  "lon": 18.0052452,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349131252,
+  "lat": 45.1791010,
+  "lon": 18.0120459,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12349056691,
+  "lat": 45.1875765,
+  "lon": 18.0144568,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352479720,
+  "lat": 45.2565795,
+  "lon": 17.8311149,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352478737,
+  "lat": 45.3128569,
+  "lon": 18.0002982,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349086208,
+  "lat": 45.1715724,
+  "lon": 18.0377828,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13740487722,
+  "lat": 45.1742767,
+  "lon": 18.0366580,
+  "tags": {
+    "camera:type": "fixed",
+    "direction": "both",
+    "enforcement": "maxspeed",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7036431616,
+  "lat": 45.1716571,
+  "lon": 18.0434224,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12349125561,
+  "lat": 45.1784901,
+  "lon": 18.0393248,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426349823,
+  "lat": 45.2026156,
+  "lon": 18.0372463,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426339703,
+  "lat": 45.1801573,
+  "lon": 18.2161171,
+  "tags": {
+    "description": "fix speedcam, Sapci, GATSO190@70",
+    "direction": "250;70",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12349123541,
+  "lat": 45.1866760,
+  "lon": 18.2928994,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426336228,
+  "lat": 45.2472007,
+  "lon": 18.4100919,
+  "tags": {
+    "description": "fix speedcam, Piškorevci, GATSO168@70",
+    "direction": "2;180",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 13767712700,
+  "lat": 45.3036209,
+  "lon": 18.4018647,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13778347967,
+  "lat": 45.3113898,
+  "lon": 18.3900209,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543339,
+  "lat": 45.2686126,
+  "lon": 18.4367254,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543333,
+  "lat": 45.2763935,
+  "lon": 18.4393932,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13767712695,
+  "lat": 45.2986707,
+  "lon": 18.4115685,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543341,
+  "lat": 45.3108910,
+  "lon": 18.4365830,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13678003721,
+  "lat": 45.3302559,
+  "lon": 17.6602159,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7038367588,
+  "lat": 45.3312656,
+  "lon": 17.7180425,
+  "tags": {
+    "description": "GATSO225@50, Vidovci",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13667738494,
+  "lat": 45.3539104,
+  "lon": 17.6828902,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352437773,
+  "lat": 45.4003933,
+  "lon": 17.7066050,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426387476,
+  "lat": 45.3573323,
+  "lon": 17.7336261,
+  "tags": {
+    "description": "fix speedcam, Eminovci, GATSO194@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12352395570,
+  "lat": 45.4346712,
+  "lon": 17.6655759,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426376615,
+  "lat": 45.6349215,
+  "lon": 17.7944385,
+  "tags": {
+    "description": "fix speedcam, Bukovački Antunovac, GATSO109@70",
+    "direction": "330-150",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426367745,
+  "lat": 45.7242118,
+  "lon": 17.7249885,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6425499293,
+  "lat": 45.5996894,
+  "lon": 17.8512703,
+  "tags": {
+    "description": "fix speedcam, Čačinci, GATSO110@70",
+    "direction": "270-90",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 587977704,
+  "lat": 45.5295988,
+  "lon": 17.9531846,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12363441674,
+  "lat": 45.6970749,
+  "lon": 17.9412369,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426336225,
+  "lat": 45.3525313,
+  "lon": 18.3763231,
+  "tags": {
+    "direction": "330;150",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543338,
+  "lat": 45.3250630,
+  "lon": 18.4094322,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426336226,
+  "lat": 45.3518027,
+  "lon": 18.4235670,
+  "tags": {
+    "description": "Kuševac, GATSO165@70",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12360217786,
+  "lat": 45.5892902,
+  "lon": 18.3323767,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426318032,
+  "lat": 45.5731989,
+  "lon": 18.4081693,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12346999808,
+  "lat": 45.7667650,
+  "lon": 16.8198796,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12346993315,
+  "lat": 45.8806405,
+  "lon": 16.7887359,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426473466,
+  "lat": 45.8740388,
+  "lon": 16.8147861,
+  "tags": {
+    "description": "fix speedcam, Bjelovar, GATSO178@70",
+    "direction": "350;170",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426473465,
+  "lat": 45.8700763,
+  "lon": 16.9015913,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 13379106151,
+  "lat": 45.9477539,
+  "lon": 16.8909113,
+  "tags": {
+    "check_date": "2025-06-07",
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6426504190,
+  "lat": 46.0156924,
+  "lon": 16.9525456,
+  "tags": {
+    "description": "fix speedcam, Hampovica, GATSO116@50",
+    "direction": "270;90",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6467723621,
+  "lat": 46.1362418,
+  "lon": 16.7820186,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12352284402,
+  "lat": 46.1525123,
+  "lon": 16.8210200,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6426501637,
+  "lat": 46.1205623,
+  "lon": 16.8792428,
+  "tags": {
+    "description": "fix speedcam, Glogovac, GATSO113@60",
+    "direction": "310;130",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12352297949,
+  "lat": 46.1428556,
+  "lon": 16.8338702,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426504189,
+  "lat": 46.0876314,
+  "lon": 16.9470671,
+  "tags": {
+    "description": "fix speedcam, Novigrad Podravski, GATSO114@60",
+    "direction": "295;115",
+    "highway": "speed_camera",
+    "maxspeed": "60",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426506179,
+  "lat": 45.9843139,
+  "lon": 17.1447063,
+  "tags": {
+    "description": "fix speedcam, Budančevica, GATSO115@50",
+    "direction": "270;95",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12352277868,
+  "lat": 46.0103574,
+  "lon": 17.1002482,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6524183123,
+  "lat": 45.8385764,
+  "lon": 17.3645411,
+  "tags": {
+    "description": "fix speedcam, Virovitica, GATSO104@70",
+    "direction": "290;110",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426509986,
+  "lat": 45.9422516,
+  "lon": 17.2432943,
+  "tags": {
+    "description": "Pitomača, GATSO101@70",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426503882,
+  "lat": 45.9254068,
+  "lon": 17.2891301,
+  "tags": {
+    "description": "Stari Gradac, GATSO102@70",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12363421433,
+  "lat": 45.8488544,
+  "lon": 17.3881386,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12363424569,
+  "lat": 45.7422514,
+  "lon": 17.4934164,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 6426398335,
+  "lat": 45.7945389,
+  "lon": 17.5073195,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 6426515100,
+  "lat": 45.8893905,
+  "lon": 17.4192682,
+  "tags": {
+    "description": "fix speedcam, Kapela Dvor, GATSO103@50",
+    "direction": "55;235",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12363426994,
+  "lat": 45.8576222,
+  "lon": 17.4832637,
+  "tags": {
+    "direction": "105",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6426494726,
+  "lat": 46.1760087,
+  "lon": 16.8035126,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12352277867,
+  "lat": 46.1562063,
+  "lon": 16.8553874,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12352255758,
+  "lat": 46.2041116,
+  "lon": 16.9052845,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12360081848,
+  "lat": 46.3115506,
+  "lon": 16.8140695,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8184258559,
+  "lat": 46.2004926,
+  "lon": 17.0437924,
+  "tags": {
+    "description": "fix speedcam, GATSO111@50, Gola",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426367744,
+  "lat": 45.7440902,
+  "lon": 17.8300143,
+  "tags": {
+    "description": "Šaševo, GATSO107@70",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426367743,
+  "lat": 45.7525780,
+  "lon": 17.8942918,
+  "tags": {
+    "description": "fix speedcam, Čađavički, GATSO108@70",
+    "direction": "255-80",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6426301042,
+  "lat": 45.7840875,
+  "lon": 17.9799389,
+  "tags": {
+    "description": "Podravska Moslavina, GATSO020@50",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8761453229,
+  "lat": 45.0981809,
+  "lon": 18.6292405,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368735295,
+  "lat": 45.0655849,
+  "lon": 18.6932312,
+  "tags": {
+    "direction": "10",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368721648,
+  "lat": 45.1017502,
+  "lon": 18.6821530,
+  "tags": {
+    "direction": "280",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12346929855,
+  "lat": 45.0792610,
+  "lon": 18.7031808,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368749369,
+  "lat": 45.0851578,
+  "lon": 18.6986645,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7252635187,
+  "lat": 45.1059228,
+  "lon": 18.4674112,
+  "tags": {
+    "description": "GATSO238@40, Sikirevci kod crkve",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 12360272077,
+  "lat": 45.2347184,
+  "lon": 18.4688293,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6426336227,
+  "lat": 45.2882744,
+  "lon": 18.5002044,
+  "tags": {
+    "description": "Đurđanci, GATSO167@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543336,
+  "lat": 45.2834976,
+  "lon": 18.5374411,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13717543337,
+  "lat": 45.2849038,
+  "lon": 18.5547890,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368709896,
+  "lat": 45.2924963,
+  "lon": 18.5592843,
+  "tags": {
+    "direction": "40",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7072244382,
+  "lat": 45.2143223,
+  "lon": 18.6104967,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8097364583,
+  "lat": 45.2414445,
+  "lon": 18.6602800,
+  "tags": {
+    "description": "fix speedcam, GATSO263@50, Retkovci",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6424112725,
+  "lat": 45.1454442,
+  "lon": 18.7283604,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12368753203,
+  "lat": 45.1958952,
+  "lon": 18.6751185,
+  "tags": {
+    "direction": "90",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368686972,
+  "lat": 45.2213034,
+  "lon": 18.7326447,
+  "tags": {
+    "direction": "30",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7035278085,
+  "lat": 45.2814680,
+  "lon": 18.6653951,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12368665665,
+  "lat": 45.2777573,
+  "lon": 18.6728385,
+  "tags": {
+    "direction": "200",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8097436236,
+  "lat": 45.2851330,
+  "lon": 18.6858749,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7072200481,
+  "lat": 45.2942762,
+  "lon": 18.7058425,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7036356288,
+  "lat": 45.2577756,
+  "lon": 18.7770435,
+  "tags": {
+    "description": "fix speedcam, GATSO217@50, Vinkovci-Kunjevci",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7036488327,
+  "lat": 45.2771849,
+  "lon": 18.7773656,
+  "tags": {
+    "description": "GATSO220@60. Vinkovci-Josipa Kozarca",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "60"
+  }
+},
+{
+  "type": "node",
+  "id": 12368665436,
+  "lat": 45.2801457,
+  "lon": 18.7828236,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 7074393537,
+  "lat": 45.2805404,
+  "lon": 18.7991800,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424117486,
+  "lat": 45.2771856,
+  "lon": 18.8068098,
+  "tags": {
+    "description": "Vinkovci, GATSO186@50",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12368733907,
+  "lat": 45.2786027,
+  "lon": 18.8041190,
+  "tags": {
+    "direction": "240",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6424114930,
+  "lat": 45.2842967,
+  "lon": 18.8141031,
+  "tags": {
+    "description": "Vinkovci, GATSO185@50",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7072207431,
+  "lat": 45.2898439,
+  "lon": 18.7736436,
+  "tags": {
+    "description": "fix speedcam, GATSO230@70, Vinkovci-Alojzija Stepinca",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368709509,
+  "lat": 45.2921607,
+  "lon": 18.7946980,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8097456946,
+  "lat": 45.3051954,
+  "lon": 18.8027916,
+  "tags": {
+    "description": "fix speedcam, GATSO228@30, Vinkovci-Šokačka ulica",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "30",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 7072187054,
+  "lat": 45.3076487,
+  "lon": 18.8135838,
+  "tags": {
+    "description": "GATSO229@70, Vinkovci-Ulica kralja Zvonimira",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12368716444,
+  "lat": 45.2868790,
+  "lon": 18.9443263,
+  "tags": {
+    "direction": "230",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 8836295265,
+  "lat": 45.2301690,
+  "lon": 19.1687568,
+  "tags": {
+    "description": "stacionarni radar. GATSO305@50, Lovas",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368767195,
+  "lat": 45.2616753,
+  "lon": 19.1698337,
+  "tags": {
+    "direction": "30",
+    "highway": "speed_camera",
+    "maxspeed": "40"
+  }
+},
+{
+  "type": "node",
+  "id": 7280125814,
+  "lat": 45.2495065,
+  "lon": 19.2201003,
+  "tags": {
+    "description": "GATSO242v50, Mohovo",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 13011369023,
+  "lat": 45.2500260,
+  "lon": 19.2192957,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12360249542,
+  "lat": 45.3654340,
+  "lon": 18.5461485,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7266412624,
+  "lat": 45.3335939,
+  "lon": 18.8503063,
+  "tags": {
+    "description": "fix speedcam, GATSO239@50, Nuštar, groblje",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12360262664,
+  "lat": 45.4442298,
+  "lon": 18.6656353,
+  "tags": {
+    "direction": "150",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360280002,
+  "lat": 45.5910318,
+  "lon": 18.5023359,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 6425517871,
+  "lat": 45.5367645,
+  "lon": 18.5612728,
+  "tags": {
+    "description": "Čepin, GATSO025@90",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 6634844204,
+  "lat": 45.5369811,
+  "lon": 18.5623906,
+  "tags": {
+    "description": "Čepin, GATSO025a@90",
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 12294882559,
+  "lat": 45.5527258,
+  "lon": 18.6455047,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "110"
+  }
+},
+{
+  "type": "node",
+  "id": 6424108798,
+  "lat": 45.5649152,
+  "lon": 18.6409504,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 4949241111,
+  "lat": 45.5646710,
+  "lon": 18.6487204,
+  "tags": {
+    "description": "fix speedcam, GATSO023@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12360215253,
+  "lat": 45.5812313,
+  "lon": 18.5840581,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360227832,
+  "lat": 45.6385852,
+  "lon": 18.4687057,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12294882556,
+  "lat": 45.5436850,
+  "lon": 18.6712933,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 12294882557,
+  "lat": 45.5435748,
+  "lon": 18.6712875,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 12294882558,
+  "lat": 45.5408755,
+  "lon": 18.6923793,
+  "tags": {
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "90"
+  }
+},
+{
+  "type": "node",
+  "id": 12360294377,
+  "lat": 45.5925524,
+  "lon": 18.7380955,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 12360265162,
+  "lat": 45.5257690,
+  "lon": 18.8386950,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6424099070,
+  "lat": 45.6756009,
+  "lon": 18.6772627,
+  "tags": {
+    "direction": "backward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 6424087871,
+  "lat": 45.6880177,
+  "lon": 18.6766416,
+  "tags": {
+    "description": "Čeminac, GATSO026@70",
+    "direction": "forward",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7274329325,
+  "lat": 45.3396271,
+  "lon": 18.8987068,
+  "tags": {
+    "description": "fix speedcam, GATSO240@50, Marinci",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12368748358,
+  "lat": 45.3399416,
+  "lon": 18.9397737,
+  "tags": {
+    "direction": "70",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7036562222,
+  "lat": 45.3662425,
+  "lon": 18.9778801,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 7517719333,
+  "lat": 45.3855712,
+  "lon": 18.9567746,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7521542553,
+  "lat": 45.3364440,
+  "lon": 19.0262138,
+  "tags": {
+    "description": "fix speedcam, GATSO245@70, Vukovar-Bana Josipa Jelačića",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6424084633,
+  "lat": 45.4430956,
+  "lon": 18.8746449,
+  "tags": {
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "70"
+  }
+},
+{
+  "type": "node",
+  "id": 12360213906,
+  "lat": 45.5083473,
+  "lon": 19.0586946,
+  "tags": {
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "node",
+  "id": 7280091012,
+  "lat": 45.2309588,
+  "lon": 19.2995408,
+  "tags": {
+    "description": "fix speedcam, GATSO241@50, Šarengrad",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50",
+    "name": "fix speedcam"
+  }
+},
+{
+  "type": "node",
+  "id": 278391243,
+  "lat": 45.2297636,
+  "lon": 19.3014295,
+  "tags": {
+    "highway": "speed_camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7288529687,
+  "lat": 45.2243606,
+  "lon": 19.3909611,
+  "tags": {
+    "description": "GATSO242@50, Ilok",
+    "direction": "both",
+    "highway": "speed_camera",
+    "maxspeed": "50"
+  }
+},
+{
+  "type": "relation",
+  "id": 19290302,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1876863588,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 517809261,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 12377218866,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19290073,
+  "members": [
+    {
+      "type": "node",
+      "ref": 12323381431,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 12377231146,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 2492695736,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "30",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19290325,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2841374482,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 1041607804,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 12377244173,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 1445753,
+  "members": [
+    {
+      "type": "node",
+      "ref": 6433024690,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 278701651,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 1445720,
+  "members": [
+    {
+      "type": "node",
+      "ref": 278701029,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 6520955084,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 3310701,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2521418628,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 472120741,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "100",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 1445767,
+  "members": [
+    {
+      "type": "node",
+      "ref": 60051962,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 278664090,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 14599417,
+  "members": [
+    {
+      "type": "node",
+      "ref": 10037739339,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 17892432,
+  "members": [
+    {
+      "type": "node",
+      "ref": 12084661789,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 6421427309,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 12084661790,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 14585198,
+  "members": [
+    {
+      "type": "node",
+      "ref": 9959070544,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 10028158337,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 10028158336,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "average_speed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19663615,
+  "members": [
+    {
+      "type": "node",
+      "ref": 9434486729,
+      "role": "device"
+    },
+    {
+      "type": "way",
+      "ref": 203717564,
+      "role": "section"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19663616,
+  "members": [
+    {
+      "type": "node",
+      "ref": 11428692701,
+      "role": "device"
+    },
+    {
+      "type": "way",
+      "ref": 1434329823,
+      "role": "section"
+    },
+    {
+      "type": "way",
+      "ref": 551313313,
+      "role": "section"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19666527,
+  "members": [
+    {
+      "type": "node",
+      "ref": 12362699958,
+      "role": "device"
+    },
+    {
+      "type": "way",
+      "ref": 1022838380,
+      "role": "section"
+    },
+    {
+      "type": "way",
+      "ref": 427416002,
+      "role": "section"
+    },
+    {
+      "type": "way",
+      "ref": 722996797,
+      "role": "section"
+    },
+    {
+      "type": "way",
+      "ref": 351439664,
+      "role": "section"
+    },
+    {
+      "type": "way",
+      "ref": 722996801,
+      "role": "section"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328371,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3625489491,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7369316,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3584999808,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3584999812,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412189,
+  "members": [
+    {
+      "type": "node",
+      "ref": 494880284,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3584999809,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19666528,
+  "members": [
+    {
+      "type": "node",
+      "ref": 12212647811,
+      "role": "device"
+    },
+    {
+      "type": "way",
+      "ref": 172434244,
+      "role": "section"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "80",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 8377414,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1568471219,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 1568471189,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 8377415,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1423341554,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 1424384622,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412191,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1568317204,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3625489604,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328366,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3625489608,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3625489604,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328373,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3625489600,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 7787751802,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 6421512543,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412192,
+  "members": [
+    {
+      "type": "node",
+      "ref": 7787751802,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 2835823491,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 6421512543,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328368,
+  "members": [
+    {
+      "type": "node",
+      "ref": 9986090922,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 6421506770,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 419451891,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 8761712,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1979812156,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 5943025062,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 2710642573,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 8761713,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2710642573,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 5943025062,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 1979812156,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328370,
+  "members": [
+    {
+      "type": "node",
+      "ref": 6521715635,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 1963726861,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3625489606,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "90",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412190,
+  "members": [
+    {
+      "type": "node",
+      "ref": 419451889,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 419451891,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 6421506770,
+      "role": "device"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328374,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3625489603,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 674049981,
+      "role": "device"
+    },
+    {
+      "type": "node",
+      "ref": 1677915110,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7401142,
+  "members": [
+    {
+      "type": "node",
+      "ref": 4987317200,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3474922119,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412195,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3474922119,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 4987317200,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412180,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1631990302,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7412181,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1631990302,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5328367,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3625489595,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 1737060973,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7508854,
+  "members": [
+    {
+      "type": "node",
+      "ref": 1737060923,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 1737061039,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5405489,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3676037617,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3676037618,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5405234,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3675585555,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 1544895773,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5404940,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3675597217,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3675597218,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "60",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 5404941,
+  "members": [
+    {
+      "type": "node",
+      "ref": 3675589948,
+      "role": "to"
+    },
+    {
+      "type": "node",
+      "ref": 3675589949,
+      "role": "from"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "70",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 7425182,
+  "members": [
+    {
+      "type": "node",
+      "ref": 486091326,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 3696248371,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19875471,
+  "members": [
+    {
+      "type": "node",
+      "ref": 455352697,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 2402619279,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+},
+{
+  "type": "relation",
+  "id": 19875472,
+  "members": [
+    {
+      "type": "node",
+      "ref": 2402619279,
+      "role": "from"
+    },
+    {
+      "type": "node",
+      "ref": 455352697,
+      "role": "to"
+    }
+  ],
+  "tags": {
+    "enforcement": "maxspeed",
+    "maxspeed": "50",
+    "type": "enforcement"
+  }
+}
+
+  ]
+}
