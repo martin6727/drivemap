@@ -237,6 +237,17 @@ object Ui {
         }
     }
 
+    /** "I can drive here": save the road at [p] to your roads and re-plan so the route can use it. */
+    fun markDrivable(p: Place) {
+        val name = if (p.category == DROPPED || p.name == t("Dropped pin")) p.address.ifBlank { p.name } else p.name
+        Core.myRoads.add(name, p.pos)
+        pressedPoint.value = null
+        selected.value = null
+        Core.message(t("Saved to your roads — routes will use it when it's on the way"))
+        if (Core.navigator.active) Core.navigator.updateStops(Core.navigator.remainingStops())
+        else if (directions.value != null) plan()
+    }
+
     /** The long-pressed point becomes an extra stop: in driving order while navigating, before the destination when planning. */
     fun addPressedAsStop() {
         val p = pressedPoint.value ?: return

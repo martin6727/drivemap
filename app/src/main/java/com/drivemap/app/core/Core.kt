@@ -53,6 +53,7 @@ object Core {
 
     lateinit var settings: SettingsStore
     lateinit var places: PlacesStore
+    lateinit var myRoads: com.drivemap.app.data.MyRoadsStore
     lateinit var vignettes: VignetteStore
     lateinit var location: LocationSource
     lateinit var valhalla: Valhalla
@@ -88,11 +89,12 @@ object Core {
         app = context.applicationContext
         settings = SettingsStore(app)
         places = PlacesStore(app)
+        myRoads = com.drivemap.app.data.MyRoadsStore(app)
         vignettes = VignetteStore(app)
         location = LocationSource(app)
         valhalla = Valhalla { settings.value.valhallaUrl }
         cameras = CameraRepository(app).also { it.start() }
-        planner = RoutePlanner(valhalla, settings, vignettes, cameras)
+        planner = RoutePlanner(valhalla, settings, vignettes, cameras) { myRoads.value }
         voice = Voice(app).also { it.init(settings.value.voiceLang) }
         navigator = Navigator(scope, planner, voice, settings)
         navigator.carConnected = { carActive }

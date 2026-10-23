@@ -314,6 +314,7 @@ fun RouteCard(r: Route, selected: Boolean, mode: RouteMode, onClick: () -> Unit)
                 val color = when {
                     tag.startsWith("Needs vignette") -> Palette.Red
                     tag.startsWith("Best for") -> Palette.Blue
+                    tag == "Via your roads" -> Palette.Blue
                     tag.startsWith("Only roads") -> Palette.Green
                     else -> MaterialTheme.colorScheme.onSurfaceVariant
                 }

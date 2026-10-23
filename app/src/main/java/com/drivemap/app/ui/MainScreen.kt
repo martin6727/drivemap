@@ -636,6 +636,8 @@ fun PressedPointCard(p: Place) {
                 ) { Text(t("Add stop")) }
                 OutlinedButton(onClick = { Ui.goToPressed() }) { Text(if (navigating) t("Go here instead") else t("Set as destination")) }
             }
+            // the map says you can't drive here, but you can: routes may use it from now on
+            TextButton(onClick = { Ui.markDrivable(p) }) { Text(t("I can drive here")) }
         }
     }
 }
@@ -787,6 +789,11 @@ fun PlaceSheet(place: Place) {
                     context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text), t("Share place")))
                 }) {
                     Icon(Icons.Default.Share, null, Modifier.size(18.dp), tint = Palette.Blue); Spacer(Modifier.width(6.dp)); Text(t("Share"))
+                }
+                if (place.category == DROPPED) {
+                    OutlinedButton(onClick = { Ui.markDrivable(place) }) {
+                        Icon(Glyphs.Car, null, Modifier.size(18.dp), tint = Palette.Blue); Spacer(Modifier.width(6.dp)); Text(t("I can drive here"))
+                    }
                 }
                 OutlinedButton(onClick = { Core.places.setHome(place); Core.message(t("Saved as Home")) }) {
                     Icon(Icons.Default.Home, null, Modifier.size(18.dp), tint = Palette.Blue); Spacer(Modifier.width(6.dp)); Text(t("Set home"))

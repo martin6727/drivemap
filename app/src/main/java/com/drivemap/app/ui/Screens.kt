@@ -31,6 +31,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
@@ -377,6 +378,21 @@ fun SettingsScreen() {
             SectionTitle(t("Places"))
             SettingRow(Icons.Default.Home, t("Home"), home?.let { it.address.ifBlank { it.name } } ?: t("Not set")) { Ui.openSearch(SearchTarget.HOME) }
             SettingRow(Glyphs.Car, t("Work"), work?.let { it.address.ifBlank { it.name } } ?: t("Not set")) { Ui.openSearch(SearchTarget.WORK) }
+
+            SectionTitle(t("Your roads"))
+            Text(
+                t("Roads you can drive that the map marks as private, closed or a track. Routes go through them when they're on the way and clearly shorter. To add one, long-press the road on the map and tap I can drive here."),
+                Modifier.padding(horizontal = 16.dp, vertical = 4.dp), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            val myRoads by Core.myRoads.items.collectAsState()
+            myRoads.forEach { r ->
+                Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Glyphs.Car, null, tint = Palette.Blue, modifier = Modifier.size(22.dp))
+                    Spacer(Modifier.width(16.dp))
+                    Text(r.name, fontSize = 16.sp, modifier = Modifier.weight(1f))
+                    IconButton(onClick = { Core.myRoads.remove(r.id) }) { Icon(Icons.Default.Close, t("Remove")) }
+                }
+            }
 
             SectionTitle(t("Android Auto"))
             val aaReady = remember { com.drivemap.app.core.AutoSetup.ready(ctx) }

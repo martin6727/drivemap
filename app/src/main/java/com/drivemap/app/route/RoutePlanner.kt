@@ -37,6 +37,8 @@ class RoutePlanner(
     private val settings: SettingsStore,
     private val vignettes: VignetteStore,
     private val cameras: CameraRepository,
+    /** Roads the user can drive although the map says otherwise ("your roads"). */
+    private val myRoads: () -> List<com.drivemap.app.data.MyRoad> = { emptyList() },
 ) {
     data class Request(
         val origin: LatLon,
@@ -70,6 +72,45 @@ class RoutePlanner(
         return o
     }
 
+    /**
+     * [locs] with each of "your roads" that lies roughly on the way (ahead, at most about 30 % detour)
+     * added as a pass-through point; null when none does.
+     */
+    private fun withMyRoads(locs: List<RouteLocation>): List<RouteLocation>? {
+        val roads = myRoads()
+        if (roads.isEmpty() || locs.size < 2) return null
+        val legOf = HashMap<com.drivemap.app.data.MyRoad, Int>()
+        for (r in roads) {
+            var best = -1
+            var bestExtra = Double.MAX_VALUE
+            for (i in 0 until locs.size - 1) {
+                val a = locs[i].pos
+                val b = locs[i + 1].pos
+                val direct = Geo.dist(a, b)
+                val toEnd = Geo.dist(r.pos, b)
+                if (toEnd >= direct) continue // not ahead of us on this leg
+                val extra = Geo.dist(a, r.pos) + toEnd - direct
+                if (extra <= direct * 0.3 + 500 && extra < bestExtra) {
+                    best = i
+                    bestExtra = extra
+                }
+            }
+            if (best >= 0) legOf[r] = best
+        }
+        if (legOf.isEmpty()) return null
+        val out = ArrayList<RouteLocation>()
+        for (i in locs.indices) {
+            out += locs[i]
+            legOf.filterValues { it == i }.keys.sortedBy { Geo.dist(locs[i].pos, it.pos) }
+                .forEach { out += RouteLocation(it.pos, through = true) }
+        }
+        return out.takeIf { it.size <= 10 } // the routing server's limit
+    }
+
+    /** A route through "your roads" replaces [best] only when it's clearly shorter. */
+    private fun preferMine(mine: Route?, best: Route): Boolean =
+        mine != null && mine !== best && mine.lengthKm <= best.lengthKm * 0.8
+
     suspend fun plan(req: Request, progress: (String) -> Unit = {}): Result = coroutineScope {
         val s = settings.value
         val lang = s.voiceLang
@@ -81,6 +122,11 @@ class RoutePlanner(
         val main = limited { valhalla.route(locs, "auto", base, lang, alternates = if (locs.size == 2) 2 else 0) }
         val candidates = ArrayList<Route>()
         main.forEachIndexed { i, g -> candidates.add(Route(g, if (i == 0) "fastest" else "alt$i", req.stops)) }
+        withMyRoads(locs)?.let { mine ->
+            runCatching { limited { valhalla.route(mine, "auto", base, lang) } }
+                .onFailure { Log.w("Planner", "myroad: ${it.message}") }
+                .getOrNull()?.firstOrNull()?.let { candidates.add(Route(it, "myroad", req.stops)) }
+        }
 
         val variants = ArrayList<Triple<String, String, JSONObject>>()
         when (req.mode) {
@@ -167,9 +213,13 @@ class RoutePlanner(
         }
 
         val unique = dedupe(candidates)
-        val best = recommend(unique, req)
+        val mine = unique.firstOrNull { it.variant == "myroad" }
+        val rec = recommend(unique, req)
+        val best = if (preferMine(mine, rec) && compliant(mine!!, req)) mine else rec
         tag(unique, req)
-        best.tags.add("Best for ${req.mode.en.lowercase()}")
+        mine?.tags?.add("Via your roads")
+        // through your road the time estimate is pessimistic (the map thinks it's a bad track), so no "fastest" badge
+        if (best !== mine) best.tags.add("Best for ${req.mode.en.lowercase()}")
         notes.addAll(vignetteNotes(unique, best))
         val ordered = listOf(best) + unique.filter { it !== best }.sortedBy { it.timeS }
         Result(ordered, notes)
@@ -197,7 +247,7 @@ class RoutePlanner(
         val lang = settings.value.voiceLang
         val locs = listOf(RouteLocation(req.origin, req.originHeading)) + req.stops.map { RouteLocation(it.pos, heading = it.heading, through = it.through) }
         val (costing, opts) = costingFor(route.variant, req.avoid, autoOptions(req.avoid))
-        val junctions = limited { valhalla.laneIntersections(locs, costing, opts, lang) }
+        val junctions = limited { valhalla.laneIntersections(if (route.variant == "myroad") withMyRoads(locs) ?: locs else locs, costing, opts, lang) }
         val mans = route.geometry.maneuvers
         val path = route.path
         val out = HashMap<Int, List<LaneInfo>>()
@@ -220,6 +270,11 @@ class RoutePlanner(
         val base = autoOptions(req.avoid)
         val (costing, opts) = costingFor(previous.variant, req.avoid, base)
         var r = Route(limited { valhalla.route(locs, costing, opts, lang) }.first(), previous.variant, req.stops)
+        // one of "your roads" still ahead and clearly shorter: go that way
+        withMyRoads(locs)?.let { ml ->
+            val m = runCatching { limited { valhalla.route(ml, "auto", base, lang) }.first() }.getOrNull()?.let { Route(it, "myroad", req.stops) }
+            if (preferMine(m, r)) r = m!!
+        }
         // show the new line right away; limits, tolls and cameras are filled in below
         onQuick(r)
         analyze(listOf(r), req)
