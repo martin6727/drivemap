@@ -169,6 +169,7 @@ fun MainScreen() {
             CruiseSetupDialog()
             CarPickerDialog()
             UpdateDialog()
+            AutoSetupDialog()
 
             Sheets()
 
@@ -982,7 +983,8 @@ fun ReportPicker() {
                         Icon(icon, null, tint = Color.White, modifier = Modifier.size(30.dp))
                     }
                     Spacer(Modifier.height(6.dp))
-                    Text(type.label, fontSize = 13.sp)
+                    // one line: long words ("Nebezpečenstvo") get a slightly smaller font instead of wrapping
+                    Text(type.label, fontSize = if (type.label.length > 11) 11.5.sp else 13.sp, maxLines = 1, softWrap = false)
                 }
             }
         }

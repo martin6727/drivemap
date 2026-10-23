@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent { MainScreen() }
+        com.drivemap.app.core.AutoSetup.checkOnStart(this)
 
         val wanted = mutableListOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
         if (Build.VERSION.SDK_INT >= 33) wanted += Manifest.permission.POST_NOTIFICATIONS
@@ -60,6 +61,11 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         Core.onForeground(true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        com.drivemap.app.core.AutoSetup.onResume(this)
     }
 
     override fun onStop() {

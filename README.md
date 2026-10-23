@@ -17,18 +17,20 @@ Or scan this on your phone:
    Google Play Protect may say it doesn't know the app. Tap **More details → Install anyway**. That warning appears for any app that isn't from the Play Store.
 3. Open DriveMap and allow location access. That's it.
 
-**Updates:** when a new version is out, DriveMap tells you. Tap **Update**, then **Install**, and your settings and saved places stay.
+**Updates:** when a new version is out, DriveMap tells you. Tap **Update**, then **Update** again on the next screen, and your settings and saved places stay.
 
 Requires Android 8.0 or newer.
 
 ### Android Auto
 
-Android Auto only shows apps from the Play Store unless you allow other sources. Turn that on once:
+Android Auto only shows navigation apps installed from the Play Store (its "Unknown sources" setting no longer covers them). DriveMap sets itself up for this once:
 
-1. Open **Android Auto settings** on your phone (Settings → Connected devices → Android Auto, or search "Android Auto" in Settings).
-2. Scroll to the bottom and tap **Version** about 10 times, until it asks to allow development settings. Tap **OK**.
-3. Tap the **⋮** menu (top right) → **Developer settings** → turn on **Unknown sources**.
-4. Reconnect your phone to the car. DriveMap appears in the Android Auto app list. If you don't see it, use **Customize launcher** in Android Auto settings.
+1. The first time you open DriveMap, it asks **Use DriveMap in your car?** Tap **Enable**.
+2. If Android asks, allow DriveMap to **install unknown apps**, then go back.
+3. Tap **Update**. If Play Protect asks, tap **More details → Install without scanning** (or let it scan; that works too).
+4. Connect your phone to the car. DriveMap appears in the Android Auto app list. If you don't see it, check **Customize launcher** in Android Auto settings.
+
+Missed the prompt? It's under **Settings → Android Auto → Show in Android Auto**. Updates from inside the app keep this setup. If you install a new version from the browser instead, do it again.
 
 | Android Auto: pick a route | Tap a friend's car to challenge |
 |---|---|
@@ -100,6 +102,9 @@ The APK lands in `app/build/outputs/apk/release/`.
 
 **Android Auto:**
 
-1. V telefóne otvor nastavenia Android Auto a dole 10× ťukni na **Verzia**. Potvrď vývojárske nastavenia.
-2. V menu **⋮** otvor **Nastavenia pre vývojárov** a zapni **Neznáme zdroje**.
-3. Znova pripoj telefón k autu. DriveMap sa objaví medzi aplikáciami.
+1. Pri prvom otvorení sa DriveMap opýta **Používať DriveMap v aute?** Ťukni na **Zapnúť**.
+2. Ak sa Android opýta, povoľ DriveMapu **inštalovať neznáme aplikácie** a vráť sa späť.
+3. Ťukni na **Aktualizovať**. Ak sa ozve Play Protect, ťukni **Ďalšie podrobnosti → Inštalovať bez kontroly** (alebo ju nechaj skontrolovať).
+4. Pripoj telefón k autu. DriveMap sa objaví medzi aplikáciami (ak nie, pozri **Prispôsobiť spúšťač** v nastaveniach Android Auto).
+
+Dá sa to zapnúť aj neskôr: **Nastavenia → Android Auto → Zobraziť v Android Auto**.

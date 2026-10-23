@@ -209,7 +209,7 @@ class CarSearchScreen(carContext: CarContext, private val surface: CarMapSurface
     private var searching = false
     private var job: Job? = null
 
-    private fun search(q: String) {
+    private fun search(q: String, explicit: Boolean = false) {
         job?.cancel()
         if (q.isBlank()) {
             results = emptyList()
@@ -227,9 +227,9 @@ class CarSearchScreen(carContext: CarContext, private val surface: CarMapSurface
                 emptyList()
             }
             invalidate()
-            // businesses too (map places named like this nearby, registered companies)
-            if (q.trim().length >= 3) {
-                val more = com.drivemap.app.ui.Ui.businesses(q, near)
+            // businesses too: places named like this nearby; "lekáreň" etc. on submit lists all nearby
+            if (q.trim().length >= 3 || explicit) {
+                val more = com.drivemap.app.ui.Ui.businesses(q, near, explicit)
                 results = com.drivemap.app.ui.Ui.rank(q, near, results + more.filter { m -> results.none { it.name.equals(m.name, true) && Geo.dist(it.pos, m.pos) < 40 } }).take(12)
             }
             searching = false
@@ -240,7 +240,7 @@ class CarSearchScreen(carContext: CarContext, private val surface: CarMapSurface
     override fun onGetTemplate(): Template {
         val b = SearchTemplate.Builder(object : SearchTemplate.SearchCallback {
             override fun onSearchTextChanged(searchText: String) = search(searchText)
-            override fun onSearchSubmitted(searchText: String) = search(searchText)
+            override fun onSearchSubmitted(searchText: String) = search(searchText, explicit = true)
         }).setHeaderAction(Action.BACK).setSearchHint(t("Search places and addresses")).setShowKeyboardByDefault(true)
         if (searching && results.isEmpty()) return b.setLoading(true).build()
         val fix = Core.location.fix.value

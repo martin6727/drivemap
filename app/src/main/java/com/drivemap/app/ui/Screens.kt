@@ -228,6 +228,7 @@ private fun PlaceRow(icon: ImageVector, title: String, subtitle: String, tint: C
 
 @Composable
 fun SettingsScreen() {
+    val ctx = androidx.compose.ui.platform.LocalContext.current
     val s by Core.settings.state.collectAsState()
     val home by Core.places.home.collectAsState()
     val work by Core.places.work.collectAsState()
@@ -376,6 +377,13 @@ fun SettingsScreen() {
             SectionTitle(t("Places"))
             SettingRow(Icons.Default.Home, t("Home"), home?.let { it.address.ifBlank { it.name } } ?: t("Not set")) { Ui.openSearch(SearchTarget.HOME) }
             SettingRow(Glyphs.Car, t("Work"), work?.let { it.address.ifBlank { it.name } } ?: t("Not set")) { Ui.openSearch(SearchTarget.WORK) }
+
+            SectionTitle(t("Android Auto"))
+            val aaReady = remember { com.drivemap.app.core.AutoSetup.ready(ctx) }
+            SettingRow(
+                Glyphs.Car, t("Show in Android Auto"),
+                if (aaReady) t("Ready — DriveMap appears in your car") else t("Not set up — tap to enable"),
+            ) { if (!aaReady) com.drivemap.app.core.AutoSetup.enable(ctx) }
 
             SectionTitle(t("Advanced"))
             TextSetting(t("Routing server (Valhalla)"), s.valhallaUrl) { v -> upd { it.copy(valhallaUrl = v.ifBlank { AppSettings.DEFAULT_VALHALLA }) } }

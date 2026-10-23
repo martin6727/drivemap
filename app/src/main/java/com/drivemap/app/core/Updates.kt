@@ -18,6 +18,35 @@ object Updates {
     private val _available = MutableStateFlow<String?>(null)
     val available: StateFlow<String?> = _available
 
+    /** Download in progress (shown on the Update button). */
+    private val _downloading = MutableStateFlow(false)
+    val downloading: StateFlow<Boolean> = _downloading
+
+    /**
+     * Download the new APK and install it through [AutoSetup], so the update stays visible in
+     * Android Auto. Falls back to the browser download if that fails.
+     */
+    suspend fun download(context: Context) {
+        if (_downloading.value) return
+        _downloading.value = true
+        try {
+            val bytes = Http.getBytes(DOWNLOAD_URL, timeoutSec = 300)
+            val dir = java.io.File(context.cacheDir, "apk").apply { mkdirs() }
+            val apk = java.io.File(dir, "DriveMap-update.apk")
+            if (bytes.size < 1_000_000 || bytes[0] != 'P'.code.toByte()) throw java.io.IOException("not an APK")
+            apk.writeBytes(bytes)
+            _available.value = null
+            AutoSetup.install(context, apk)
+        } catch (_: Exception) {
+            context.startActivity(
+                android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(DOWNLOAD_URL))
+                    .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
+            )
+        } finally {
+            _downloading.value = false
+        }
+    }
+
     fun dismiss(context: Context) {
         val v = _available.value ?: return
         prefs(context).edit().putString("skipped", v).apply()

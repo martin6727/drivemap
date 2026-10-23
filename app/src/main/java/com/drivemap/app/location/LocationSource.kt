@@ -67,19 +67,42 @@ class LocationSource(private val context: Context) {
         }
         @Deprecated("Deprecated in Java")
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-        override fun onProviderEnabled(provider: String) {}
+        override fun onProviderEnabled(provider: String) { restart() }
         override fun onProviderDisabled(provider: String) {}
     }
 
     private val netListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            // Only use network fixes while GPS is silent.
+            lastAnyMs = System.currentTimeMillis()
+            // Only use these fixes while GPS is silent (tunnels, garages, weak signal).
             if (System.currentTimeMillis() - lastGpsMs > 10_000) accept(location)
         }
         @Deprecated("Deprecated in Java")
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-        override fun onProviderEnabled(provider: String) {}
+        override fun onProviderEnabled(provider: String) { restart() }
         override fun onProviderDisabled(provider: String) {}
+    }
+
+    private var lastAnyMs = 0L
+    private var lastRestartMs = 0L
+    private val handler = android.os.Handler(Looper.getMainLooper())
+
+    /**
+     * Watchdog: when GPS has been silent for 20 s (signal lost, chip stuck, location switched
+     * off and on), drop and re-request the updates so it reconnects without restarting the app.
+     */
+    private val watchdog = object : Runnable {
+        override fun run() {
+            if (!listening) return
+            val now = System.currentTimeMillis()
+            if (!simulating && now - lastGpsMs > 20_000 && now - lastRestartMs > 20_000) restart()
+            handler.postDelayed(this, 5_000)
+        }
+    }
+
+    /** Location switched on/off in quick settings. */
+    private val providersReceiver = object : android.content.BroadcastReceiver() {
+        override fun onReceive(c: Context, i: android.content.Intent) { restart() }
     }
 
     @SuppressLint("MissingPermission")
@@ -87,18 +110,17 @@ class LocationSource(private val context: Context) {
         _hasPermission.value = checkPermission()
         if (listening || !_hasPermission.value || lm == null) return
         listening = true
+        lastGpsMs = System.currentTimeMillis()
+        register()
         try {
-            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 0f, gpsListener, Looper.getMainLooper())
-            }
+            ContextCompat.registerReceiver(
+                context, providersReceiver, android.content.IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION),
+                ContextCompat.RECEIVER_NOT_EXPORTED,
+            )
         } catch (_: Exception) {
         }
-        try {
-            if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000L, 0f, netListener, Looper.getMainLooper())
-            }
-        } catch (_: Exception) {
-        }
+        handler.removeCallbacks(watchdog)
+        handler.postDelayed(watchdog, 5_000)
         // Seed with the last known position so the map can centre immediately.
         if (_fix.value == null) {
             val last = listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.PASSIVE_PROVIDER)
@@ -108,9 +130,40 @@ class LocationSource(private val context: Context) {
         }
     }
 
+    /** Ask for GPS plus a backup provider. Registered even while location is off: it starts by itself once switched on. */
+    @SuppressLint("MissingPermission")
+    private fun register() {
+        val m = lm ?: return
+        try {
+            m.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 0f, gpsListener, Looper.getMainLooper())
+        } catch (_: Exception) {
+        }
+        // Backup while GPS is silent: the fused provider (GPS + Wi-Fi + cell) where there is one, else network.
+        val backup = if (android.os.Build.VERSION.SDK_INT >= 31 && m.allProviders.contains(LocationManager.FUSED_PROVIDER)) {
+            LocationManager.FUSED_PROVIDER
+        } else LocationManager.NETWORK_PROVIDER
+        try {
+            m.requestLocationUpdates(backup, 2000L, 0f, netListener, Looper.getMainLooper())
+        } catch (_: Exception) {
+        }
+    }
+
+    /** Drop and re-request location updates. */
+    private fun restart() {
+        if (!listening || lm == null) return
+        _hasPermission.value = checkPermission()
+        if (!_hasPermission.value) return
+        lastRestartMs = System.currentTimeMillis()
+        try { lm.removeUpdates(gpsListener) } catch (_: Exception) {}
+        try { lm.removeUpdates(netListener) } catch (_: Exception) {}
+        register()
+    }
+
     fun stop() {
         if (!listening) return
         listening = false
+        handler.removeCallbacks(watchdog)
+        try { context.unregisterReceiver(providersReceiver) } catch (_: Exception) {}
         try { lm?.removeUpdates(gpsListener) } catch (_: Exception) {}
         try { lm?.removeUpdates(netListener) } catch (_: Exception) {}
     }

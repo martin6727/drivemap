@@ -18,7 +18,7 @@ object Companies {
         // letters match with or without accents: "kaviaren" finds "Kaviareň"
         val pattern = q.lowercase().map { ch -> accentClass(ch) }.joinToString("")
         val ql = "[out:json][timeout:20];nwr[\"name\"~\"$pattern\",i](around:$radiusM,${near.lat},${near.lon});out center tags $limit;"
-        val json = JSONObject(Overpass.query(ql, attempts = 2, timeoutSec = 15))
+        val json = JSONObject(Overpass.query(ql, attempts = 3, timeoutSec = 12))
         val els = json.optJSONArray("elements") ?: return emptyList()
         val out = ArrayList<Place>()
         for (i in 0 until els.length()) {

@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
+import kotlinx.coroutines.launch
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -132,19 +133,35 @@ fun UpdateDialog() {
     val v by com.drivemap.app.core.Updates.available.collectAsState()
     val version = v ?: return
     val ctx = LocalContext.current
+    val busy by com.drivemap.app.core.Updates.downloading.collectAsState()
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
     AlertDialog(
-        onDismissRequest = { com.drivemap.app.core.Updates.dismiss(ctx) },
+        onDismissRequest = { if (!busy) com.drivemap.app.core.Updates.dismiss(ctx) },
         title = { Text(t("Update available")) },
-        text = { Text(t("DriveMap {0} is out. Download it and tap Install — your settings and places stay.", version)) },
+        text = { Text(t("DriveMap {0} is out. Tap Update, then Update again on the next screen — your settings and places stay.", version)) },
         confirmButton = {
-            TextButton(onClick = {
-                com.drivemap.app.core.Updates.dismiss(ctx)
-                ctx.startActivity(
-                    android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(com.drivemap.app.core.Updates.DOWNLOAD_URL))
-                        .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
-                )
-            }) { Text(t("Update")) }
+            TextButton(enabled = !busy, onClick = {
+                scope.launch { com.drivemap.app.core.Updates.download(ctx.applicationContext) }
+            }) { Text(if (busy) t("Downloading…") else t("Update")) }
         },
         dismissButton = { TextButton(onClick = { com.drivemap.app.core.Updates.dismiss(ctx) }) { Text(t("Later")) } },
+    )
+}
+
+
+/** Once after install: offer to make DriveMap visible in Android Auto. */
+@Composable
+fun AutoSetupDialog() {
+    val show by com.drivemap.app.core.AutoSetup.prompt.collectAsState()
+    if (!show) return
+    val ctx = LocalContext.current
+    AlertDialog(
+        onDismissRequest = { com.drivemap.app.core.AutoSetup.dismissPrompt() },
+        title = { Text(t("Use DriveMap in your car?")) },
+        text = {
+            Text(t("Android Auto only shows navigation apps installed from the Play Store. Tap Enable and then Update — DriveMap reinstalls itself so Android Auto shows it. Your settings and places stay."))
+        },
+        confirmButton = { TextButton(onClick = { com.drivemap.app.core.AutoSetup.enable(ctx) }) { Text(t("Enable")) } },
+        dismissButton = { TextButton(onClick = { com.drivemap.app.core.AutoSetup.dismissPrompt() }) { Text(t("Not now")) } },
     )
 }

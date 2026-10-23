@@ -135,9 +135,14 @@ object Ui {
             val saved = savedMatching(q)
             val quick = try { Search.autocomplete(q, near) } catch (_: Exception) { emptyList() }
             results.value = merge(saved, rank(q, near, quick))
-            val full = try { Search.fullSearch(q, near) } catch (_: Exception) { emptyList() }
-            results.value = merge(saved, rank(q, near, full + quick))
-            results.value = merge(saved, rank(q, near, full + quick + businesses(q, near)))
+            // a kind of place ("lekáreň") first: all of them nearby, nearest first
+            val kinds = if (near != null) placesOfKind(q, near) else emptyList()
+            if (kinds.isNotEmpty()) results.value = merge(saved, rank(q, near, kinds + quick))
+            // (a category already used the map search; it allows about one request a second)
+            val full = if (com.drivemap.app.net.Categories.match(q) != null) emptyList()
+            else try { Search.fullSearch(q, near) } catch (_: Exception) { emptyList() }
+            results.value = merge(saved, rank(q, near, kinds + full + quick))
+            results.value = merge(saved, rank(q, near, kinds + full + quick + businesses(q, near)))
             searching.value = false
         }
     }
@@ -147,9 +152,27 @@ object Ui {
     fun rank(q: String, near: LatLon?, list: List<Place>): List<Place> =
         if (near == null) list else list.sortedBy { Geo.dist(near, it.pos) }
 
-    /** Shops, cafés, workshops… on the map near you named like [q] (where they actually are). */
-    suspend fun businesses(q: String, near: LatLon?): List<Place> =
-        if (near == null) emptyList() else try { com.drivemap.app.net.Companies.nearbyByName(q, near) } catch (_: Exception) { emptyList() }
+    /**
+     * Businesses near you, like Google Maps: shops, cafés, workshops… named like [q] where they
+     * actually are. On an explicit search, a kind of place ("lekáreň", "autoservis") also lists all
+     * of those around you (the map search may not be called while typing).
+     */
+    suspend fun businesses(q: String, near: LatLon?, explicit: Boolean = false): List<Place> = kotlinx.coroutines.coroutineScope {
+        if (near == null) return@coroutineScope emptyList()
+        val named = async { try { com.drivemap.app.net.Companies.nearbyByName(q, near) } catch (_: Exception) { emptyList() } }
+        val kinds = if (explicit) placesOfKind(q, near) else emptyList()
+        (kinds + named.await()).distinctBy { "%.4f,%.4f".format(it.pos.lat, it.pos.lon) }
+    }
+
+    /** "lekáreň", "autoservis", "benzínka"…: all places of that kind around [near]; empty for other queries. */
+    suspend fun placesOfKind(q: String, near: LatLon): List<Place> {
+        val kinds = com.drivemap.app.net.Categories.match(q) ?: return emptyList()
+        // one at a time (the map search allows about one request a second); nearby first,
+        // a wider area when the town has few of them
+        val close = kinds.flatMap { k -> try { Search.category(k, near, 0.08) } catch (_: Exception) { emptyList() } }
+        val all = if (close.size >= 5) close else close + kinds.flatMap { k -> try { Search.category(k, near, 0.3) } catch (_: Exception) { emptyList() } }
+        return all.distinctBy { "%.4f,%.4f".format(it.pos.lat, it.pos.lon) }
+    }
 
     /** Your saved places (and home/work) whose name contains the query, accents ignored. */
     private fun savedMatching(q: String): List<Place> {
