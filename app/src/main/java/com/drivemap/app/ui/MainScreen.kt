@@ -168,6 +168,7 @@ fun MainScreen() {
             TripSummaryOverlay()
             CruiseSetupDialog()
             CarPickerDialog()
+            UpdateDialog()
 
             Sheets()
 

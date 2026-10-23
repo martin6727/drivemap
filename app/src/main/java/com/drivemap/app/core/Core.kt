@@ -110,6 +110,7 @@ object Core {
         VignetteStore.scheduleReminders(app, vignettes.items.value)
 
         com.drivemap.app.i18n.L10n.apply(settings.value.appLanguage)
+        scope.launch { Updates.check(app) }
         scope.launch {
             settings.state.collect {
                 com.drivemap.app.i18n.L10n.apply(it.appLanguage)

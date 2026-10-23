@@ -125,3 +125,26 @@ internal fun cropTransparent(b: android.graphics.Bitmap): android.graphics.Bitma
     r = (r + pad).coerceAtMost(w - 1); btm = (btm + pad).coerceAtMost(h - 1)
     return android.graphics.Bitmap.createBitmap(b, l, t, r - l + 1, btm - t + 1)
 }
+
+/** "New version available" — one tap downloads it from GitHub (Android then offers to install). */
+@Composable
+fun UpdateDialog() {
+    val v by com.drivemap.app.core.Updates.available.collectAsState()
+    val version = v ?: return
+    val ctx = LocalContext.current
+    AlertDialog(
+        onDismissRequest = { com.drivemap.app.core.Updates.dismiss(ctx) },
+        title = { Text(t("Update available")) },
+        text = { Text(t("DriveMap {0} is out. Download it and tap Install — your settings and places stay.", version)) },
+        confirmButton = {
+            TextButton(onClick = {
+                com.drivemap.app.core.Updates.dismiss(ctx)
+                ctx.startActivity(
+                    android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(com.drivemap.app.core.Updates.DOWNLOAD_URL))
+                        .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
+                )
+            }) { Text(t("Update")) }
+        },
+        dismissButton = { TextButton(onClick = { com.drivemap.app.core.Updates.dismiss(ctx) }) { Text(t("Later")) } },
+    )
+}

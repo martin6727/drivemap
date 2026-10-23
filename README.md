@@ -6,11 +6,20 @@ A free navigation app for Android and Android Auto, built for driving in Slovaki
 
 ## Download and install
 
-1. On your phone, open the [latest release](https://github.com/martin6727/drivemap/releases/latest) and download **DriveMap.apk**.
-2. Open the downloaded file. If Android asks, allow your browser to **install unknown apps**, then tap **Install**.
+### [⬇️ Download DriveMap for Android](https://github.com/martin6727/drivemap/releases/latest/download/DriveMap.apk)
+
+Or scan this on your phone:
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://github.com/martin6727/drivemap/releases/latest/download/DriveMap.apk" alt="QR code to download DriveMap" width="180">
+
+1. Tap the download link on your phone.
+2. Open the downloaded **DriveMap.apk**. If Android asks, allow your browser to **install unknown apps**, then tap **Install**.
+   Google Play Protect may say it doesn't know the app. Tap **More details → Install anyway**. That warning appears for any app that isn't from the Play Store.
 3. Open DriveMap and allow location access. That's it.
 
-Requires Android 8.0 or newer. Updates install the same way, over the old version, and keep your settings and saved places.
+**Updates:** when a new version is out, DriveMap tells you. Tap **Update**, then **Install**, and your settings and saved places stay.
+
+Requires Android 8.0 or newer.
 
 ### Android Auto
 
@@ -20,6 +29,10 @@ Android Auto only shows apps from the Play Store unless you allow other sources.
 2. Scroll to the bottom and tap **Version** about 10 times, until it asks to allow development settings. Tap **OK**.
 3. Tap the **⋮** menu (top right) → **Developer settings** → turn on **Unknown sources**.
 4. Reconnect your phone to the car. DriveMap appears in the Android Auto app list. If you don't see it, use **Customize launcher** in Android Auto settings.
+
+| Android Auto: pick a route | Tap a friend's car to challenge |
+|---|---|
+| ![](docs/screenshots/android-auto-routes.png) | ![](docs/screenshots/android-auto-challenge.png) |
 
 On the car screen you get the map, navigation with lanes, speed camera alerts, search ("Where to?", fuel, parking), hazard and police reports, and the convoy. Convoy members show their speed, you can send them a challenge, and incoming invites pop up with Accept and Decline.
 
@@ -81,9 +94,9 @@ The APK lands in `app/build/outputs/apk/release/`.
 
 ## Slovensky: inštalácia
 
-1. V telefóne otvor [najnovšie vydanie](https://github.com/martin6727/drivemap/releases/latest) a stiahni **DriveMap.apk**.
-2. Otvor stiahnutý súbor. Ak sa Android opýta, povoľ prehliadaču **inštalovať neznáme aplikácie** a ťukni na **Inštalovať**.
-3. Otvor DriveMap a povoľ prístup k polohe.
+1. V telefóne ťukni na **[Stiahnuť DriveMap](https://github.com/martin6727/drivemap/releases/latest/download/DriveMap.apk)** (alebo naskenuj QR kód vyššie).
+2. Otvor stiahnutý **DriveMap.apk**. Ak sa Android opýta, povoľ prehliadaču **inštalovať neznáme aplikácie** a ťukni na **Inštalovať**. Ak Play Protect upozorní, ťukni **Ďalšie podrobnosti → Napriek tomu inštalovať**.
+3. Otvor DriveMap a povoľ prístup k polohe. Keď vyjde nová verzia, aplikácia ti ponúkne aktualizáciu.
 
 **Android Auto:**
 
