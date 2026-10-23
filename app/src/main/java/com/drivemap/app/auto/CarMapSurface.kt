@@ -145,6 +145,13 @@ class CarMapSurface(private val carContext: CarContext, lifecycle: Lifecycle) : 
         teardown()
     }
 
+    /** A tap on the car screen's map: a convoy car opens that member (challenge / drive to them). */
+    override fun onClick(x: Float, y: Float) {
+        val c = controller ?: return
+        val id = c.memberAt(x, y) ?: return
+        carContext.getCarService(androidx.car.app.ScreenManager::class.java).push(CarMemberScreen(carContext, this, id))
+    }
+
     override fun onScroll(distanceX: Float, distanceY: Float) {
         val c = controller ?: return
         if (!panned.value) {

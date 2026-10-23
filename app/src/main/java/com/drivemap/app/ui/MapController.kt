@@ -976,6 +976,13 @@ class MapController(
         s.getSourceAs<GeoJsonSource>("cameras")?.setGeoJson(FeatureCollection.fromFeatures(f))
     }
 
+    /** Convoy member whose car is at screen point (x, y), if any (generous box for car screens). */
+    fun memberAt(x: Float, y: Float): String? {
+        val d = context.resources.displayMetrics.density
+        val box = android.graphics.RectF(x - 28 * d, y - 28 * d, x + 28 * d, y + 28 * d)
+        return map.queryRenderedFeatures(box, "convoy-layer").firstOrNull()?.getStringProperty("id")
+    }
+
     /** Car screen: route bubbles start with A, B, C… to match the route list. */
     var routeLetters = false
 
