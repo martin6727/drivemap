@@ -970,8 +970,6 @@ fun ReportPicker() {
         val items = listOf(
             Triple(ReportType.MOBILE_RADAR, Color(0xFFF57C00), Glyphs.Camera),
             Triple(ReportType.POLICE, Color(0xFF1565C0), Glyphs.Group),
-            Triple(ReportType.HAZARD, Color(0xFFE8A200), Icons.Default.Warning),
-            Triple(ReportType.ACCIDENT, Palette.Red, Icons.Default.Warning),
         )
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             items.forEach { (type, color, icon) ->

@@ -382,11 +382,11 @@ class CarRoutePreviewScreen(
     }
 }
 
-/** Quick report of a mobile radar / police / hazard at the current position. */
+/** Quick report of a mobile radar / police check at the current position. */
 class CarReportScreen(carContext: CarContext) : Screen(carContext) {
     override fun onGetTemplate(): Template {
         val list = ItemList.Builder()
-        listOf(ReportType.MOBILE_RADAR, ReportType.POLICE, ReportType.HAZARD, ReportType.ACCIDENT).forEach { type ->
+        listOf(ReportType.MOBILE_RADAR, ReportType.POLICE).forEach { type ->
             list.addItem(
                 Row.Builder().setTitle(type.label).setImage(icon(if (type == ReportType.POLICE) R.drawable.ic_car_group else R.drawable.ic_car_report))
                     .setOnClickListener {

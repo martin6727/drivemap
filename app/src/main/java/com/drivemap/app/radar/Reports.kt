@@ -186,6 +186,7 @@ class ReportsRepository(
 
     private fun publishState() {
         prune()
-        _reports.value = map.values.sortedByDescending { it.ts }
+        // hazard / accident reports (from older versions) aren't shown or alerted any more
+        _reports.value = map.values.filter { it.type == ReportType.MOBILE_RADAR || it.type == ReportType.POLICE }.sortedByDescending { it.ts }
     }
 }
