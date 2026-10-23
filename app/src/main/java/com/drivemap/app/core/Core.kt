@@ -92,7 +92,7 @@ object Core {
         myRoads = com.drivemap.app.data.MyRoadsStore(app)
         vignettes = VignetteStore(app)
         location = LocationSource(app)
-        valhalla = Valhalla { settings.value.valhallaUrl }
+        valhalla = Valhalla({ settings.value.valhallaUrl }, { settings.value.throughDestOnly })
         cameras = CameraRepository(app).also { it.start() }
         planner = RoutePlanner(valhalla, settings, vignettes, cameras) { myRoads.value }
         voice = Voice(app).also { it.init(settings.value.voiceLang) }

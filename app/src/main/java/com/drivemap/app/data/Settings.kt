@@ -64,6 +64,8 @@ data class AppSettings(
     val lightGlass: Boolean = false,
     /** With [glass]: clear, untinted glass (like iOS). */
     val clearGlass: Boolean = false,
+    /** Route through "destination only" roads (dopravná obsluha) as if they were normal roads. */
+    val throughDestOnly: Boolean = false,
     /** Your car while navigating (Car3D skin id). */
     val carSkin: String = "arrow",
     /** Navigation camera tilted (3D) or flat (2D). */
@@ -136,6 +138,7 @@ class SettingsStore(context: Context) {
             glass = p.getBoolean("glass", false),
             lightGlass = p.getBoolean("lightGlass", false),
             clearGlass = p.getBoolean("clearGlass", false),
+            throughDestOnly = p.getBoolean("throughDestOnly", false),
             carSkin = p.getString("carSkin", "arrow") ?: "arrow",
             view3d = p.getBoolean("view3d", true),
             mapTheme = enumOr(p.getString("mapTheme", null), d.mapTheme),
@@ -187,6 +190,7 @@ class SettingsStore(context: Context) {
             .putBoolean("glass", s.glass)
             .putBoolean("lightGlass", s.lightGlass)
             .putBoolean("clearGlass", s.clearGlass)
+            .putBoolean("throughDestOnly", s.throughDestOnly)
             .putString("carSkin", s.carSkin)
             .putBoolean("view3d", s.view3d)
 

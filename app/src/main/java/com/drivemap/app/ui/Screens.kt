@@ -291,6 +291,10 @@ fun SettingsScreen() {
             ToggleRow(t("Avoid all tolls"), s.avoid.tolls) { v -> upd { it.copy(avoid = it.avoid.copy(tolls = v)) } }
             ToggleRow(t("Avoid motorways"), s.avoid.motorways) { v -> upd { it.copy(avoid = it.avoid.copy(motorways = v)) } }
             ToggleRow(t("Avoid ferries"), s.avoid.ferries) { v -> upd { it.copy(avoid = it.avoid.copy(ferries = v)) } }
+            ToggleRow(
+                t("Drive through “destination only” zones"), s.throughDestOnly,
+                t("Routes use roads signed for local access only (dopravná obsluha) as shortcuts. Using them just to pass through can be fined."),
+            ) { v -> upd { it.copy(throughDestOnly = v) } }
 
             SectionTitle(t("Radars"))
             ToggleRow(t("Intelligent radar alerts"), s.radarAlerts, t("Only cameras ahead that check your direction; louder when you're too fast; average-speed zones")) { v -> upd { it.copy(radarAlerts = v) } }

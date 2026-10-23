@@ -38,7 +38,11 @@ data class LocatedEdge(
 /**
  * Client for a Valhalla routing server (default: the free FOSSGIS instance).
  */
-class Valhalla(private val baseUrl: () -> String) {
+class Valhalla(
+    private val baseUrl: () -> String,
+    /** User setting: drive through "destination only" roads (dopravná obsluha) like normal roads. */
+    private val throughDestOnly: () -> Boolean = { false },
+) {
 
     private fun url(action: String) = baseUrl().trimEnd('/') + "/" + action
 
@@ -49,6 +53,13 @@ class Valhalla(private val baseUrl: () -> String) {
         language: String,
         alternates: Int = 0,
         excludeLocations: List<LatLon> = emptyList(),
+        /**
+         * Depart now: makes the server use its one-directional search, which correctly lets a route
+         * enter a "destination only" road (dopravná obsluha) on the way. The default search refuses.
+         */
+        departNow: Boolean = false,
+        /** false: ignore the "drive through destination-only zones" setting for this request. */
+        allowZones: Boolean = true,
     ): List<RouteGeometry> {
         val body = JSONObject()
         val locs = JSONArray()
@@ -64,9 +75,14 @@ class Valhalla(private val baseUrl: () -> String) {
         }
         body.put("locations", locs)
         body.put("costing", costing)
-        body.put("costing_options", JSONObject().put(costing, costingOptions))
+        val throughZones = allowZones && throughDestOnly()
+        // no detour penalty for "destination only" roads when the user drives through them anyway
+        val opts = if (throughZones) JSONObject(costingOptions.toString()).put("destination_only_penalty", 0) else costingOptions
+        body.put("costing_options", JSONObject().put(costing, opts))
         body.put("directions_options", JSONObject().put("units", "kilometers").put("language", language))
         if (alternates > 0 && locations.size == 2) body.put("alternates", alternates)
+        // the depart-now search is the one that lets routes enter those roads on the way
+        if (departNow || throughZones) body.put("date_time", JSONObject().put("type", 0))
         if (excludeLocations.isNotEmpty()) {
             val ex = JSONArray()
             excludeLocations.take(50).forEach { ex.put(JSONObject().put("lat", it.lat).put("lon", it.lon)) }
@@ -83,6 +99,11 @@ class Valhalla(private val baseUrl: () -> String) {
         val alts = json.optJSONArray("alternates")
         if (alts != null) for (i in 0 until alts.length()) {
             out.add(parseTrip(alts.getJSONObject(i).getJSONObject("trip")))
+        }
+        // the depart-now search gives no alternatives: add the usual ones (duplicates are dropped later)
+        if (throughZones && !departNow && alternates > 0 && locations.size == 2) {
+            runCatching { route(locations, costing, costingOptions, language, alternates, excludeLocations, allowZones = false) }
+                .getOrNull()?.let { out.addAll(it) }
         }
         return out
     }

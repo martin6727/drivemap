@@ -107,6 +107,28 @@ class RoutePlanner(
         return out.takeIf { it.size <= 10 } // the routing server's limit
     }
 
+    /**
+     * The routing server crawls over "your roads" (it thinks they're bad dirt tracks: about 6 km/h).
+     * Steps of [r] near one of them that slow get a normal 30 km/h instead, so the route card and
+     * the arrival time while driving are realistic.
+     */
+    private fun realisticTimes(r: Route): Route {
+        val roads = myRoads()
+        if (roads.isEmpty()) return r
+        val g = r.geometry
+        for (i in g.maneuvers.indices) {
+            val m = g.maneuvers[i]
+            if (m.lengthKm < 0.05 || m.timeS <= 0.0) continue
+            if (m.lengthKm / (m.timeS / 3600.0) >= 15.0) continue
+            val start = g.shape.getOrNull(m.beginIndex) ?: continue
+            if (roads.none { Geo.dist(it.pos, start) < 1500.0 }) continue
+            val t = m.lengthKm / 30.0 * 3600.0
+            g.timeS -= m.timeS - t
+            g.maneuvers[i] = m.copy(timeS = t)
+        }
+        return r
+    }
+
     /** A route through "your roads" replaces [best] only when it's clearly shorter. */
     private fun preferMine(mine: Route?, best: Route): Boolean =
         mine != null && mine !== best && mine.lengthKm <= best.lengthKm * 0.8
@@ -123,9 +145,9 @@ class RoutePlanner(
         val candidates = ArrayList<Route>()
         main.forEachIndexed { i, g -> candidates.add(Route(g, if (i == 0) "fastest" else "alt$i", req.stops)) }
         withMyRoads(locs)?.let { mine ->
-            runCatching { limited { valhalla.route(mine, "auto", base, lang) } }
+            runCatching { limited { valhalla.route(mine, "auto", base, lang, departNow = true) } }
                 .onFailure { Log.w("Planner", "myroad: ${it.message}") }
-                .getOrNull()?.firstOrNull()?.let { candidates.add(Route(it, "myroad", req.stops)) }
+                .getOrNull()?.firstOrNull()?.let { candidates.add(realisticTimes(Route(it, "myroad", req.stops))) }
         }
 
         val variants = ArrayList<Triple<String, String, JSONObject>>()
@@ -218,8 +240,8 @@ class RoutePlanner(
         val best = if (preferMine(mine, rec) && compliant(mine!!, req)) mine else rec
         tag(unique, req)
         mine?.tags?.add("Via your roads")
-        // through your road the time estimate is pessimistic (the map thinks it's a bad track), so no "fastest" badge
-        if (best !== mine) best.tags.add("Best for ${req.mode.en.lowercase()}")
+        // the "fastest" badge only when it really is the fastest with realistic times
+        if (best !== mine || unique.all { it === mine || it.timeS >= mine.timeS }) best.tags.add("Best for ${req.mode.en.lowercase()}")
         notes.addAll(vignetteNotes(unique, best))
         val ordered = listOf(best) + unique.filter { it !== best }.sortedBy { it.timeS }
         Result(ordered, notes)
@@ -272,7 +294,7 @@ class RoutePlanner(
         var r = Route(limited { valhalla.route(locs, costing, opts, lang) }.first(), previous.variant, req.stops)
         // one of "your roads" still ahead and clearly shorter: go that way
         withMyRoads(locs)?.let { ml ->
-            val m = runCatching { limited { valhalla.route(ml, "auto", base, lang) }.first() }.getOrNull()?.let { Route(it, "myroad", req.stops) }
+            val m = runCatching { limited { valhalla.route(ml, "auto", base, lang, departNow = true) }.first() }.getOrNull()?.let { realisticTimes(Route(it, "myroad", req.stops)) }
             if (preferMine(m, r)) r = m!!
         }
         // show the new line right away; limits, tolls and cameras are filled in below

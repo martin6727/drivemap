@@ -357,6 +357,8 @@ internal val SK: Map<String, String> = hashMapOf(
     "Use DriveMap in your car?" to "Používať DriveMap v aute?",
     "Android Auto only shows navigation apps installed from the Play Store. Tap Enable and then Update — DriveMap reinstalls itself so Android Auto shows it. Your settings and places stay." to "Android Auto zobrazuje len navigácie nainštalované z Obchodu Play. Ťukni na Zapnúť a potom na Aktualizovať – DriveMap sa preinštaluje, aby ho Android Auto zobrazil. Nastavenia aj miesta ostanú.",
     "Enable" to "Zapnúť",
+    "Drive through “destination only” zones" to "Jazdiť cez zóny „dopravná obsluha“",
+    "Routes use roads signed for local access only (dopravná obsluha) as shortcuts. Using them just to pass through can be fined." to "Trasy použijú ako skratku aj cesty s dopravnou obsluhou. Prejazd len tak cez ne môže byť pokutovaný.",
     "Check for updates" to "Skontrolovať aktualizácie",
     "Checking…" to "Kontrolujem…",
     "Version {0}" to "Verzia {0}",

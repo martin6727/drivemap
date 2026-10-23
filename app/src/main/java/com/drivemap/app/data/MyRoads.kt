@@ -53,7 +53,10 @@ class MyRoadsStore(context: Context) {
     }
 
     companion object {
-        /** The dyke road from Vodná to the industrial area on Bratislavská, Nitra (OSM marks it private). */
-        val DEFAULTS = listOf(MyRoad("nitra-hradza", "Hrádza pri Vodnej, Nitra", LatLon(48.31573, 18.06474)))
+        /**
+         * Straight on along Vodná past SUNOB into the industrial area on Bratislavská, Nitra
+         * (OSM marks its start "destination only", so routes turned left onto the gravel instead).
+         */
+        val DEFAULTS = listOf(MyRoad("nitra-sunob", "Vodná – rovno popri SUNOB, Nitra", LatLon(48.31700, 18.06920)))
     }
 }
