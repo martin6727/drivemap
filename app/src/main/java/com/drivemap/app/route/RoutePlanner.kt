@@ -159,6 +159,8 @@ class RoutePlanner(
             RouteMode.SPORT -> {
                 variants += Triple("sport-moto", "motorcycle", motoOptions(req.avoid))
                 variants += Triple("sport-nohw", "auto", base.with("use_highways", 0.0))
+                // off the main roads too: finds the secondary mountain roads next to them
+                variants += Triple("sport-minor", "motorcycle", motoOptions(req.avoid).with("use_primary", 0.1))
             }
             RouteMode.CHEAPEST -> {
                 if (!req.avoid.tolls) variants += Triple("notoll", "auto", base.with("use_tolls", 0.0))
@@ -257,6 +259,7 @@ class RoutePlanner(
         "eco-nohw" -> "auto" to base.with("use_highways", 0.15)
         "sport-moto" -> "motorcycle" to motoOptions(avoid)
         "sport-nohw" -> "auto" to base.with("use_highways", 0.0)
+        "sport-minor" -> "motorcycle" to motoOptions(avoid).with("use_primary", 0.1)
         "notoll" -> "auto" to base.with("use_tolls", 0.0)
         else -> "auto" to base
     }
@@ -418,7 +421,12 @@ class RoutePlanner(
     private fun compliant(r: Route, req: Request) =
         !req.avoid.unpaidVignettes || (r.metrics?.missingVignettes?.isEmpty() ?: true)
 
-    private fun sportScore(r: Route) = (r.metrics?.sharpCorners ?: 0) * 10.0 + (r.metrics?.curvatureDegPerKm ?: 0.0)
+    /** Corners and twistiness count; motorway kilometres count against (they're the boring part). */
+    private fun sportScore(r: Route): Double {
+        val m = r.metrics ?: return 0.0
+        val motorwayShare = if (r.lengthKm > 0) (m.motorwayKm / r.lengthKm).coerceIn(0.0, 1.0) else 0.0
+        return m.sharpCorners * 10.0 + m.curvatureDegPerKm - motorwayShare * 150.0
+    }
 
     private fun costScore(r: Route) = (r.metrics?.totalCostEur ?: 0.0) + r.timeS / 3600.0 * 2.0
 

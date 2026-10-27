@@ -145,7 +145,9 @@ object Costs {
             val p2 = path.pointAt(a + step)
             headings[i] = Geo.bearing(p1, p2)
             val e = route.edgeAt(a)
-            val fast = (e?.speedKmh ?: 60.0) >= 45.0 && (e?.density ?: 0) < 9
+            // counted: everything but towns, junctions and crawling (car parks, service lanes); mountain
+            // roads are slow by nature, so a speed limit here would hide exactly the twisty ones
+            val fast = (e?.speedKmh ?: 60.0) >= 20.0 && (e?.density ?: 0) < 9
             while (jIdx < junctionAlong.size && junctionAlong[jIdx] < a - 60) jIdx++
             val nearJunction = jIdx < junctionAlong.size && Math.abs(junctionAlong[jIdx] - a) < 60
             rural[i] = fast && !nearJunction
@@ -158,13 +160,15 @@ object Costs {
             if (!rural[i] || !rural[i - 1]) continue
             ruralKm += step / 1000.0
             val d = Math.abs(Geo.angleDiff(headings[i - 1], headings[i]))
-            if (d >= 2.0 && d < 120) total += d
+            if (d >= 2.0 && d < 150) total += d
             if (i > skipUntil && i >= 6) {
                 var ok = true
                 for (k in i - 6..i) if (!rural[k]) { ok = false; break }
                 if (ok) {
                     val turn = Math.abs(Geo.angleDiff(headings[i - 6], headings[i]))
-                    if (turn >= 60 && turn < 170) {
+                    // up to 180°: hairpins are the sharpest corners there are (junction turns are
+                    // already left out above)
+                    if (turn >= 60) {
                         corners++
                         skipUntil = i + 8
                     }

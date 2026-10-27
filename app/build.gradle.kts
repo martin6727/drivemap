@@ -14,8 +14,8 @@ android {
         applicationId = "com.drivemap.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 31
-        versionName = "1.31"
+        versionCode = 32
+        versionName = "1.32"
         ndk {
             // phone (S23 Ultra) + emulator; MapLibre's native lib is ~13 MB per ABI
             abiFilters += listOf("arm64-v8a", "x86_64")

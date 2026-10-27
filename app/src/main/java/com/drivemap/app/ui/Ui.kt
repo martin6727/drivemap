@@ -645,6 +645,24 @@ object Ui {
         plan()
     }
 
+    /**
+     * Swap start and destination (like Google Maps' ⇅): the route is planned the other way round,
+     * with stops in between reversed. "Your location" swaps like any other place.
+     */
+    fun swapEnds() {
+        val d = directions.value ?: return
+        val dest = d.stops.lastOrNull() ?: return
+        if (d.stops.any { it.through }) return // a cruise loop has no "other way round"
+        val me = myPos()
+        val oldStart = d.origin?.let { Waypoint(it.name, it.pos) }
+            ?: me?.let { Waypoint(t("Your location"), it) }
+            ?: run { Core.message(t("Waiting for your location… (turn on GPS)")); return }
+        // the new start is "your location" again when the destination was where you are
+        val newOrigin = if (me != null && dest.name == t("Your location") && Geo.dist(dest.pos, me) < 150) null else Place(dest.name, dest.pos)
+        directions.value = d.copy(origin = newOrigin, stops = d.stops.dropLast(1).reversed() + oldStart, routes = emptyList())
+        plan()
+    }
+
     fun selectRoute(i: Int) {
         directions.update { it?.copy(selected = i) }
     }

@@ -124,6 +124,12 @@ fun DirectionsOverlay(d: DirectionsState) {
                         modifier = Modifier.clickable { Ui.openSearch(SearchTarget.ADD_STOP) }.padding(vertical = 4.dp, horizontal = 4.dp),
                     )
                 }
+                // ⇅ swap start and destination, like Google Maps
+                if (d.stops.none { it.through }) {
+                    IconButton(onClick = { Ui.swapEnds() }, modifier = Modifier.padding(top = 34.dp, end = 4.dp)) {
+                        Icon(Glyphs.Swap, t("Swap start and destination"))
+                    }
+                }
             }
             Row(
                 Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 12.dp),
