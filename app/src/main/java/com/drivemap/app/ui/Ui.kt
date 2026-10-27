@@ -507,7 +507,7 @@ object Ui {
         cruisePlanning.value = true
         scope().launch {
             try {
-                val loop = com.drivemap.app.route.CruisePlanner.plan(Core.valhalla, me, minutes, scenic, Core.settings.value.voiceLang)
+                val loop = com.drivemap.app.route.CruisePlanner.plan(Core.valhalla, me, minutes, scenic, Core.settings.value.spokenLang)
                 val inv = com.drivemap.app.route.CruiseInvite(
                     id = java.util.UUID.randomUUID().toString().take(12), fromId = Core.convoy.myId,
                     fromName = Core.settings.value.userName.ifBlank { "DriveMap" }, toId = setup.toId,

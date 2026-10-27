@@ -95,7 +95,7 @@ object Core {
         valhalla = Valhalla({ settings.value.valhallaUrl }, { settings.value.throughDestOnly })
         cameras = CameraRepository(app).also { it.start() }
         planner = RoutePlanner(valhalla, settings, vignettes, cameras) { myRoads.value }
-        voice = Voice(app).also { it.init(settings.value.voiceLang) }
+        voice = Voice(app).also { it.init(settings.value.spokenLang) }
         navigator = Navigator(scope, planner, voice, settings)
         navigator.carConnected = { carActive }
         simulator = Simulator(scope)
@@ -116,7 +116,7 @@ object Core {
         scope.launch {
             settings.state.collect {
                 com.drivemap.app.i18n.L10n.apply(it.appLanguage)
-                voice.setLanguage(it.voiceLang)
+                voice.setLanguage(it.spokenLang)
                 voice.profile = com.drivemap.app.nav.VoiceProfiles.byId(it.voiceProfile)
             }
         }
@@ -292,7 +292,7 @@ object Core {
     // ---------------------------------------------------------------- convoy events
 
     private fun onConvoyEvent(e: ConvoyEvent) {
-        val lang = settings.value.voiceLang
+        val lang = settings.value.spokenLang
         when (e) {
             is ConvoyEvent.StopAdded -> {
                 val st = e.stop

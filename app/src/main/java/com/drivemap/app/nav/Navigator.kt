@@ -120,7 +120,7 @@ class Navigator(
         val first = r.geometry.maneuvers.firstOrNull()
         if (settings.value.voice && voiceLevel() == VoiceLevel.FULL && first != null) {
             voice.announce(
-                Announcement(Announcement.Kind.START, settings.value.voiceLang, full = true, type = first.type, standardText = first.verbalPre ?: first.instruction),
+                Announcement(Announcement.Kind.START, settings.value.spokenLang, full = true, type = first.type, standardText = first.verbalPre ?: first.instruction),
                 flush = true,
             )
         }
@@ -305,7 +305,7 @@ class Navigator(
         bendIdx += if (into != null) 2 else 1
         voice.announce(
             Announcement(
-                Announcement.Kind.BEND, settings.value.voiceLang, level == VoiceLevel.FULL, distanceM = dist,
+                Announcement.Kind.BEND, settings.value.spokenLang, level == VoiceLevel.FULL, distanceM = dist,
                 bend = BendCall(b, into, gap),
             ),
         )
@@ -315,7 +315,7 @@ class Navigator(
         val level = voiceLevel()
         if (level == VoiceLevel.ALERTS) return // radar warnings are spoken by the radar alerter
         val full = level == VoiceLevel.FULL
-        val lang = settings.value.voiceLang
+        val lang = settings.value.spokenLang
         val next = mans.getOrNull(mi) ?: return
         val v = maxOf(speedMps, 8.0)
         val near = (v * 7).coerceIn(60.0, 350.0)
@@ -354,7 +354,7 @@ class Navigator(
         lastReroute = System.currentTimeMillis()
         rerouting = true
         if (settings.value.voice && voiceLevel() != VoiceLevel.ALERTS) {
-            val lang = settings.value.voiceLang
+            val lang = settings.value.spokenLang
             voice.announce(Announcement(Announcement.Kind.REROUTE, lang, voiceLevel() == VoiceLevel.FULL, standardText = Phrases.get(lang, "reroute")), flush = true)
         }
         val remaining = req.stops.drop(nextWp.coerceAtMost(req.stops.size - 1))

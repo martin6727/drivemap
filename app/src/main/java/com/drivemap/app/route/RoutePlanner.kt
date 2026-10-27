@@ -135,7 +135,7 @@ class RoutePlanner(
 
     suspend fun plan(req: Request, progress: (String) -> Unit = {}): Result = coroutineScope {
         val s = settings.value
-        val lang = s.voiceLang
+        val lang = s.spokenLang
         val locs = listOf(RouteLocation(req.origin, req.originHeading)) + req.stops.map { RouteLocation(it.pos, heading = it.heading, through = it.through) }
         val base = autoOptions(req.avoid)
         val notes = ArrayList<String>()
@@ -269,7 +269,7 @@ class RoutePlanner(
      * Only junctions where some lanes are wrong for us are kept – that's when guidance helps.
      */
     suspend fun laneGuidance(route: Route, req: Request): Map<Int, List<LaneInfo>> {
-        val lang = settings.value.voiceLang
+        val lang = settings.value.spokenLang
         val locs = listOf(RouteLocation(req.origin, req.originHeading)) + req.stops.map { RouteLocation(it.pos, heading = it.heading, through = it.through) }
         val (costing, opts) = costingFor(route.variant, req.avoid, autoOptions(req.avoid))
         val junctions = limited { valhalla.laneIntersections(if (route.variant == "myroad") withMyRoads(locs) ?: locs else locs, costing, opts, lang) }
@@ -290,7 +290,7 @@ class RoutePlanner(
     }
 
     suspend fun reroute(req: Request, previous: Route, onQuick: (Route) -> Unit = {}): Route {
-        val lang = settings.value.voiceLang
+        val lang = settings.value.spokenLang
         val locs = listOf(RouteLocation(req.origin, req.originHeading)) + req.stops.map { RouteLocation(it.pos, heading = it.heading, through = it.through) }
         val base = autoOptions(req.avoid)
         val (costing, opts) = costingFor(previous.variant, req.avoid, base)

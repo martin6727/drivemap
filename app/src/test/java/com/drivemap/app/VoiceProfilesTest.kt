@@ -112,3 +112,27 @@ class VoiceProfilesTest {
         assertTrue(c, c.contains(Phrases.distance("sk-SK", 12000.0)))
     }
 }
+
+class EnglishRallyVoiceTest {
+    @Test
+    fun englishMaleRallySpeaksEnglishWhateverTheSetting() {
+        val p = VoiceProfiles.byId("rally_en_male")
+        assertEquals(com.drivemap.app.nav.RallyEnglishMaleVoice, p)
+        assertEquals("en-GB", p.language)
+        assertTrue(p.paceNotes)
+        assertTrue(p.tts.voiceHints.first().startsWith("en-gb"))
+        val s = com.drivemap.app.data.AppSettings(voiceLang = "sk-SK", voiceProfile = "rally_en_male")
+        assertEquals("en-GB", s.spokenLang)
+        assertEquals("sk-SK", s.copy(voiceProfile = "standard").spokenLang)
+        assertEquals("sk-SK", s.copy(voiceProfile = "rally").spokenLang)
+    }
+
+    @Test
+    fun englishPaceNotesAndTurns() {
+        val p = VoiceProfiles.byId("rally_en_male")
+        val bend = com.drivemap.app.nav.Bend(0.0, 80.0, false, 90.0, 40.0, 3, true, false, true)
+        assertEquals("Long right 3 tightens, 100", p.phrase(Announcement(Kind.BEND, "en-GB", true, bend = com.drivemap.app.nav.BendCall(bend, null, 95.0))))
+        val turn = p.phrase(Announcement(Kind.APPROACH, "en-GB", true, type = 15, distanceM = 300.0, street = "High Street"))!!
+        assertEquals("300 meters, left, High Street", turn)
+    }
+}

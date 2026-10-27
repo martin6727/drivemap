@@ -27,6 +27,7 @@ class Voice(private val context: Context) {
         set(v) {
             if (field.id == v.id) return
             field = v
+            v.language?.let { lang = it }
             if (ready) applyLanguage()
         }
 
@@ -84,17 +85,29 @@ class Voice(private val context: Context) {
      * language's default voice stays (setLanguage above already chose it).
      */
     private fun applyProfileVoice() {
+        hintedVoice = false
         val hints = profile.tts.voiceHints
         if (hints.isEmpty()) return
         val t = tts ?: return
         try {
             val language = t.voice?.locale?.language ?: Locale.forLanguageTag(lang).language
-            val v = t.voices?.filter { it.locale.language == language && !it.isNetworkConnectionRequired }
-                ?.firstOrNull { v -> hints.any { v.name.contains(it, ignoreCase = true) } }
-            if (v != null) t.voice = v
+            // installed, offline voices of this language, in the profile's order of preference
+            val usable = t.voices.orEmpty().filter {
+                it.locale.language == language && !it.isNetworkConnectionRequired &&
+                    !it.features.orEmpty().contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED)
+            }
+            val v = hints.firstNotNullOfOrNull { h -> usable.firstOrNull { it.name.contains(h, ignoreCase = true) } }
+            if (v != null) {
+                t.voice = v
+                hintedVoice = true
+            }
+            android.util.Log.i("Voice", "voice: ${t.voice?.name} (preferred found: $hintedVoice)")
         } catch (_: Exception) {
         }
     }
+
+    /** One of the profile's preferred voices is in use (else its fallback pitch applies). */
+    private var hintedVoice = false
 
     private fun finished(id: String?) {
         if (id != null) pending.remove(id)
@@ -218,7 +231,8 @@ class Voice(private val context: Context) {
         am?.requestAudioFocus(focus)
         // the profile's speed and pitch (1.0 = standard); the voice itself is set with the language
         t.setSpeechRate(profile.tts.rate)
-        t.setPitch(profile.tts.pitch)
+        val prefs = profile.tts
+        t.setPitch(if (!hintedVoice && prefs.voiceHints.isNotEmpty()) prefs.fallbackPitch ?: prefs.pitch else prefs.pitch)
         // navigation-guidance audio (set in init): ducks music and reaches Android Auto's nav channel
         if (t.speak(text, if (flush) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD, Bundle(), id) != TextToSpeech.SUCCESS) finished(id)
     }

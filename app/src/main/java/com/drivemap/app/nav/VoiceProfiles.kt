@@ -58,6 +58,8 @@ data class TtsPrefs(
     val pitch: Float = 1.0f,
     /** Parts of installed voice names to prefer (engine-specific), first match wins. */
     val voiceHints: List<String> = emptyList(),
+    /** Pitch to use instead when none of [voiceHints] is installed (e.g. lower for a male voice). */
+    val fallbackPitch: Float? = null,
 )
 
 /** A short sound played just before an announcement. */
@@ -77,6 +79,11 @@ interface VoiceProfile {
     val tts: TtsPrefs get() = TtsPrefs()
     /** Also call every bend of the road (rally pace notes), not only junction turns. */
     val paceNotes: Boolean get() = false
+    /**
+     * Speaks this language whatever the voice language setting is (e.g. "en-GB"); null = the
+     * setting's language. Everything spoken and the route's instructions then use it.
+     */
+    val language: String? get() = null
     /** The words for [a], or null to use the standard voice's words. */
     fun phrase(a: Announcement): String? = null
     /** A sound before [a], or null for none. */
@@ -86,7 +93,7 @@ interface VoiceProfile {
 object VoiceProfiles {
     val standard: VoiceProfile = StandardVoice
     /** All profiles, in the order shown in settings. Add new character voices here. */
-    val all: List<VoiceProfile> = listOf(StandardVoice, RallyCoDriverVoice)
+    val all: List<VoiceProfile> = listOf(StandardVoice, RallyCoDriverVoice, RallyEnglishMaleVoice)
 
     fun byId(id: String?): VoiceProfile = all.firstOrNull { it.id == id } ?: standard
 }
@@ -103,11 +110,38 @@ object StandardVoice : VoiceProfile {
  * distances, street names and exit numbers kept, a quick double click before "now" calls.
  * Never tells you to go faster. Languages without phrases here use the standard sentences.
  */
-object RallyCoDriverVoice : VoiceProfile {
-    override val id = "rally"
-    override val name = "Rally co-driver"
-    override val description = "Calls every bend like a rally co-driver: left 4, right 2 tightens, hairpin…"
-    override val tts = TtsPrefs(rate = 1.06f, pitch = 1.0f)
+object RallyCoDriverVoice : RallyVoice(
+    id = "rally",
+    name = "Rally co-driver",
+    description = "Calls every bend like a rally co-driver: left 4, right 2 tightens, hairpin…",
+    tts = TtsPrefs(rate = 1.06f, pitch = 1.0f),
+)
+
+/**
+ * The rally co-driver in English with a male voice, whatever the voice language setting: a male
+ * British (else American) English voice when the phone has one installed, otherwise the default
+ * English voice a little lower.
+ */
+object RallyEnglishMaleVoice : RallyVoice(
+    id = "rally_en_male",
+    name = "Rally co-driver EN (male)",
+    description = "Pace notes in English with a male voice: left 4, right 2 tightens, hairpin…",
+    tts = TtsPrefs(
+        rate = 1.06f, pitch = 1.0f, fallbackPitch = 0.82f,
+        // Google speech engine's male English voices (British first, like most co-drivers)
+        voiceHints = listOf("en-gb-x-rjs", "en-gb-x-gbd", "en-gb-x-gbb", "en-us-x-iom", "en-us-x-iol", "en-us-x-tpd", "en-au-x-aub", "en-au-x-aud"),
+    ),
+    language = "en-GB",
+)
+
+/** Rally co-driver wording; [language] fixes the language (else the voice language setting). */
+open class RallyVoice(
+    override val id: String,
+    override val name: String,
+    override val description: String,
+    override val tts: TtsPrefs,
+    override val language: String? = null,
+) : VoiceProfile {
     override val paceNotes = true
 
     private fun l(lang: String) = lang.substringBefore('-').let { if (it in calls) it else null }

@@ -210,7 +210,7 @@ class RadarAlerter(
                         AlertKind.HAZARD -> "hazard"
                         AlertKind.FREQUENT -> "frequent"
                     }
-                    var text = Phrases.get(s.voiceLang, phrase)
+                    var text = Phrases.get(s.spokenLang, phrase)
                     if (limit != null && best.kind != AlertKind.HAZARD && best.kind != AlertKind.POLICE) text += ", $limit"
                     voice.speak(text)
                 }

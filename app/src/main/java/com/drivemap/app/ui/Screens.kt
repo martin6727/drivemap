@@ -361,6 +361,12 @@ fun SettingsScreen() {
                 Text(t(profile.description), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
                 TextButton(onClick = { previewVoice(s) }) { Text(t("Listen")) }
             }
+            if (profile.language != null) {
+                Text(
+                    t("This voice speaks English; your voice language stays saved."),
+                    Modifier.padding(horizontal = 16.dp), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
             Row(Modifier.padding(horizontal = 12.dp).horizontalScrollCompat(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf("en-US" to "English", "sk-SK" to "Slovenčina", "cs-CZ" to "Čeština", "de-DE" to "Deutsch", "hu-HU" to "Magyar", "pl-PL" to "Polski").forEach { (code, label) ->
                     FilterChip(selected = s.voiceLang == code, onClick = { upd { it.copy(voiceLang = code) } }, label = { Text(label) })
@@ -852,7 +858,7 @@ private object CodeDashes : androidx.compose.ui.text.input.VisualTransformation 
  * level, as navigation would say them (a made-up street; nothing is navigated).
  */
 private fun previewVoice(s: AppSettings) {
-    val lang = s.voiceLang
+    val lang = s.spokenLang
     val full = s.voiceLevel == com.drivemap.app.data.VoiceLevel.FULL
     val street = if (lang.startsWith("sk") || lang.startsWith("cs")) "Hlavná" else "Main Street"
     val turn = com.drivemap.app.nav.Phrases.turn(lang, 10, 0) ?: "Turn right"

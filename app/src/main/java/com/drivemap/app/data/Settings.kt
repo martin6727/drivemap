@@ -82,6 +82,13 @@ data class AppSettings(
     /** Colour of the route line (ARGB). */
     val routeColor: Int = ROUTE_COLORS.first().first,
 ) {
+    /**
+     * The language actually spoken: a voice profile can speak its own language (e.g. the English
+     * rally co-driver); otherwise the voice language chosen in settings. Used for everything said
+     * and for the route's spoken instructions, so nothing is mixed.
+     */
+    val spokenLang: String get() = com.drivemap.app.nav.VoiceProfiles.byId(voiceProfile).language ?: voiceLang
+
     companion object {
         const val DEFAULT_VALHALLA = "https://valhalla1.openstreetmap.de"
         const val DEFAULT_MQTT = "ssl://broker.hivemq.com:8883"
