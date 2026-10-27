@@ -4,7 +4,9 @@ import com.drivemap.app.i18n.t
 import com.drivemap.app.core.Core
 import com.drivemap.app.geo.Geo
 import com.drivemap.app.geo.LatLon
+import com.drivemap.app.net.HttpException
 import com.drivemap.app.net.Search
+import com.drivemap.app.net.SearchRank
 import com.drivemap.app.route.AvoidOptions
 import com.drivemap.app.route.Place
 import com.drivemap.app.route.Route
@@ -14,6 +16,7 @@ import com.drivemap.app.route.Waypoint
 import com.drivemap.app.fuel.FuelPrices
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -100,93 +103,155 @@ object Ui {
         screen.value = Screen.SEARCH
     }
 
+    /**
+     * Search-as-you-type: your saved places at once, then Photon once typing pauses for 300 ms.
+     * Every keystroke cancels the previous request (its network call is dropped too). Nothing
+     * else is asked while typing: Nominatim's policy forbids it, and Overpass is far too slow
+     * (measured 60–110 s per name search, often "server at capacity").
+     */
     fun onQuery(q: String) {
         query.value = q
         searchJob?.cancel()
+        searching.value = false
         if (q.isBlank()) {
             results.value = emptyList()
-            searching.value = false
             return
         }
+        val saved = savedMatching(q)
+        results.value = saved
+        if (q.trim().length < 2) return
         searchJob = scope().launch {
-            delay(280)
+            delay(300)
             searching.value = true
-            val saved = savedMatching(q)
-            results.value = saved
             val near = myPos() ?: mapCenter
-            val quick = try { Search.autocomplete(q, near) } catch (_: Exception) { emptyList() }
-            results.value = merge(saved, rank(q, near, quick))
-            // businesses: map places named like this nearby, then registered companies
-            if (q.trim().length >= 3) {
-                delay(450) // only once typing pauses
-                results.value = merge(saved, rank(q, near, quick + businesses(q, near)))
-            }
+            val quick = attempt { Search.autocomplete(q, near) }
+            results.value = combine(q, near, saved, quick.getOrDefault(emptyList()))
             searching.value = false
         }
     }
 
-    /** Keyboard "Search": also asks OpenStreetMap's live database, which has newly added places. */
+    /**
+     * Keyboard "Search": Photon and OpenStreetMap's live database (Nominatim, which also has places
+     * added in the last days) at the same time; results appear as each one answers. A kind of
+     * place ("lekáreň", "autoservis") lists all of those nearby instead.
+     */
     fun submitQuery(q: String) {
         if (q.isBlank()) return
         searchJob?.cancel()
+        searching.value = true
         searchJob = scope().launch {
-            searching.value = true
             val near = myPos() ?: mapCenter
             val saved = savedMatching(q)
-            val quick = try { Search.autocomplete(q, near) } catch (_: Exception) { emptyList() }
-            results.value = merge(saved, rank(q, near, quick))
-            // a kind of place ("lekáreň") first: all of them nearby, nearest first
-            val kinds = if (near != null) placesOfKind(q, near) else emptyList()
-            if (kinds.isNotEmpty()) results.value = merge(saved, rank(q, near, kinds + quick))
-            // (a category already used the map search; it allows about one request a second)
-            val full = if (com.drivemap.app.net.Categories.match(q) != null) emptyList()
-            else try { Search.fullSearch(q, near) } catch (_: Exception) { emptyList() }
-            results.value = merge(saved, rank(q, near, kinds + full + quick))
-            results.value = merge(saved, rank(q, near, kinds + full + quick + businesses(q, near)))
+            val isKind = com.drivemap.app.net.Categories.match(q) != null
+            var quick: List<Place> = emptyList()
+            var live: List<Place> = emptyList()
+            val failed = ArrayList<Throwable>()
+            fun show() { results.value = combine(q, near, saved, live + quick) }
+            coroutineScope {
+                launch {
+                    attempt { Search.autocomplete(q, near) }.onSuccess { quick = it; show() }.onFailure { failed += it }
+                }
+                launch {
+                    val r = attempt { if (isKind && near != null) placesOfKind(q, near) else Search.fullSearch(q, near) }
+                    r.onSuccess { live = it; show() }.onFailure { failed += it }
+                }
+            }
+            show()
             searching.value = false
+            if (results.value.isEmpty() && failed.size == 2) {
+                Core.message(
+                    if (failed.any { it is com.drivemap.app.net.SearchBusyException || (it as? HttpException)?.code == 429 }) t("Search is busy. Try again in a minute.")
+                    else t("Search isn't reachable. Check your connection and try again."),
+                )
+            }
         }
     }
 
-    /** Search results nearest first. */
-    @Suppress("UNUSED_PARAMETER")
-    fun rank(q: String, near: LatLon?, list: List<Place>): List<Place> =
-        if (near == null) list else list.sortedBy { Geo.dist(near, it.pos) }
+    /** Runs a search request; a cancelled search stays cancelled (no stale results afterwards). */
+    private suspend fun <T> attempt(block: suspend () -> T): Result<T> = try {
+        Result.success(block())
+    } catch (e: kotlinx.coroutines.CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+    /** Saved places first, then the rest without repeats, best name matches and nearest first. */
+    private fun combine(q: String, near: LatLon?, saved: List<Place>, found: List<Place>): List<Place> =
+        merge(saved, SearchRank.rank(q, near, SearchRank.dedupe(found), byDistance = com.drivemap.app.net.Categories.match(q) != null))
+
+    /** Search results: best name matches first, nearest first among equals, far away last. */
+    fun rank(q: String, near: LatLon?, list: List<Place>): List<Place> = SearchRank.rank(q, near, list)
 
     /**
-     * Businesses near you, like Google Maps: shops, cafés, workshops… named like [q] where they
-     * actually are. On an explicit search, a kind of place ("lekáreň", "autoservis") also lists all
-     * of those around you (the map search may not be called while typing).
+     * Extra results for the car's search: on an explicit search, a kind of place lists all of
+     * those nearby; otherwise OpenStreetMap's live database (newest places).
      */
-    suspend fun businesses(q: String, near: LatLon?, explicit: Boolean = false): List<Place> = kotlinx.coroutines.coroutineScope {
-        if (near == null) return@coroutineScope emptyList()
-        val named = async { try { com.drivemap.app.net.Companies.nearbyByName(q, near) } catch (_: Exception) { emptyList() } }
-        val kinds = if (explicit) placesOfKind(q, near) else emptyList()
-        (kinds + named.await()).distinctBy { "%.4f,%.4f".format(it.pos.lat, it.pos.lon) }
+    suspend fun businesses(q: String, near: LatLon?, explicit: Boolean = false): List<Place> {
+        if (near == null || !explicit) return emptyList()
+        val kinds = placesOfKind(q, near)
+        if (kinds.isNotEmpty()) return kinds
+        return attempt { Search.fullSearch(q, near) }.getOrDefault(emptyList())
     }
 
     /** "lekáreň", "autoservis", "benzínka"…: all places of that kind around [near]; empty for other queries. */
     suspend fun placesOfKind(q: String, near: LatLon): List<Place> {
         val kinds = com.drivemap.app.net.Categories.match(q) ?: return emptyList()
-        // one at a time (the map search allows about one request a second); nearby first,
+        // Search spaces these requests a second apart (the map search's limit); nearby first,
         // a wider area when the town has few of them
-        val close = kinds.flatMap { k -> try { Search.category(k, near, 0.08) } catch (_: Exception) { emptyList() } }
-        val all = if (close.size >= 5) close else close + kinds.flatMap { k -> try { Search.category(k, near, 0.3) } catch (_: Exception) { emptyList() } }
+        val close = kinds.flatMap { k -> attempt { Search.category(k, near, 0.08) }.getOrDefault(emptyList()) }
+        val all = if (close.size >= 5) close else close + kinds.flatMap { k -> attempt { Search.category(k, near, 0.3) }.getOrDefault(emptyList()) }
         return all.distinctBy { "%.4f,%.4f".format(it.pos.lat, it.pos.lon) }
     }
 
-    /** Your saved places (and home/work) whose name contains the query, accents ignored. */
+    /**
+     * Your saved places (home, work, favourites and places you added yourself) matching the query,
+     * ignoring case, accents and spaces ("espresso fix" finds "EspressoFix").
+     */
     private fun savedMatching(q: String): List<Place> {
-        fun n(s: String) = java.text.Normalizer.normalize(s, java.text.Normalizer.Form.NFD).replace(Regex("\\p{M}+"), "").lowercase()
-        val nq = n(q.trim())
-        if (nq.length < 2) return emptyList()
+        val cq = SearchRank.compact(q)
+        if (cq.length < 2) return emptyList()
+        val nq = SearchRank.normalize(q)
         return (Core.places.favorites.value + listOfNotNull(Core.places.home.value, Core.places.work.value))
-            .filter { n(it.name).contains(nq) || n(it.address).contains(nq) }
+            .filter { SearchRank.compact(it.name).contains(cq) || SearchRank.normalize(it.address).contains(nq) }
+            .sortedBy { SearchRank.tier(q, it.name) }
     }
 
     private fun merge(first: List<Place>, rest: List<Place>): List<Place> {
         val out = ArrayList(first)
-        for (p in rest) if (out.none { Geo.dist(it.pos, p.pos) < 40 && it.name.equals(p.name, ignoreCase = true) }) out.add(p)
+        for (p in rest) {
+            val cn = SearchRank.compact(p.name)
+            if (out.none { Geo.dist(it.pos, p.pos) < 150 && SearchRank.compact(it.name) == cn }) out.add(p)
+        }
         return out
+    }
+
+    /** "Can't find it?": the next long-press on the map saves a place with this name. */
+    val addPlaceName = MutableStateFlow<String?>(null)
+    private var addPlaceUntil = 0L
+
+    fun startAddPlace(name: String) {
+        val n = name.trim()
+        if (n.isEmpty()) return
+        addPlaceName.value = n
+        addPlaceUntil = System.currentTimeMillis() + 3 * 60_000
+        screen.value = Screen.MAP
+        Core.message(t("Long-press the exact spot of ‘{0}’ on the map to save it", n), t("Cancel")) { addPlaceName.value = null }
+    }
+
+    /**
+     * Saves a place the map doesn't know, at the spot the user long-pressed (never a guessed
+     * location). It's one of your saved places, so search finds it from now on.
+     */
+    private fun saveAddedPlace(name: String, pos: LatLon) {
+        scope().launch {
+            val addr = attempt { kotlinx.coroutines.withTimeout(5000) { Search.reverse(pos) } }.getOrNull()
+                ?.let { r -> listOf(r.name, r.address).filter { it.isNotBlank() && it != "Dropped pin" }.joinToString(", ") }.orEmpty()
+            val p = Place(name, pos, addr, "custom:place")
+            if (!Core.places.isFavorite(p)) Core.places.toggleFavorite(p)
+            selectPlace(p)
+            Core.message(t("Saved ‘{0}’. Search finds it from now on.", name))
+        }
     }
 
     /** A search result / saved place was picked. */
@@ -222,6 +287,12 @@ object Ui {
 
     /** Long press on the map: a pin with its place card when browsing, otherwise the add-stop card. */
     fun longPress(pos: LatLon) {
+        // "Can't find it? Add it": this long-press marks where the missing place is
+        val adding = addPlaceName.value
+        if (adding != null && Core.navigator.state.value == null) {
+            addPlaceName.value = null
+            if (System.currentTimeMillis() < addPlaceUntil) { saveAddedPlace(adding, pos); return }
+        }
         if (Core.navigator.state.value == null && directions.value == null) {
             dropPin(pos)
             return

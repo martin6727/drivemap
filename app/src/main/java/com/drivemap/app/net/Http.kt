@@ -16,7 +16,8 @@ import kotlin.coroutines.resumeWithException
 class HttpException(val code: Int, val body: String) : IOException("HTTP $code: ${body.take(200)}")
 
 object Http {
-    const val USER_AGENT = "DriveMap/1.0 (Android; personal navigation app)"
+    /** Identifies the app to the public map services (their usage policies ask for this). */
+    const val USER_AGENT = "DriveMap/1.0 (Android navigation app; https://github.com/martin6727/drivemap)"
 
     val client: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
@@ -27,10 +28,11 @@ object Http {
 
     private val JSON = "application/json; charset=utf-8".toMediaType()
 
-    suspend fun get(url: String, headers: Map<String, String> = emptyMap(), timeoutSec: Long = 0): String {
+    /** [totalTimeoutSec]: hard limit for the whole call (default: read timeout + 15 s). */
+    suspend fun get(url: String, headers: Map<String, String> = emptyMap(), timeoutSec: Long = 0, totalTimeoutSec: Long = 0): String {
         val b = Request.Builder().url(url).header("User-Agent", USER_AGENT)
         headers.forEach { (k, v) -> b.header(k, v) }
-        return execute(b.build(), timeoutSec)
+        return execute(b.build(), timeoutSec, totalTimeoutSec)
     }
 
     /** Binary download (e.g. a spreadsheet). */
@@ -75,10 +77,11 @@ object Http {
         return execute(req, timeoutSec)
     }
 
-    private suspend fun execute(request: Request, timeoutSec: Long): String {
+    private suspend fun execute(request: Request, timeoutSec: Long, totalTimeoutSec: Long = 0): String {
         val c = if (timeoutSec > 0) client.newBuilder()
             .readTimeout(timeoutSec, TimeUnit.SECONDS)
-            .callTimeout(timeoutSec + 15, TimeUnit.SECONDS)
+            .connectTimeout(minOf(15L, timeoutSec), TimeUnit.SECONDS)
+            .callTimeout(if (totalTimeoutSec > 0) totalTimeoutSec else timeoutSec + 15, TimeUnit.SECONDS)
             .build() else client
         return suspendCancellableCoroutine { cont ->
             val call = c.newCall(request)

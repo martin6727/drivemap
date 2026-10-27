@@ -32,6 +32,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
@@ -206,6 +207,14 @@ fun SearchScreen() {
                         PlaceRow(Icons.Default.LocationOn, p.name, listOf(p.address, dist).filter { it.isNotBlank() }.joinToString(" · "), Palette.Gray) { Ui.pick(p) }
                     }
                     if (!searching && results.isEmpty()) item { CenteredText(t("No results"), Modifier.padding(24.dp)) }
+                    // the map doesn't know it (e.g. a new business): add it yourself at the real spot
+                    if (!searching && q.trim().length >= 2 && !com.drivemap.app.net.SearchRank.hasStrongNear(q, fix?.pos ?: Ui.mapCenter, results)) {
+                        item {
+                            PlaceRow(Icons.Default.Add, t("Can't find “{0}”?", q.trim()), t("Add it to the map: long-press its exact spot, search finds it from then on"), Palette.Blue) {
+                                Ui.startAddPlace(q)
+                            }
+                        }
+                    }
                 }
             }
         }

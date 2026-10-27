@@ -3,27 +3,92 @@ package com.drivemap.app.net
 import com.drivemap.app.geo.LatLon
 import com.drivemap.app.route.Place
 import org.json.JSONArray
+import kotlinx.coroutines.sync.withLock
 import org.json.JSONObject
 import java.net.URLEncoder
 
-/** Place search: Photon (komoot) for autocomplete, Nominatim for category search. */
+/** A search service refused us for a while (HTTP 429) or is in its cool-down. */
+class SearchBusyException(service: String) : java.io.IOException("$service is busy")
+
+/**
+ * Place search: Photon (komoot) for search-as-you-type, Nominatim (OpenStreetMap's live
+ * database) for explicit searches and categories.
+ *
+ * Kind to the free public services: answers are cached for 10 minutes, Nominatim gets at most one
+ * request a second (its usage policy), requests time out quickly instead of hanging, and a
+ * "too many requests" answer pauses that service for a while instead of retrying.
+ */
 object Search {
     private fun enc(s: String) = URLEncoder.encode(s, "UTF-8")
 
-    suspend fun autocomplete(query: String, near: LatLon?, limit: Int = 10): List<Place> {
-        val sb = StringBuilder("https://photon.komoot.io/api/?q=").append(enc(query)).append("&limit=").append(limit)
-        if (near != null) sb.append("&lat=").append(near.lat).append("&lon=").append(near.lon).append("&location_bias_scale=0.3")
-        val json = JSONObject(Http.get(sb.toString(), timeoutSec = 15))
-        // Photon returns e.g. the city, its county and its state with the same name: keep the first
-        return parsePhoton(json).distinctBy { it.name.lowercase() + "|" + it.address.lowercase() }
+    // ---- cache: same query around the same spot -> same answer, no request
+    private const val CACHE_TTL_MS = 10 * 60_000L
+    private val cache = object : LinkedHashMap<String, Pair<Long, List<Place>>>(64, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, Pair<Long, List<Place>>>) = size > 80
     }
+
+    private fun cacheKey(service: String, q: String, near: LatLon?, extra: String = ""): String =
+        service + "|" + SearchRank.normalize(q) + "|" + (near?.let { "%.2f,%.2f".format(it.lat, it.lon) } ?: "-") + "|" + extra
+
+    private suspend fun cached(key: String, load: suspend () -> List<Place>): List<Place> {
+        synchronized(cache) {
+            cache[key]?.let { (t, v) -> if (System.currentTimeMillis() - t < CACHE_TTL_MS) return v }
+        }
+        val v = load()
+        synchronized(cache) { cache[key] = System.currentTimeMillis() to v }
+        return v
+    }
+
+    // ---- politeness: Nominatim allows one request per second; 429 = back off for a while
+    private val nominatimGate = kotlinx.coroutines.sync.Mutex()
+    @Volatile private var lastNominatimMs = 0L
+    @Volatile private var photonPauseUntil = 0L
+    @Volatile private var nominatimPauseUntil = 0L
+
+    private suspend fun nominatimGet(url: String): String {
+        if (System.currentTimeMillis() < nominatimPauseUntil) throw SearchBusyException("Nominatim")
+        return nominatimGate.withLock {
+            val wait = lastNominatimMs + 1100 - System.currentTimeMillis()
+            if (wait > 0) kotlinx.coroutines.delay(wait)
+            lastNominatimMs = System.currentTimeMillis()
+            try {
+                Http.get(url, timeoutSec = 8, totalTimeoutSec = 10)
+            } catch (e: HttpException) {
+                if (e.code == 429 || e.code == 503) nominatimPauseUntil = System.currentTimeMillis() + 60_000
+                throw e
+            }
+        }
+    }
+
+    private suspend fun photonGet(url: String): String {
+        if (System.currentTimeMillis() < photonPauseUntil) throw SearchBusyException("Photon")
+        return try {
+            Http.get(url, timeoutSec = 6, totalTimeoutSec = 8)
+        } catch (e: HttpException) {
+            if (e.code == 429 || e.code == 503) photonPauseUntil = System.currentTimeMillis() + 30_000
+            throw e
+        }
+    }
+
+    /** Search-as-you-type (Photon). Cached; a busy / failing service throws. */
+    suspend fun autocomplete(query: String, near: LatLon?, limit: Int = 15): List<Place> =
+        cached(cacheKey("photon", query, near, "$limit")) {
+            val sb = StringBuilder("https://photon.komoot.io/api/?q=").append(enc(query)).append("&limit=").append(limit)
+            if (near != null) sb.append("&lat=").append(near.lat).append("&lon=").append(near.lon).append("&location_bias_scale=0.3")
+            val json = JSONObject(photonGet(sb.toString()))
+            // Photon returns e.g. the city, its county and its state with the same name: keep the first
+            parsePhoton(json).distinctBy { it.name.lowercase() + "|" + it.address.lowercase() }
+        }
 
     /**
      * Full search in OpenStreetMap's live database (Nominatim): finds places added in the last
      * days/weeks that Photon's index doesn't have yet. Only on explicit search (Nominatim's usage
      * policy forbids search-as-you-type).
      */
-    suspend fun fullSearch(query: String, near: LatLon?, limit: Int = 10): List<Place> {
+    suspend fun fullSearch(query: String, near: LatLon?, limit: Int = 10): List<Place> =
+        cached(cacheKey("nominatim", query, near, "$limit")) { fullSearchLoad(query, near, limit) }
+
+    private suspend fun fullSearchLoad(query: String, near: LatLon?, limit: Int): List<Place> {
         val sb = StringBuilder("https://nominatim.openstreetmap.org/search?q=").append(enc(query))
             .append("&format=jsonv2&addressdetails=1&limit=").append(limit)
         if (near != null) {
@@ -31,7 +96,7 @@ object Search {
             sb.append("&viewbox=").append(near.lon - d).append(',').append(near.lat + d * 0.66).append(',')
                 .append(near.lon + d).append(',').append(near.lat - d * 0.66)
         }
-        val arr = JSONArray(Http.get(sb.toString(), timeoutSec = 20))
+        val arr = JSONArray(nominatimGet(sb.toString()))
         val out = ArrayList<Place>()
         for (i in 0 until arr.length()) {
             val o = arr.getJSONObject(i)
@@ -91,10 +156,15 @@ object Search {
         categoryIn(term, center.lat - radiusDeg * 0.66, center.lon - radiusDeg, center.lat + radiusDeg * 0.66, center.lon + radiusDeg)
 
     /** Places of a category inside a box (e.g. around a stretch of the route). */
-    suspend fun categoryIn(term: String, minLat: Double, minLon: Double, maxLat: Double, maxLon: Double): List<Place> {
+    suspend fun categoryIn(term: String, minLat: Double, minLon: Double, maxLat: Double, maxLon: Double): List<Place> =
+        cached(cacheKey("category", term, null, "%.3f,%.3f,%.3f,%.3f".format(minLat, minLon, maxLat, maxLon))) {
+            categoryLoad(term, minLat, minLon, maxLat, maxLon)
+        }
+
+    private suspend fun categoryLoad(term: String, minLat: Double, minLon: Double, maxLat: Double, maxLon: Double): List<Place> {
         val vb = "$minLon,$maxLat,$maxLon,$minLat"
         val url = "https://nominatim.openstreetmap.org/search?q=${enc(term)}&viewbox=$vb&bounded=1&format=jsonv2&limit=30&addressdetails=1"
-        val arr = JSONArray(Http.get(url, timeoutSec = 20))
+        val arr = JSONArray(nominatimGet(url))
         val out = ArrayList<Place>()
         for (i in 0 until arr.length()) {
             val o = arr.getJSONObject(i)

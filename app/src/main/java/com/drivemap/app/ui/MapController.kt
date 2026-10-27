@@ -412,6 +412,7 @@ class MapController(
             map.locationComponent.forceLocationUpdate(fix.toLocation())
         } catch (_: Exception) {
         }
+        updateHeadingFollow(fix)
     }
 
     /** Navigation camera: heading-up, tilted, user arrow in the lower part of the screen. */
@@ -425,6 +426,7 @@ class MapController(
     fun followNavigation() {
         if (!locationReady) return
         navTracking = true
+        browseTracking = false
         val lc = map.locationComponent
         lc.renderMode = RenderMode.GPS
         val h = mapView.height.toDouble().coerceAtLeast(1.0)
@@ -435,7 +437,7 @@ class MapController(
         lc.setCameraMode(CameraMode.TRACKING_GPS, 900, 16.5, null, if (view3d) NAV_TILT else 0.0, null)
     }
 
-    /** Browse-mode "my location": north-up follow. */
+    /** Browse-mode "my location": follows you; while you drive the map turns to your direction. */
     fun followUser(zoom: Double? = 16.0) {
         if (!locationReady) return
         navTracking = false
@@ -443,6 +445,32 @@ class MapController(
         lc.renderMode = RenderMode.COMPASS
         map.setPadding(insets[0], insets[1], insets[2], insets[3])
         lc.setCameraMode(CameraMode.TRACKING, 800, zoom, null, 0.0, null)
+        browseTracking = true
+        headingUp = false
+        lastRawFix?.let { updateHeadingFollow(it) }
+    }
+
+    /** Following you outside navigation (the "my location" button). */
+    private var browseTracking = false
+    /** The map currently turns with your travel direction. */
+    private var headingUp = false
+
+    /**
+     * Like Google Maps: once you drive (over about 11 km/h with a known direction) the map turns so
+     * your direction points up, with a short smooth turn; when you stop it stays as it is. A finger
+     * on the map ends following, and this stays off until "my location" is tapped again.
+     */
+    private fun updateHeadingFollow(fix: Fix) {
+        if (!browseTracking || navTracking || !locationReady) return
+        val lc = map.locationComponent
+        if (lc.cameraMode == CameraMode.NONE) { browseTracking = false; headingUp = false; return }
+        val want = if (headingUp) fix.speedMps > 1.0 else fix.speedMps > 3.0 && fix.hasBearing
+        if (want == headingUp) return
+        headingUp = want
+        try {
+            lc.setCameraMode(if (want) CameraMode.TRACKING_GPS else CameraMode.TRACKING, 600, null, null, null, null)
+        } catch (_: Exception) {
+        }
     }
 
     /** Shops/restaurants are hidden while navigating, like Google Maps. */
@@ -458,6 +486,8 @@ class MapController(
 
     fun stopFollow() {
         navTracking = false
+        browseTracking = false
+        headingUp = false
         map.setPadding(insets[0], insets[1], insets[2], insets[3])
         if (!locationReady) return
         map.locationComponent.cameraMode = CameraMode.NONE

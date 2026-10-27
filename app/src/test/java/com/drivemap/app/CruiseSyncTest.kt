@@ -23,7 +23,7 @@ class CruiseSyncTest {
     @Test
     fun receiverGetsSenderRoute() = runBlocking {
         assumeTrue("set LIVE=1", System.getenv("LIVE") == "1")
-        val v = Valhalla { "https://valhalla1.openstreetmap.de" }
+        val v = Valhalla({ "https://valhalla1.openstreetmap.de" })
         val opts = JSONObject().put("use_highways", 0.0).put("use_tolls", 0.0)
         val start = LatLon(48.3080, 18.0900)
         val loop = CruisePlanner.plan(v, start, 45, true, "en-US")

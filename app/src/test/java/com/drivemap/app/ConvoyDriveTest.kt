@@ -32,7 +32,7 @@ class ConvoyDriveTest {
         val name = System.getenv("DRIVE_NAME") ?: "Trabalik"
         val myId = name.lowercase().filter { it.isLetterOrDigit() }.padEnd(8, '0').take(8) + "test"
         val home = ll(System.getenv("DRIVE_FROM") ?: "48.3075,18.0905")
-        val valhalla = Valhalla { "https://valhalla1.openstreetmap.de" }
+        val valhalla = Valhalla({ "https://valhalla1.openstreetmap.de" })
 
         val hub = MqttHub(CoroutineScope(SupervisorJob() + Dispatchers.IO)) { "ssl://broker.hivemq.com:8883" }
         hub.acquire("test")
