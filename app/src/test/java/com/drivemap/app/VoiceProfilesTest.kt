@@ -113,26 +113,32 @@ class VoiceProfilesTest {
     }
 }
 
-class EnglishRallyVoiceTest {
+class EnglishRallyTest {
     @Test
-    fun englishMaleRallySpeaksEnglishWhateverTheSetting() {
-        val p = VoiceProfiles.byId("rally_en_male")
-        assertEquals(com.drivemap.app.nav.RallyEnglishMaleVoice, p)
-        assertEquals("en-GB", p.language)
-        assertTrue(p.paceNotes)
-        assertTrue(p.tts.voiceHints.first().startsWith("en-gb"))
+    fun removedEnglishMaleProfileFallsBackToStandard() {
+        assertEquals(StandardVoice, VoiceProfiles.byId("rally_en_male"))
         val s = com.drivemap.app.data.AppSettings(voiceLang = "sk-SK", voiceProfile = "rally_en_male")
-        assertEquals("en-GB", s.spokenLang)
-        assertEquals("sk-SK", s.copy(voiceProfile = "standard").spokenLang)
-        assertEquals("sk-SK", s.copy(voiceProfile = "rally").spokenLang)
+        assertEquals("sk-SK", s.spokenLang)
+    }
+
+    private fun bend(left: Boolean, grade: Int, long: Boolean = false, tightens: Boolean = false, opens: Boolean = false) =
+        com.drivemap.app.nav.Bend(0.0, 80.0, left, 90.0, 40.0, grade, tightens, opens, long)
+    private fun say(b: com.drivemap.app.nav.Bend, into: com.drivemap.app.nav.Bend? = null, gap: Double? = null) =
+        RallyCoDriverVoice.phrase(Announcement(Kind.BEND, "en-GB", true, bend = com.drivemap.app.nav.BendCall(b, into, gap)))
+
+    @Test
+    fun englishRallyUsesClassicOrder() {
+        assertEquals("Right 3 long tightens, 100", say(bend(false, 3, long = true, tightens = true), gap = 95.0))
+        assertEquals("Left 4 into right 3, 100", say(bend(true, 4), bend(false, 3), 100.0))
+        assertEquals("Right 3 tightens 2", say(bend(false, 3), bend(false, 2)))
+        assertEquals("Left 2 opens 4", say(bend(true, 2), bend(true, 4)))
+        assertEquals("Right 2 long", say(bend(false, 2), bend(false, 2)))
+        assertEquals("Caution, hairpin left", say(bend(true, 0)))
     }
 
     @Test
-    fun englishPaceNotesAndTurns() {
-        val p = VoiceProfiles.byId("rally_en_male")
-        val bend = com.drivemap.app.nav.Bend(0.0, 80.0, false, 90.0, 40.0, 3, true, false, true)
-        assertEquals("Long right 3 tightens, 100", p.phrase(Announcement(Kind.BEND, "en-GB", true, bend = com.drivemap.app.nav.BendCall(bend, null, 95.0))))
-        val turn = p.phrase(Announcement(Kind.APPROACH, "en-GB", true, type = 15, distanceM = 300.0, street = "High Street"))!!
-        assertEquals("300 meters, left, High Street", turn)
+    fun slovakStaysNatural() {
+        val sk = RallyCoDriverVoice.phrase(Announcement(Kind.BEND, "sk-SK", true, bend = com.drivemap.app.nav.BendCall(bend(false, 3, long = true, tightens = true))))
+        assertEquals("Dlhá pravá 3 zatvára", sk)
     }
 }

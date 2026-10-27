@@ -93,7 +93,7 @@ interface VoiceProfile {
 object VoiceProfiles {
     val standard: VoiceProfile = StandardVoice
     /** All profiles, in the order shown in settings. Add new character voices here. */
-    val all: List<VoiceProfile> = listOf(StandardVoice, RallyCoDriverVoice, RallyEnglishMaleVoice)
+    val all: List<VoiceProfile> = listOf(StandardVoice, RallyCoDriverVoice)
 
     fun byId(id: String?): VoiceProfile = all.firstOrNull { it.id == id } ?: standard
 }
@@ -115,23 +115,6 @@ object RallyCoDriverVoice : RallyVoice(
     name = "Rally co-driver",
     description = "Calls every bend like a rally co-driver: left 4, right 2 tightens, hairpin…",
     tts = TtsPrefs(rate = 1.06f, pitch = 1.0f),
-)
-
-/**
- * The rally co-driver in English with a male voice, whatever the voice language setting: a male
- * British (else American) English voice when the phone has one installed, otherwise the default
- * English voice a little lower.
- */
-object RallyEnglishMaleVoice : RallyVoice(
-    id = "rally_en_male",
-    name = "Rally co-driver EN (male)",
-    description = "Pace notes in English with a male voice: left 4, right 2 tightens, hairpin…",
-    tts = TtsPrefs(
-        rate = 1.06f, pitch = 1.0f, fallbackPitch = 0.82f,
-        // Google speech engine's male English voices (British first, like most co-drivers)
-        voiceHints = listOf("en-gb-x-rjs", "en-gb-x-gbd", "en-gb-x-gbb", "en-us-x-iom", "en-us-x-iol", "en-us-x-tpd", "en-au-x-aub", "en-au-x-aud"),
-    ),
-    language = "en-GB",
 )
 
 /** Rally co-driver wording; [language] fixes the language (else the voice language setting). */
@@ -157,6 +140,8 @@ open class RallyVoice(
             "continue" to "Long straight", "reroute" to "New line, recalculating", "start" to "Let's go.",
             "bLeft" to "left", "bRight" to "right", "hairpinLeft" to "hairpin left", "hairpinRight" to "hairpin right",
             "long" to "long", "tightens" to "tightens", "opens" to "opens", "into" to "into", "caution" to "caution",
+            // classic British pace-note order: "Right 3 long tightens", "Right 3 tightens 2"
+            "style" to "classic", "tightensTo" to "tightens", "opensTo" to "opens",
         ),
         "sk" to mapOf(
             "left" to "Doľava", "right" to "Doprava", "slightLeft" to "Mierne doľava", "slightRight" to "Mierne doprava",
@@ -168,6 +153,7 @@ open class RallyVoice(
             "continue" to "Dlhá rovinka", "reroute" to "Nová stopa, prepočítavam", "start" to "Ideme.",
             "bLeft" to "ľavá", "bRight" to "pravá", "hairpinLeft" to "vracák vľavo", "hairpinRight" to "vracák vpravo",
             "long" to "dlhá", "tightens" to "zatvára", "opens" to "otvára", "into" to "do", "caution" to "pozor",
+            "tightensTo" to "zatvára do", "opensTo" to "otvára do",
         ),
         "cs" to mapOf(
             "left" to "Doleva", "right" to "Doprava", "slightLeft" to "Mírně doleva", "slightRight" to "Mírně doprava",
@@ -179,6 +165,7 @@ open class RallyVoice(
             "continue" to "Dlouhá rovinka", "reroute" to "Nová stopa, přepočítávám", "start" to "Jedeme.",
             "bLeft" to "levá", "bRight" to "pravá", "hairpinLeft" to "vracák vlevo", "hairpinRight" to "vracák vpravo",
             "long" to "dlouhá", "tightens" to "utahuje", "opens" to "otevírá", "into" to "do", "caution" to "pozor",
+            "tightensTo" to "utahuje do", "opensTo" to "otevírá do",
         ),
     )
 
@@ -203,8 +190,10 @@ open class RallyVoice(
     private fun note(c: Map<String, String>, b: Bend): String {
         if (b.grade == 0) return c[if (b.left) "hairpinLeft" else "hairpinRight"]!!
         val parts = ArrayList<String>()
-        if (b.long) parts += c["long"]!!
+        val classic = c["style"] == "classic"
+        if (b.long && !classic) parts += c["long"]!!
         parts += c[if (b.left) "bLeft" else "bRight"]!! + " " + b.grade
+        if (b.long && classic) parts += c["long"]!!
         if (b.tightens) parts += c["tightens"]!! else if (b.opens) parts += c["opens"]!!
         return parts.joinToString(" ")
     }
@@ -225,8 +214,8 @@ open class RallyVoice(
                     // the same way twice in a row is one bend to a co-driver
                     n2.left == b.left && b.grade > 0 && n2.grade > 0 -> when {
                         n2.grade == b.grade -> note(c, b.copy(long = true, tightens = false, opens = false))
-                        n2.grade < b.grade -> note(c, b.copy(tightens = false, opens = false)) + " " + c["tightens"] + " " + c["into"] + " " + n2.grade
-                        else -> note(c, b.copy(tightens = false, opens = false)) + " " + c["opens"] + " " + c["into"] + " " + n2.grade
+                        n2.grade < b.grade -> note(c, b.copy(tightens = false, opens = false)) + " " + c["tightensTo"] + " " + n2.grade
+                        else -> note(c, b.copy(tightens = false, opens = false)) + " " + c["opensTo"] + " " + n2.grade
                     }
                     else -> note(c, b) + " " + c["into"] + " " + note(c, n2)
                 }
