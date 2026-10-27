@@ -349,6 +349,18 @@ fun SettingsScreen() {
                 Modifier.padding(start = 16.dp, end = 16.dp, top = 2.dp, bottom = 10.dp),
                 fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            // voice profile: how instructions are worded and spoken (never what or when)
+            Text(t("Voice style"), Modifier.padding(horizontal = 16.dp), fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Row(Modifier.padding(horizontal = 12.dp).horizontalScrollCompat(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                com.drivemap.app.nav.VoiceProfiles.all.forEach { p ->
+                    FilterChip(selected = s.voiceProfile == p.id, onClick = { upd { it.copy(voiceProfile = p.id) } }, label = { Text(t(p.name)) })
+                }
+            }
+            val profile = com.drivemap.app.nav.VoiceProfiles.byId(s.voiceProfile)
+            Row(Modifier.padding(start = 16.dp, end = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(t(profile.description), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
+                TextButton(onClick = { previewVoice(s) }) { Text(t("Listen")) }
+            }
             Row(Modifier.padding(horizontal = 12.dp).horizontalScrollCompat(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf("en-US" to "English", "sk-SK" to "Slovenčina", "cs-CZ" to "Čeština", "de-DE" to "Deutsch", "hu-HU" to "Magyar", "pl-PL" to "Polski").forEach { (code, label) ->
                     FilterChip(selected = s.voiceLang == code, onClick = { upd { it.copy(voiceLang = code) } }, label = { Text(label) })
@@ -832,4 +844,30 @@ private object CodeDashes : androidx.compose.ui.text.input.VisualTransformation 
         }
         return androidx.compose.ui.text.input.TransformedText(androidx.compose.ui.text.AnnotatedString(out.toString()), map)
     }
+}
+
+
+/**
+ * A sample of the chosen voice: a turn ahead and the turn itself, in the chosen language and voice
+ * level, as navigation would say them (a made-up street; nothing is navigated).
+ */
+private fun previewVoice(s: AppSettings) {
+    val lang = s.voiceLang
+    val full = s.voiceLevel == com.drivemap.app.data.VoiceLevel.FULL
+    val street = if (lang.startsWith("sk") || lang.startsWith("cs")) "Hlavná" else "Main Street"
+    val turn = com.drivemap.app.nav.Phrases.turn(lang, 10, 0) ?: "Turn right"
+    val v = Core.voice
+    v.announce(
+        com.drivemap.app.nav.Announcement(
+            com.drivemap.app.nav.Announcement.Kind.APPROACH, lang, full, type = 10, distanceM = 300.0, street = street,
+            standardText = com.drivemap.app.nav.Phrases.inDistance(lang, 300.0, if (full) "$turn, $street" else turn),
+        ),
+        flush = true,
+    )
+    v.announce(
+        com.drivemap.app.nav.Announcement(
+            com.drivemap.app.nav.Announcement.Kind.NOW, lang, full, type = 10, street = street,
+            standardText = if (full) "$turn, $street" else turn,
+        ),
+    )
 }

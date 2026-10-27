@@ -56,6 +56,8 @@ data class AppSettings(
     val voice: Boolean = true,
     val voiceLang: String = "en-US",
     val voiceLevel: VoiceLevel = VoiceLevel.FULL,
+    /** Voice profile id (see nav/VoiceProfiles); unknown ids fall back to the standard voice. */
+    val voiceProfile: String = "standard",
     /** App language: "auto" (phone language), "en" or "sk". */
     val appLanguage: String = "auto",
     /** "Liquid glass" look: see-through frosted panels. */
@@ -134,6 +136,7 @@ class SettingsStore(context: Context) {
             voice = p.getBoolean("voice", true),
             voiceLang = lang,
             voiceLevel = enumOr(p.getString("voiceLevel", null), d.voiceLevel),
+            voiceProfile = p.getString("voiceProfile", null) ?: "standard",
             appLanguage = p.getString("appLanguage", "auto") ?: "auto",
             glass = p.getBoolean("glass", false),
             lightGlass = p.getBoolean("lightGlass", false),
@@ -186,6 +189,7 @@ class SettingsStore(context: Context) {
             .putBoolean("voice", s.voice)
             .putString("voiceLang", s.voiceLang)
             .putString("voiceLevel", s.voiceLevel.name)
+            .putString("voiceProfile", s.voiceProfile)
             .putString("appLanguage", s.appLanguage)
             .putBoolean("glass", s.glass)
             .putBoolean("lightGlass", s.lightGlass)

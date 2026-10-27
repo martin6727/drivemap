@@ -118,7 +118,12 @@ class Navigator(
         spoken.clear()
         version++
         val first = r.geometry.maneuvers.firstOrNull()
-        if (settings.value.voice && voiceLevel() == VoiceLevel.FULL && first != null) voice.speak(first.verbalPre ?: first.instruction, flush = true)
+        if (settings.value.voice && voiceLevel() == VoiceLevel.FULL && first != null) {
+            voice.announce(
+                Announcement(Announcement.Kind.START, settings.value.voiceLang, full = true, type = first.type, standardText = first.verbalPre ?: first.instruction),
+                flush = true,
+            )
+        }
         spoken[0] = 2
         publish(r.geometry.shape.firstOrNull() ?: req.origin, 0.0, 0.0)
         loadLanes(r, req)
@@ -276,19 +281,25 @@ class Navigator(
         val prev = mans.getOrNull(mi - 1)
         if (full && prev != null && (spoken[mi - 1] ?: 0) < 3 && along - prev.alongM in 30.0..400.0 && dist > 3000 && prev.verbalPost != null) {
             spoken[mi - 1] = 3
-            voice.speak(prev.verbalPost)
+            voice.announce(Announcement(Announcement.Kind.CONTINUE, lang, full, distanceM = dist, standardText = prev.verbalPost))
             return
         }
-        // Full: Valhalla's narration with street names; Normal: short prompt ("Turn right")
+        // Full: Valhalla's narration with street names; Normal: short prompt ("Turn right").
+        // The voice profile only rewords this; when and what is announced is decided here.
         val short = if (full) null else Phrases.turn(lang, next.type, next.roundaboutExit)
+        fun facts(kind: Announcement.Kind, standard: String, distance: Double? = null) = Announcement(
+            kind, lang, full, type = next.type, roundaboutExit = next.roundaboutExit, distanceM = distance,
+            street = next.streetNames.firstOrNull(), exitNumber = next.sign?.exitNumber,
+            toward = next.sign?.toward?.take(2)?.joinToString(", ")?.ifBlank { null }, standardText = standard,
+        )
         if (stage < 1 && dist <= far && dist > near * 1.8 && legLen > far * 0.7) {
             spoken[mi] = 1
             val text = if (full) next.verbalAlert ?: next.verbalPre ?: next.instruction else short ?: return
-            voice.speak(Phrases.inDistance(lang, dist, text))
+            voice.announce(facts(Announcement.Kind.APPROACH, Phrases.inDistance(lang, dist, text), dist))
         } else if (stage < 2 && dist <= near) {
             spoken[mi] = 2
             val text = if (full) next.verbalPre ?: next.instruction else short ?: return
-            voice.speak(text, flush = true)
+            voice.announce(facts(Announcement.Kind.NOW, text), flush = true)
         }
     }
 
@@ -297,7 +308,10 @@ class Navigator(
         val r = route ?: return
         lastReroute = System.currentTimeMillis()
         rerouting = true
-        if (settings.value.voice && voiceLevel() != VoiceLevel.ALERTS) voice.speak(Phrases.get(settings.value.voiceLang, "reroute"), flush = true)
+        if (settings.value.voice && voiceLevel() != VoiceLevel.ALERTS) {
+            val lang = settings.value.voiceLang
+            voice.announce(Announcement(Announcement.Kind.REROUTE, lang, voiceLevel() == VoiceLevel.FULL, standardText = Phrases.get(lang, "reroute")), flush = true)
+        }
         val remaining = req.stops.drop(nextWp.coerceAtMost(req.stops.size - 1))
         val req2 = req.copy(
             origin = fix.pos,

@@ -22,6 +22,19 @@ class Voice(private val context: Context) {
     private var tone: ToneGenerator? = null
     var muted = false
 
+    /** The chosen voice profile (wording, voice, rate, pitch, sounds); see VoiceProfiles. */
+    var profile: VoiceProfile = VoiceProfiles.standard
+        set(v) {
+            if (field.id == v.id) return
+            field = v
+            if (ready) applyLanguage()
+        }
+
+    /** Utterances queued or playing: music stays ducked until the last one ends. */
+    private val pending = java.util.Collections.synchronizedSet(HashSet<String>())
+    private var lastText = ""
+    private var lastAt = 0L
+
     private val focus: AudioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
         .setAudioAttributes(
             AudioAttributes.Builder()
@@ -47,9 +60,10 @@ class Voice(private val context: Context) {
                 )
                 tts?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                     override fun onStart(utteranceId: String?) {}
-                    override fun onDone(utteranceId: String?) { am?.abandonAudioFocusRequest(focus) }
+                    override fun onDone(utteranceId: String?) = finished(utteranceId)
                     @Deprecated("Deprecated in Java")
-                    override fun onError(utteranceId: String?) { am?.abandonAudioFocusRequest(focus) }
+                    override fun onError(utteranceId: String?) = finished(utteranceId)
+                    override fun onStop(utteranceId: String?, interrupted: Boolean) = finished(utteranceId)
                 })
                 applyLanguage()
             }
@@ -62,6 +76,121 @@ class Voice(private val context: Context) {
         if (r == TextToSpeech.LANG_MISSING_DATA || r == TextToSpeech.LANG_NOT_SUPPORTED) {
             tts?.setLanguage(Locale.US)
         }
+        applyProfileVoice()
+    }
+
+    /**
+     * The profile's preferred installed voice for this language, if any matches; otherwise the
+     * language's default voice stays (setLanguage above already chose it).
+     */
+    private fun applyProfileVoice() {
+        val hints = profile.tts.voiceHints
+        if (hints.isEmpty()) return
+        val t = tts ?: return
+        try {
+            val language = t.voice?.locale?.language ?: Locale.forLanguageTag(lang).language
+            val v = t.voices?.filter { it.locale.language == language && !it.isNetworkConnectionRequired }
+                ?.firstOrNull { v -> hints.any { v.name.contains(it, ignoreCase = true) } }
+            if (v != null) t.voice = v
+        } catch (_: Exception) {
+        }
+    }
+
+    private fun finished(id: String?) {
+        if (id != null) pending.remove(id)
+        if (pending.isEmpty()) am?.abandonAudioFocusRequest(focus)
+    }
+
+    /**
+     * Says a navigation announcement in the chosen profile's words and voice, falling back to the
+     * standard sentence when the profile has none (or fails). The facts come from the navigator.
+     */
+    fun announce(a: Announcement, flush: Boolean = false) {
+        val p = profile
+        val text = (try { p.phrase(a) } catch (_: Exception) { null })?.takeIf { it.isNotBlank() } ?: a.standardText ?: return
+        val cue = try { p.sound(a) } catch (_: Exception) { null }
+        if (cue == null || muted || !ready) speak(text, flush) else cueThenSpeak(cue, text, flush)
+    }
+
+    /** Plays the profile's short sound, then speaks (no overlap; music stays ducked throughout). */
+    private fun cueThenSpeak(cue: SoundCue, text: String, flush: Boolean) {
+        val id = "cue" + System.nanoTime()
+        pending += id
+        am?.requestAudioFocus(focus)
+        if (flush) tts?.stop()
+        Thread {
+            try {
+                when (cue) {
+                    is SoundCue.Tones -> playTones(cue.notes, cue.volume, AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    is SoundCue.Clip -> playClip(cue.assetPath)
+                }
+            } catch (_: Exception) {
+            }
+            main.post {
+                speak(text, flush = false)
+                finished(id)
+            }
+        }.start()
+    }
+
+    /** Blocking: plays [notes] (Hz to ms; 0 Hz = pause) as navigation audio. */
+    private fun playTones(notes: List<Pair<Double, Int>>, volume: Double, contentType: Int) {
+        val rate = 44100
+        val total = notes.sumOf { it.second } * rate / 1000
+        if (total <= 0) return
+        val pcm = ShortArray(total)
+        var o = 0
+        for ((hz, ms) in notes) {
+            val n = ms * rate / 1000
+            val fade = minOf(n / 4, rate / 200) // short ramps: no clicks
+            for (i in 0 until n) {
+                if (o >= total) break
+                val env = when {
+                    hz == 0.0 -> 0.0
+                    i < fade -> i.toDouble() / fade
+                    i > n - fade -> (n - i).toDouble() / fade
+                    else -> 1.0
+                }
+                val s = Math.sin(2 * Math.PI * hz * i / rate) * 0.8 + Math.sin(4 * Math.PI * hz * i / rate) * 0.2
+                pcm[o++] = (s * env * volume * Short.MAX_VALUE).toInt().toShort()
+            }
+        }
+        val track = android.media.AudioTrack.Builder()
+            .setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE).setContentType(contentType).build())
+            .setAudioFormat(
+                android.media.AudioFormat.Builder().setSampleRate(rate)
+                    .setEncoding(android.media.AudioFormat.ENCODING_PCM_16BIT)
+                    .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO).build(),
+            )
+            .setTransferMode(android.media.AudioTrack.MODE_STATIC)
+            .setBufferSizeInBytes(pcm.size * 2)
+            .build()
+        try {
+            track.write(pcm, 0, pcm.size)
+            track.play()
+            Thread.sleep(pcm.size * 1000L / rate + 40)
+        } finally {
+            track.release()
+        }
+    }
+
+    /** Blocking: plays a prerecorded clip from assets as navigation audio (missing clip = silence). */
+    private fun playClip(assetPath: String) {
+        val afd = try { context.assets.openFd(assetPath) } catch (_: Exception) { return }
+        val done = java.util.concurrent.CountDownLatch(1)
+        val mp = android.media.MediaPlayer()
+        try {
+            mp.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+            mp.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+            mp.setOnCompletionListener { done.countDown() }
+            mp.setOnErrorListener { _, _, _ -> done.countDown(); true }
+            mp.prepare()
+            mp.start()
+            done.await(8, java.util.concurrent.TimeUnit.SECONDS) // never hold up guidance for long
+        } finally {
+            mp.release()
+            afd.close()
+        }
     }
 
     fun setLanguage(language: String) {
@@ -72,10 +201,20 @@ class Voice(private val context: Context) {
 
     fun speak(text: String, flush: Boolean = false) {
         if (muted || !ready || text.isBlank()) return
+        // the same sentence again within a few seconds (e.g. two triggers at once) is said once
+        val now = System.currentTimeMillis()
+        if (text == lastText && now - lastAt < 4000) return
+        lastText = text
+        lastAt = now
+        val t = tts ?: return
+        val id = "u" + System.nanoTime()
+        pending += id
         am?.requestAudioFocus(focus)
-        val params = Bundle()
-        params.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC)
-        tts?.speak(text, if (flush) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD, params, "u" + System.nanoTime())
+        // the profile's speed and pitch (1.0 = standard); the voice itself is set with the language
+        t.setSpeechRate(profile.tts.rate)
+        t.setPitch(profile.tts.pitch)
+        // navigation-guidance audio (set in init): ducks music and reaches Android Auto's nav channel
+        if (t.speak(text, if (flush) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD, Bundle(), id) != TextToSpeech.SUCCESS) finished(id)
     }
 
     /** Short chime for an upcoming camera; [urgent] = triple beep when speeding. */
@@ -178,6 +317,9 @@ object Phrases {
         }
     }
 
+    /** A distance as spoken in [lang] ("300 metrov", "2,5 kilometra"), rounded like the standard voice. */
+    fun distance(lang: String, m: Double): String = spokenDistance(lang, m)
+
     private fun spokenDistance(lang: String, m: Double): String {
         if (m < 1000) {
             val r = if (m < 300) ((m / 50).toInt() * 50).coerceAtLeast(50) else (m / 100).toInt() * 100
@@ -257,16 +399,25 @@ object Phrases {
         "pl" to listOf("pierwszym", "drugim", "trzecim", "czwartym", "piątym", "szóstym"),
     )
 
+    /** The kind of maneuver for a Valhalla maneuver type ("right", "roundabout"…), or null. */
+    fun turnKey(type: Int): String? = when (type) {
+        9 -> "slightRight"; 10 -> "right"; 11 -> "sharpRight"; 12, 13 -> "uturn"
+        14 -> "sharpLeft"; 15 -> "left"; 16 -> "slightLeft"
+        17, 22 -> "straight"; 18 -> "rampRight"; 19 -> "rampLeft"; 20 -> "exitRight"; 21 -> "exitLeft"
+        23 -> "keepRight"; 24 -> "keepLeft"; 25, 37, 38 -> "merge"; 26 -> "roundabout"; 28 -> "ferry"
+        4, 5, 6 -> "arrive"
+        else -> null
+    }
+
+    /** "third" / "tretí" … for roundabout exits (falls back to "3."). */
+    fun ordinal(lang: String, n: Int): String {
+        val l = base(lang).takeIf { it in ordinals } ?: "en"
+        return ordinals[l]!!.getOrNull(n - 1) ?: "$n."
+    }
+
     /** Short prompt for a maneuver ("Turn right"), or null when there's nothing worth saying. */
     fun turn(lang: String, type: Int, roundaboutExit: Int): String? {
-        val key = when (type) {
-            9 -> "slightRight"; 10 -> "right"; 11 -> "sharpRight"; 12, 13 -> "uturn"
-            14 -> "sharpLeft"; 15 -> "left"; 16 -> "slightLeft"
-            17, 22 -> "straight"; 18 -> "rampRight"; 19 -> "rampLeft"; 20 -> "exitRight"; 21 -> "exitLeft"
-            23 -> "keepRight"; 24 -> "keepLeft"; 25, 37, 38 -> "merge"; 26 -> "roundabout"; 28 -> "ferry"
-            4, 5, 6 -> "arrive"
-            else -> return null
-        }
+        val key = turnKey(type) ?: return null
         val l = base(lang).takeIf { it in ordinals } ?: "en"
         val text = turns[key]?.get(l) ?: return null
         if (key != "roundabout") return text

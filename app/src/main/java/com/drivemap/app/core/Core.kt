@@ -117,6 +117,7 @@ object Core {
             settings.state.collect {
                 com.drivemap.app.i18n.L10n.apply(it.appLanguage)
                 voice.setLanguage(it.voiceLang)
+                voice.profile = com.drivemap.app.nav.VoiceProfiles.byId(it.voiceProfile)
             }
         }
         // fuel prices: weekly EU averages (cached, refreshed every few days) + the country we're in

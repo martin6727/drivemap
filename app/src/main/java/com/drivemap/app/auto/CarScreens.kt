@@ -581,6 +581,16 @@ class CarSettingsScreen(carContext: CarContext) : Screen(carContext) {
                         invalidate()
                     }.build()
             )
+            .addItem(
+                // voice profile (tap for the next one); the phone's settings show the descriptions
+                Row.Builder().setTitle(t("Voice")).addText(t(com.drivemap.app.nav.VoiceProfiles.byId(s.voiceProfile).name))
+                    .setOnClickListener {
+                        val all = com.drivemap.app.nav.VoiceProfiles.all
+                        val i = all.indexOfFirst { it.id == s.voiceProfile }
+                        Core.settings.update { it.copy(voiceProfile = all[(i + 1) % all.size].id) }
+                        invalidate()
+                    }.build()
+            )
             .addItem(toggle(t("Speed camera alerts"), s.radarAlerts) { a, v -> a.copy(radarAlerts = v) })
             .addItem(toggle(t("Alert sounds"), s.radarSound) { a, v -> a.copy(radarSound = v) })
             .addItem(
