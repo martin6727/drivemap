@@ -2,7 +2,9 @@ package com.drivemap.app.ui
 
 import com.drivemap.app.core.Core
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 /**
@@ -42,7 +44,16 @@ fun CoroutineScope.syncMapWithCore(c: MapController, onNavigationStarted: () -> 
             c.view3d = it.view3d
         }
     }
-    launch { Ui.challenge.collect { c.challengeMode = it } }
+    // bends coloured (green / orange / red) in a challenge, and for Sport routes (planning and driving)
+    launch {
+        kotlinx.coroutines.flow.combine(
+            Ui.challenge,
+            Core.navigator.state.map { it?.request?.mode },
+            Ui.directions.map { it?.mode },
+        ) { ch, navMode, planMode ->
+            ch || navMode == com.drivemap.app.route.RouteMode.SPORT || (navMode == null && planMode == com.drivemap.app.route.RouteMode.SPORT)
+        }.distinctUntilChanged().collect { c.challengeMode = it }
+    }
     launch {
         Core.convoy.state.collect { st ->
             c.setConvoy(st?.members ?: emptyList())

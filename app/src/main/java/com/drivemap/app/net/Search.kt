@@ -87,8 +87,12 @@ object Search {
     }
 
     /** Nearby places of a category ("fuel", "parking", ...) inside a box around [center]. */
-    suspend fun category(term: String, center: LatLon, radiusDeg: Double = 0.08): List<Place> {
-        val vb = "${center.lon - radiusDeg},${center.lat + radiusDeg * 0.66},${center.lon + radiusDeg},${center.lat - radiusDeg * 0.66}"
+    suspend fun category(term: String, center: LatLon, radiusDeg: Double = 0.08): List<Place> =
+        categoryIn(term, center.lat - radiusDeg * 0.66, center.lon - radiusDeg, center.lat + radiusDeg * 0.66, center.lon + radiusDeg)
+
+    /** Places of a category inside a box (e.g. around a stretch of the route). */
+    suspend fun categoryIn(term: String, minLat: Double, minLon: Double, maxLat: Double, maxLon: Double): List<Place> {
+        val vb = "$minLon,$maxLat,$maxLon,$minLat"
         val url = "https://nominatim.openstreetmap.org/search?q=${enc(term)}&viewbox=$vb&bounded=1&format=jsonv2&limit=30&addressdetails=1"
         val arr = JSONArray(Http.get(url, timeoutSec = 20))
         val out = ArrayList<Place>()

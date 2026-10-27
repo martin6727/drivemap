@@ -31,6 +31,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -120,6 +123,7 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
                 Spacer(Modifier.height(8.dp))
                 Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) { AlertStack() }
                 if (simRunning) SimControls()
+                QuickAddArea(nav)
                 EtaBar(nav)
             }
             Row(
@@ -162,6 +166,7 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
                 ) { recentre() }
             }
             AnimatedVisibility(visible = simRunning, enter = fadeIn(), exit = fadeOut()) { SimControls() }
+            QuickAddArea(nav)
             // the bar glides up when guidance starts
             val shown = remember { MutableTransitionState(false) }.apply { targetState = true }
             AnimatedVisibility(visibleState = shown, enter = slideInVertically(tween(320)) { it } + fadeIn(tween(220))) {
@@ -171,10 +176,68 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
     }
 }
 
+/**
+ * The green turn banner. Swipe it sideways to look at the turns coming up (like Google Maps): the
+ * map shows each one, and after a few seconds it snaps back to the current turn.
+ */
 @Composable
 private fun ManeuverBanner(nav: NavState) {
-    val next = nav.next
+    val mans = nav.route.geometry.maneuvers
+    val first = nav.maneuverIdx
+    val count = if (nav.rerouting || nav.next == null) 1 else (mans.size - first).coerceIn(1, 60)
+    val pager = androidx.compose.foundation.pager.rememberPagerState(pageCount = { count })
+    var previewing by remember { mutableStateOf(false) }
+    // a new current turn: show it
+    androidx.compose.runtime.LaunchedEffect(first) { if (pager.currentPage != 0) pager.animateScrollToPage(0) }
+    androidx.compose.runtime.LaunchedEffect(pager.settledPage) {
+        val page = pager.settledPage
+        if (page > 0) {
+            val m = mans.getOrNull(first + page)
+            if (m != null) {
+                previewing = true
+                Ui.overview.value = true
+                Ui.camera.tryEmit(CameraCommand.Center(nav.route.path.pointAt(m.alongM), 16.5))
+            }
+            kotlinx.coroutines.delay(7000)
+            pager.animateScrollToPage(0)
+        } else if (previewing) {
+            previewing = false
+            Ui.overview.value = false
+            Ui.camera.tryEmit(CameraCommand.FollowNav)
+        }
+    }
     Column {
+        androidx.compose.foundation.pager.HorizontalPager(
+            state = pager, pageSpacing = 8.dp, beyondViewportPageCount = 1,
+            verticalAlignment = Alignment.Top, modifier = Modifier.fillMaxWidth(),
+        ) { page ->
+            if (page == 0) CurrentTurn(nav) else mans.getOrNull(first + page)?.let { UpcomingTurn(nav, it, page, count - 1) }
+        }
+        if (pager.currentPage == 0) TurnExtras(nav)
+    }
+}
+
+/** One of the next turns, while swiping through them. */
+@Composable
+private fun UpcomingTurn(nav: NavState, m: com.drivemap.app.route.Maneuver, n: Int, of: Int) {
+    Surface(shape = RoundedCornerShape(16.dp), color = Palette.NavGreenDark, shadowElevation = glassShadow(8.dp), modifier = Modifier.fillMaxWidth()) {
+        Row(Modifier.padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+            ManeuverIcon(m.type, m.roundaboutExit, Modifier.size(48.dp))
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(Geo.formatDistance((m.alongM - nav.alongM).coerceAtLeast(0.0)), color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                val street = m.streetNames.firstOrNull()
+                Text(street ?: m.instruction, color = Color.White, fontSize = if (street != null) 18.sp else 15.sp, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            }
+            Text("$n/$of", color = Color.White.copy(alpha = 0.7f), fontSize = 13.sp)
+        }
+    }
+}
+
+/** The current turn (first page of the banner). */
+@Composable
+private fun CurrentTurn(nav: NavState) {
+    val next = nav.next
         Surface(shape = RoundedCornerShape(16.dp), color = Palette.NavGreen, shadowElevation = glassShadow(8.dp), modifier = Modifier.fillMaxWidth()) {
             Row(Modifier.padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                 ManeuverIcon(next?.type ?: 8, next?.roundaboutExit ?: 0, Modifier.size(54.dp))
@@ -212,6 +275,13 @@ private fun ManeuverBanner(nav: NavState) {
                 }
             }
         }
+}
+
+/** Lanes and the "Then" hint under the current turn. */
+@Composable
+private fun TurnExtras(nav: NavState) {
+    val next = nav.next
+    Column {
         // Lane guidance: lanes you can use are bright, the others faded (like Google Maps)
         val lanes = next?.let { nav.route.lanes[nav.maneuverIdx] }
         if (!nav.rerouting && lanes != null && nav.distToManeuverM < (if (next.highway) 2000.0 else 600.0)) {
@@ -318,7 +388,7 @@ private fun EtaBar(nav: NavState) {
                 Text("${Geo.formatDistance(nav.remainingM)} · $eta", fontSize = 15.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 if (nextStop != null) Text(t("Next stop: {0}", nextStop.name), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
-            Surface(onClick = { Ui.openSearch(SearchTarget.ADD_STOP) }, shape = CircleShape, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.size(50.dp)) {
+            Surface(onClick = { Ui.showQuickAdd.value = !Ui.showQuickAdd.value }, shape = CircleShape, color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.size(50.dp)) {
                 Box(contentAlignment = Alignment.Center) { Icon(Icons.Default.Add, t("Add stop"), tint = MaterialTheme.colorScheme.onSurface) }
             }
         }
@@ -346,5 +416,110 @@ private fun SimChip(text: String, color: Color = Color.White, bold: Boolean = fa
     if (onClick != null) m = m.clickable(onClick = onClick)
     Box(m.padding(horizontal = 12.dp, vertical = 7.dp)) {
         Text(text, color = color, fontSize = 12.sp, fontWeight = if (bold) FontWeight.Bold else FontWeight.Medium)
+    }
+}
+
+
+private data class QuickCat(val label: String, val term: String, val icon: androidx.compose.ui.graphics.vector.ImageVector)
+
+private val quickCats = listOf(
+    QuickCat("Fuel", "fuel", Glyphs.Fuel),
+    QuickCat("EV charging", "charging station", Glyphs.EvStation),
+    QuickCat("Parking", "parking", Glyphs.Parking),
+    QuickCat("Restaurants", "restaurant", Glyphs.Restaurant),
+    QuickCat("Fast food", "fast food", Glyphs.Restaurant),
+    QuickCat("Cafés", "cafe", Glyphs.Cafe),
+    QuickCat("Supermarkets", "supermarket", Icons.Default.ShoppingCart),
+    QuickCat("Toilets", "toilets", Icons.Default.Place),
+)
+
+/** The "+" menu and the places it finds along the route, above the trip bar. */
+@Composable
+private fun QuickAddArea(nav: NavState) {
+    val open by Ui.showQuickAdd.collectAsState()
+    AnimatedVisibility(visible = open, enter = fadeIn(tween(150)) + slideInVertically(tween(220)) { it / 3 }, exit = fadeOut(tween(120))) {
+        QuickAddMenu()
+    }
+    AlongRouteResults(nav)
+}
+
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+@Composable
+private fun QuickAddMenu() {
+    Surface(
+        shape = RoundedCornerShape(22.dp), shadowElevation = glassShadow(10.dp), color = MaterialTheme.colorScheme.surface, border = panelBorder,
+        modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp, bottom = 8.dp),
+    ) {
+        Column(Modifier.padding(start = 14.dp, end = 6.dp, top = 6.dp, bottom = 14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(t("Add along the route"), fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.weight(1f))
+                IconButton(onClick = { Ui.showQuickAdd.value = false }) { Icon(Icons.Default.Close, t("Close")) }
+            }
+            androidx.compose.foundation.layout.FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(end = 8.dp),
+            ) {
+                quickCats.forEach { c -> QuickChip(c.icon, t(c.label)) { Ui.findAlongRoute(c.label, c.term) } }
+                QuickChip(Icons.Default.Search, t("Search…")) {
+                    Ui.showQuickAdd.value = false
+                    Ui.openSearch(SearchTarget.ADD_STOP)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun QuickChip(icon: androidx.compose.ui.graphics.vector.ImageVector, label: String, onClick: () -> Unit) {
+    Surface(onClick = onClick, shape = RoundedCornerShape(18.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
+        Row(Modifier.padding(horizontal = 12.dp, vertical = 9.dp), verticalAlignment = Alignment.CenterVertically) {
+            Icon(icon, null, Modifier.size(18.dp), tint = Palette.Blue)
+            Spacer(Modifier.width(6.dp))
+            Text(label, fontSize = 14.sp)
+        }
+    }
+}
+
+/** Places found along the route: tap one (here or on the map) to add it as a stop. */
+@Composable
+private fun AlongRouteResults(nav: NavState) {
+    val cat by Ui.category.collectAsState()
+    val loading by Ui.categoryLoading.collectAsState()
+    val c = cat ?: return
+    Surface(
+        shape = RoundedCornerShape(22.dp), shadowElevation = glassShadow(10.dp), color = MaterialTheme.colorScheme.surface, border = panelBorder,
+        modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp, bottom = 8.dp),
+    ) {
+        Column(Modifier.padding(top = 4.dp, bottom = 12.dp)) {
+            Row(Modifier.padding(start = 14.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(t(c.first), fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Spacer(Modifier.width(10.dp))
+                if (loading) androidx.compose.material3.CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
+                else Text(if (c.second.isEmpty()) t("None found") else t("Tap one to add it as a stop"), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
+                Spacer(Modifier.weight(1f))
+                IconButton(onClick = { Ui.closeAlongRoute() }) { Icon(Icons.Default.Close, t("Close")) }
+            }
+            androidx.compose.foundation.lazy.LazyRow(
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(c.second.size) { i ->
+                    val p = c.second[i]
+                    val ahead = nav.route.path.project(p.pos)?.along?.minus(nav.alongM)
+                    Surface(
+                        onClick = { Ui.pressedPoint.value = p; Ui.camera.tryEmit(CameraCommand.Center(p.pos, 16.0)) },
+                        shape = RoundedCornerShape(14.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = Modifier.width(170.dp),
+                    ) {
+                        Column(Modifier.padding(horizontal = 12.dp, vertical = 9.dp)) {
+                            Text(p.name, fontWeight = FontWeight.Medium, fontSize = 15.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                            Text(
+                                ahead?.let { t("{0} ahead", Geo.formatDistance(it.coerceAtLeast(0.0))) } ?: p.address,
+                                fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1,
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }

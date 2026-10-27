@@ -273,7 +273,13 @@ fun MapBindings(c: MapController, night: Boolean) {
                 Ui.selectedMember.value = null
             }
         }
-        c.onPlaceClick = { if (Core.navigator.state.value == null) Ui.selectPlace(it) }
+        c.onPlaceClick = { p ->
+            when {
+                Core.navigator.state.value == null -> Ui.selectPlace(p)
+                // quick-add results while navigating: the card offers "Add stop"
+                Ui.category.value != null -> Ui.pressedPoint.value = p
+            }
+        }
         c.onRouteClick = { Ui.selectRoute(it) }
         c.onMemberClick = { Ui.selectedMember.value = it }
         c.onStopClick = { id -> Ui.selectedStop.value = id }

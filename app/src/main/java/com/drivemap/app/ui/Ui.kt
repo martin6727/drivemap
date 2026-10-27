@@ -237,6 +237,64 @@ object Ui {
         }
     }
 
+    /** The quick-add menu of the "+" button while navigating. */
+    val showQuickAdd = MutableStateFlow(false)
+
+    /**
+     * Quick add while navigating (like Google Maps): places of a kind along the next 25 km of the
+     * route, shown on the zoomed-out map and in a strip; tapping one offers "Add stop".
+     */
+    fun findAlongRoute(label: String, term: String) {
+        val nav = Core.navigator.state.value ?: return
+        showQuickAdd.value = false
+        categoryJob?.cancel()
+        selected.value = null
+        pressedPoint.value = null
+        val path = nav.route.path
+        val from = nav.alongM
+        val to = (from + 25_000.0).coerceAtMost(path.length)
+        if (to - from < 50) return
+        category.value = label to emptyList()
+        categoryLoading.value = true
+        overview.value = true
+        val ahead = path.slice(from, to)
+        camera.tryEmit(CameraCommand.Fit(ahead.filterIndexed { i, _ -> i % 4 == 0 } + ahead.last(), 230, 330))
+        categoryJob = scope().launch {
+            val found = LinkedHashMap<String, Pair<Place, Double>>()
+            var a = from
+            while (a < to) {
+                // one box per 6 km stretch, so results hug the route
+                val seg = path.slice(a, (a + 6000.0).coerceAtMost(to))
+                val bb = Geo.bounds(seg)
+                val list = try {
+                    Search.categoryIn(term, bb[0] - 0.008, bb[1] - 0.012, bb[2] + 0.008, bb[3] + 0.012)
+                } catch (_: Exception) { emptyList() }
+                for (p in list) {
+                    val hit = path.project(p.pos) ?: continue
+                    if (hit.crossTrack > 900 || hit.along < from - 50) continue
+                    found.putIfAbsent("%.4f,%.4f".format(p.pos.lat, p.pos.lon), p to hit.along)
+                }
+                category.value = label to found.values.sortedBy { it.second }.map { it.first }
+                a += 6000.0
+                if (a < to) delay(1100) // the map search allows about one request a second
+            }
+            categoryLoading.value = false
+            val res = category.value?.second.orEmpty()
+            if (res.isEmpty()) Core.message(t("No {0} along the next 25 km", t(label).lowercase()))
+            else camera.tryEmit(CameraCommand.Fit(res.map { it.pos } + listOf(path.pointAt(from)), 230, 330))
+        }
+    }
+
+    /** Close the quick-add results and follow the car again. */
+    fun closeAlongRoute() {
+        categoryJob?.cancel()
+        categoryLoading.value = false
+        category.value = null
+        pressedPoint.value = null
+        overview.value = false
+        camera.tryEmit(CameraCommand.FollowNav)
+    }
+
     /** "I can drive here": save the road at [p] to your roads and re-plan so the route can use it. */
     fun markDrivable(p: Place) {
         val name = if (p.category == DROPPED || p.name == t("Dropped pin")) p.address.ifBlank { p.name } else p.name
@@ -255,6 +313,7 @@ object Ui {
         if (Core.navigator.active) {
             Core.addStopToNavigation(Waypoint(p.name, p.pos))
             Core.message(t("Stop added: {0}", p.name))
+            if (category.value != null) closeAlongRoute()
         } else {
             addStop(p)
         }
