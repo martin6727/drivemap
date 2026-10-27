@@ -66,8 +66,10 @@ class MqttHub(private val scope: CoroutineScope, private val brokerUrl: () -> St
                     c.setCallback(callback)
                     val opts = MqttConnectionOptions().apply {
                         isCleanStart = true
-                        isAutomaticReconnect = true
-                        setAutomaticReconnectDelay(2, 60)
+                        // no library auto-reconnect: its timer could fire after we closed the client and
+                        // crash the app (Paho NPE in attemptReconnect); a dropped connection is handled in
+                        // callback.disconnected() with our own back-off loop instead
+                        isAutomaticReconnect = false
                         keepAliveInterval = 30
                         connectionTimeout = 15
                     }
@@ -105,6 +107,14 @@ class MqttHub(private val scope: CoroutineScope, private val brokerUrl: () -> St
     private val callback = object : MqttCallback {
         override fun disconnected(disconnectResponse: MqttDisconnectResponse?) {
             _connected.value = false
+            // connection lost: drop this client and reconnect (with back-off) if still needed
+            val c = client
+            if (c != null && !c.isConnected) {
+                client = null
+                currentUrl = null
+                scope.launch(Dispatchers.IO) { try { c.close() } catch (_: Exception) {} }
+                if (users.isNotEmpty()) scope.launch { delay(2000); ensureConnected() }
+            }
         }
 
         override fun mqttErrorOccurred(exception: MqttException?) {

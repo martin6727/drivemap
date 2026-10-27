@@ -63,6 +63,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -227,8 +229,13 @@ fun DirectionsOverlay(d: DirectionsState) {
             }
         }
     } else {
-        Box(Modifier.fillMaxSize()) {
-            Column(Modifier.fillMaxWidth()) {
+        androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize()) {
+            // the routes sheet may grow only up to the fields and route types above it (small phones)
+            val dens = androidx.compose.ui.platform.LocalDensity.current
+            var headerH by remember { androidx.compose.runtime.mutableStateOf(0.dp) }
+            val navBar = with(dens) { androidx.compose.foundation.layout.WindowInsets.navigationBars.getBottom(dens).toDp() }
+            val sheetContentMax = (maxHeight - headerH - navBar - 40.dp).coerceAtLeast(180.dp)
+            Column(Modifier.fillMaxWidth().onGloballyPositioned { headerH = with(dens) { it.size.height.toDp() } }) {
                 Surface(
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                     shadowElevation = glassShadow(8.dp), color = MaterialTheme.colorScheme.surface, border = panelBorder, modifier = Modifier.fillMaxWidth(),
@@ -249,11 +256,12 @@ fun DirectionsOverlay(d: DirectionsState) {
                 enter = slideInVertically(tween(320)) { it } + fadeIn(tween(200)),
             ) {
                 SheetSurface(dragToResize) {
-                    Column(Modifier.padding(horizontal = 14.dp)) {
+                    Column(Modifier.padding(horizontal = 14.dp).heightIn(max = sheetContentMax)) {
                         status()
                         if (d.routes.isNotEmpty()) {
                             val maxH = when (level) { 0 -> 160.dp; 1 -> 330.dp; else -> screenH * 0.62f }
-                            LazyColumn(Modifier.heightIn(max = maxH)) {
+                            // the list gives way first, so Start always stays on screen
+                            LazyColumn(Modifier.weight(1f, fill = false).heightIn(max = maxH)) {
                                 items(shownRoutes.size) { k ->
                                     val (i, r) = shownRoutes[k]
                                     RouteCard(r, i == d.selected, d.mode) { Ui.selectRoute(i) }
@@ -302,14 +310,15 @@ fun RouteCard(r: Route, selected: Boolean, mode: RouteMode, onClick: () -> Unit)
         Row(verticalAlignment = Alignment.Bottom) {
             Text(Geo.formatDuration(r.timeS), fontSize = 21.sp, fontWeight = FontWeight.Bold, color = if (selected) Palette.Green else MaterialTheme.colorScheme.onSurface)
             Spacer(Modifier.width(8.dp))
+            // shortens (…) on narrow phones instead of running into the price
             Text(
-                String.format("%.0f km", r.lengthKm) + " · " + t("arrive {0}", eta)
-, fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 2.dp),
+                String.format("%.0f km", r.lengthKm) + " · " + t("arrive {0}", eta), fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f).padding(bottom = 2.dp),
             )
-            Spacer(Modifier.weight(1f))
             if (m != null) {
-                Text(String.format("€%.2f", m.totalCostEur), fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Spacer(Modifier.width(6.dp))
+                Text(String.format("€%.2f", m.totalCostEur), fontWeight = FontWeight.Bold, fontSize = 16.sp, maxLines = 1)
             }
         }
         val via = r.viaText()

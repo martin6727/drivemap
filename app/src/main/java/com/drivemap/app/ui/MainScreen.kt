@@ -409,9 +409,10 @@ fun BrowseOverlay(controller: MapController?, bearing: Double) {
         }
 
         // right-side buttons (glide up above an open sheet)
-        val buttonsLift by animateDpAsState(
-            if (!landscape && (selected != null || category != null || member != null)) 300.dp else 24.dp, tween(300), label = "buttonsLift",
-        )
+        val sheetOpen = !landscape && (selected != null || category != null || member != null)
+        val buttonsLift by animateDpAsState(if (sheetOpen) 300.dp else 24.dp, tween(300), label = "buttonsLift")
+        // short phones: above an open sheet only "my location" fits under the search bar
+        val compact = sheetOpen && androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp < 760
         Column(
             Modifier.align(Alignment.BottomEnd).navigationBarsPadding()
                 .padding(end = 14.dp, bottom = buttonsLift),
@@ -426,8 +427,8 @@ fun BrowseOverlay(controller: MapController?, bearing: Double) {
                 }
             }
             val tilted by Ui.browseTilted.collectAsState()
-            RoundTextButton(if (tilted) "3D" else "2D", t("2D / 3D view"), onClick = { controller?.toggleBrowseTilt() })
-            RoundIconButton(
+            if (!compact) RoundTextButton(if (tilted) "3D" else "2D", t("2D / 3D view"), onClick = { controller?.toggleBrowseTilt() })
+            if (!compact) RoundIconButton(
                 Glyphs.Car, t("Drive mode"), onClick = {
                     Core.setDriveMode(!driveMode)
                     Core.message(if (!driveMode) t("Drive mode on: radar alerts, fine meter and convoy keep running with the screen off") else t("Drive mode off"))
@@ -441,7 +442,7 @@ fun BrowseOverlay(controller: MapController?, bearing: Double) {
                 tint = if (following) Palette.Blue else MaterialTheme.colorScheme.onSurfaceVariant,
                 size = 52.dp,
             )
-            Surface(
+            if (!compact) Surface(
                 onClick = {
                     val sel = Ui.selected.value
                     if (sel != null) Ui.directionsTo(sel) else Ui.openSearch(SearchTarget.DESTINATION)

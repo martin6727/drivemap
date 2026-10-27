@@ -9,6 +9,7 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -141,6 +142,13 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
         return
     }
 
+    // short phones: while the "+" menu or its results are open, the speedometer and side buttons
+    // step aside so nothing overlaps (they're back as soon as it's closed)
+    val quickOpen by Ui.showQuickAdd.collectAsState()
+    val alongResults by Ui.category.collectAsState()
+    val bottomBusy = (quickOpen || alongResults != null) &&
+        androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp < 760
+
     Box(Modifier.fillMaxSize()) {
         Column(Modifier.statusBarsPadding().padding(horizontal = 10.dp, vertical = 6.dp)) {
             if (nav.arrived) ArrivedCard(nav) else ManeuverBanner(nav)
@@ -149,7 +157,7 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
         }
 
         // right column
-        Column(
+        if (!bottomBusy) Column(
             Modifier.align(Alignment.CenterEnd).padding(end = 12.dp, top = 80.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) { buttons() }
@@ -157,7 +165,7 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
         // bottom
         Column(Modifier.align(Alignment.BottomCenter).navigationBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.Bottom) {
-                LiveSpeedPanel()
+                if (!bottomBusy) LiveSpeedPanel()
                 Spacer(Modifier.weight(1f))
                 AnimatedVisibility(
                     visible = !following || overview,
@@ -472,9 +480,10 @@ private fun QuickAddMenu() {
                 Text(t("Add along the route"), fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.weight(1f))
                 IconButton(onClick = { Ui.showQuickAdd.value = false }) { Icon(Icons.Default.Close, t("Close")) }
             }
-            androidx.compose.foundation.layout.FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.padding(end = 8.dp),
+            // one swipeable row: compact on every phone size
+            Row(
+                Modifier.horizontalScroll(androidx.compose.foundation.rememberScrollState()).padding(end = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 quickCats.forEach { c -> QuickChip(c.icon, t(c.label)) { Ui.findAlongRoute(c.label, c.term) } }
                 QuickChip(Icons.Default.Search, t("Search…")) {
