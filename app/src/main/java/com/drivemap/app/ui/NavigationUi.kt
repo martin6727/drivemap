@@ -101,7 +101,7 @@ fun NavigationOverlay(nav: NavState, controller: MapController?) {
     }
     val recentre: @Composable () -> Unit = {
         Button(
-            onClick = { Ui.overview.value = false; Ui.camera.tryEmit(CameraCommand.FollowNav) },
+            onClick = { Ui.overview.value = false; Ui.turnPreviewReset.tryEmit(Unit); Ui.camera.tryEmit(CameraCommand.FollowNav) },
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = Palette.Blue),
             elevation = ButtonDefaults.buttonElevation(defaultElevation = 6.dp),
             border = panelBorder,
@@ -189,6 +189,8 @@ private fun ManeuverBanner(nav: NavState) {
     var previewing by remember { mutableStateOf(false) }
     // a new current turn: show it
     androidx.compose.runtime.LaunchedEffect(first) { if (pager.currentPage != 0) pager.animateScrollToPage(0) }
+    // "Re-centre" while looking at coming turns: back to the current one
+    androidx.compose.runtime.LaunchedEffect(Unit) { Ui.turnPreviewReset.collect { if (pager.currentPage != 0) pager.animateScrollToPage(0) } }
     androidx.compose.runtime.LaunchedEffect(pager.settledPage) {
         val page = pager.settledPage
         if (page > 0) {
@@ -196,7 +198,10 @@ private fun ManeuverBanner(nav: NavState) {
             if (m != null) {
                 previewing = true
                 Ui.overview.value = true
-                Ui.camera.tryEmit(CameraCommand.Center(nav.route.path.pointAt(m.alongM), 16.5))
+                // seen the way you'll drive into it: facing the road just before the turn
+                val path = nav.route.path
+                val facing = path.bearingAt((m.alongM - 30.0).coerceAtLeast(0.0))
+                Ui.camera.tryEmit(CameraCommand.Look(path.pointAt(m.alongM), 17.0, facing))
             }
             kotlinx.coroutines.delay(7000)
             pager.animateScrollToPage(0)

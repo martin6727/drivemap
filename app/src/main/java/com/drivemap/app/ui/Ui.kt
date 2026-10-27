@@ -49,6 +49,8 @@ data class DirectionsState(
 sealed class CameraCommand {
     data class Fit(val points: List<LatLon>, val topDp: Int, val bottomDp: Int) : CameraCommand()
     data class Center(val pos: LatLon, val zoom: Double?) : CameraCommand()
+    /** Look at [pos] facing [bearing] (e.g. a coming turn, seen the way you'll approach it). */
+    data class Look(val pos: LatLon, val zoom: Double, val bearing: Double) : CameraCommand()
     object FollowUser : CameraCommand()
     object FollowNav : CameraCommand()
 }
@@ -310,6 +312,9 @@ object Ui {
 
     /** The quick-add menu of the "+" button while navigating. */
     val showQuickAdd = MutableStateFlow(false)
+
+    /** Re-centre while looking at coming turns: the turn banner goes back to the current turn. */
+    val turnPreviewReset = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
     /**
      * Quick add while navigating (like Google Maps): places of a kind along the next 25 km of the

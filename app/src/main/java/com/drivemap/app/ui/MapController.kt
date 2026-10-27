@@ -507,6 +507,17 @@ class MapController(
         if (animate) map.animateCamera(u, 700) else map.moveCamera(u)
     }
 
+    /**
+     * Turns and moves the camera to [pos] facing [bearing] in one quick animation (keeps the
+     * 2D / 3D tilt of navigation), e.g. to show a coming turn the way you'll drive into it.
+     */
+    fun lookAt(pos: LatLon, zoom: Double, bearing: Double) {
+        stopFollow()
+        val tilt = if (navRoute != null && view3d) NAV_TILT else 0.0
+        val cp = CameraPosition.Builder().target(LatLng(pos.lat, pos.lon)).zoom(zoom).bearing(bearing).tilt(tilt).build()
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cp), 550)
+    }
+
     fun fit(points: List<LatLon>, topDp: Int, bottomDp: Int, sideDp: Int = 40, leftDp: Int = 0) {
         if (points.isEmpty()) return
         stopFollow()

@@ -310,6 +310,7 @@ fun MapBindings(c: MapController, night: Boolean) {
                         else c.fit(cmd.points, cmd.topDp, cmd.bottomDp)
                     }
                     is CameraCommand.Center -> { lastFit.value = null; Ui.following.value = false; c.moveTo(cmd.pos, cmd.zoom) }
+                    is CameraCommand.Look -> { lastFit.value = null; Ui.following.value = false; c.lookAt(cmd.pos, cmd.zoom, cmd.bearing) }
                     CameraCommand.FollowUser -> { lastFit.value = null; Ui.following.value = true; c.followUser() }
                     CameraCommand.FollowNav -> { lastFit.value = null; Ui.following.value = true; c.followNavigation() }
                 }
