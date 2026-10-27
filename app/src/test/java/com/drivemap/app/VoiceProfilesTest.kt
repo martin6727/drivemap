@@ -78,10 +78,31 @@ class VoiceProfilesTest {
     }
 
     @Test
-    fun soundOnlyRightBeforeATurn() {
-        assertNotNull(RallyCoDriverVoice.sound(a(Kind.NOW)))
-        assertNull(RallyCoDriverVoice.sound(a(Kind.APPROACH)))
-        assertNull(RallyCoDriverVoice.sound(a(Kind.NOW, type = 4)))   // arrival: no click
+    fun rallyMakesNoClicksAndCallsBends() {
+        assertNull(RallyCoDriverVoice.sound(a(Kind.NOW)))
+        assertTrue(RallyCoDriverVoice.paceNotes)
+        assertTrue(!StandardVoice.paceNotes)
+    }
+
+    private fun bend(left: Boolean, grade: Int, long: Boolean = false, tightens: Boolean = false) =
+        com.drivemap.app.nav.Bend(0.0, 80.0, left, 90.0, 40.0, grade, tightens, false, long)
+
+    @Test
+    fun paceNoteWording() {
+        fun say(call: com.drivemap.app.nav.BendCall, lang: String = "sk-SK") =
+            RallyCoDriverVoice.phrase(Announcement(Kind.BEND, lang, true, bend = call))!!
+        assertEquals("Pravá 4", say(com.drivemap.app.nav.BendCall(bend(false, 4))))
+        assertEquals("Dlhá ľavá 3 zatvára", say(com.drivemap.app.nav.BendCall(bend(true, 3, long = true, tightens = true))))
+        assertEquals("Ľavá 4 do pravá 3, 100", say(com.drivemap.app.nav.BendCall(bend(true, 4), bend(false, 3), 110.0)))
+        assertEquals("Pozor, vracák vpravo", say(com.drivemap.app.nav.BendCall(bend(false, 0))))
+        // the same way twice: one bend that stays, tightens or opens
+        assertEquals("Dlhá pravá 2", say(com.drivemap.app.nav.BendCall(bend(false, 2), bend(false, 2))))
+        assertEquals("Pravá 3 zatvára do 2", say(com.drivemap.app.nav.BendCall(bend(false, 3), bend(false, 2))))
+        assertEquals("Ľavá 2 otvára do 4, 150", say(com.drivemap.app.nav.BendCall(bend(true, 2), bend(true, 4), 160.0)))
+        assertEquals("Caution, left 1", say(com.drivemap.app.nav.BendCall(bend(true, 1)), "en-US"))
+        // standard voice and unsupported languages say nothing for bends
+        assertNull(StandardVoice.phrase(Announcement(Kind.BEND, "sk-SK", true, bend = com.drivemap.app.nav.BendCall(bend(true, 4)))))
+        assertNull(RallyCoDriverVoice.phrase(Announcement(Kind.BEND, "de-DE", true, bend = com.drivemap.app.nav.BendCall(bend(true, 4)))))
     }
 
     @Test

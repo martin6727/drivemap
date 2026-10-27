@@ -243,7 +243,10 @@ class Navigator(
         }
         while (nextWp < r.waypointAlong.size && along > r.waypointAlong[nextWp] - 40) nextWp++
         val arrived = remainingM < 35 || (next != null && next.isArrival && mi == mans.size - 1 && dist < 25)
-        if (fix != null && settings.value.voice) speakFor(mans, dist, fix.speedMps, along)
+        if (fix != null && settings.value.voice) {
+            speakFor(mans, dist, fix.speedMps, along)
+            paceNotes(r, along, fix.speedMps)
+        }
         if (arrived && !arrivedSpoken) {
             arrivedSpoken = true
         }
@@ -263,6 +266,48 @@ class Navigator(
             arrived = arrived,
             nextWaypoint = nextWp,
             routeVersion = version,
+        )
+    }
+
+    // ---- pace notes (only for voice profiles that call bends, e.g. the rally co-driver)
+    private var bendsFor: Route? = null
+    private var bends: List<Bend> = emptyList()
+    private var bendIdx = 0
+
+    /**
+     * Calls each bend of the road ahead about 4–5 s before it (at least 80 m), linking bends that
+     * run into each other. Only words: the route and turn guidance are not affected.
+     */
+    private fun paceNotes(r: Route, along: Double, speedMps: Double) {
+        if (!voice.profile.paceNotes) return
+        val level = voiceLevel()
+        if (level == VoiceLevel.ALERTS) return
+        if (bendsFor !== r) {
+            bends = try { PaceNotes.bends(r) } catch (_: Exception) { emptyList() }
+            bendsFor = r
+            bendIdx = 0
+        }
+        while (bendIdx < bends.size && bends[bendIdx].startM < along + 15) bendIdx++
+        val b = bends.getOrNull(bendIdx) ?: return
+        val lead = (maxOf(speedMps, 8.0) * 4.5).coerceIn(80.0, 250.0)
+        val dist = b.startM - along
+        if (dist > lead) return
+        // still talking: wait a moment, but a call that would come too late is dropped
+        if (voice.isBusy()) {
+            if (dist < 40) bendIdx++
+            return
+        }
+        val next = bends.getOrNull(bendIdx + 1)
+        val into = next?.takeIf { it.startM - b.endM < 40 }
+        val last = into ?: b
+        val after = bends.getOrNull(bendIdx + if (into != null) 2 else 1)
+        val gap = after?.let { it.startM - last.endM }?.takeIf { it in 40.0..300.0 }
+        bendIdx += if (into != null) 2 else 1
+        voice.announce(
+            Announcement(
+                Announcement.Kind.BEND, settings.value.voiceLang, level == VoiceLevel.FULL, distanceM = dist,
+                bend = BendCall(b, into, gap),
+            ),
         )
     }
 

@@ -28,6 +28,8 @@ data class Announcement(
     val toward: String? = null,
     /** What the standard voice says for this moment (already in [lang]); null = say nothing. */
     val standardText: String? = null,
+    /** [Kind.BEND]: the bend ahead (pace notes). */
+    val bend: BendCall? = null,
 ) {
     enum class Kind {
         /** Start of guidance (first instruction). */
@@ -40,8 +42,13 @@ data class Announcement(
         CONTINUE,
         /** Off the route, a new one is being planned. */
         REROUTE,
+        /** A bend of the road ahead (only for profiles with [VoiceProfile.paceNotes]). */
+        BEND,
     }
 }
+
+/** A bend to call: the bend, the one it runs straight into (if any), metres to the next one. */
+data class BendCall(val bend: Bend, val into: Bend? = null, val gapToNextM: Double? = null)
 
 /** TTS wishes of a profile; anything the phone can't do is ignored (standard voice). */
 data class TtsPrefs(
@@ -68,6 +75,8 @@ interface VoiceProfile {
     val name: String
     val description: String
     val tts: TtsPrefs get() = TtsPrefs()
+    /** Also call every bend of the road (rally pace notes), not only junction turns. */
+    val paceNotes: Boolean get() = false
     /** The words for [a], or null to use the standard voice's words. */
     fun phrase(a: Announcement): String? = null
     /** A sound before [a], or null for none. */
@@ -97,8 +106,9 @@ object StandardVoice : VoiceProfile {
 object RallyCoDriverVoice : VoiceProfile {
     override val id = "rally"
     override val name = "Rally co-driver"
-    override val description = "Short, dynamic calls like a pace-note co-driver"
-    override val tts = TtsPrefs(rate = 1.12f, pitch = 0.96f)
+    override val description = "Calls every bend like a rally co-driver: left 4, right 2 tightens, hairpin…"
+    override val tts = TtsPrefs(rate = 1.06f, pitch = 1.0f)
+    override val paceNotes = true
 
     private fun l(lang: String) = lang.substringBefore('-').let { if (it in calls) it else null }
 
@@ -111,6 +121,8 @@ object RallyCoDriverVoice : VoiceProfile {
             "merge" to "Merge", "ferry" to "Ferry", "roundabout" to "Roundabout, # exit",
             "arrive" to "Finish! You've arrived", "now" to "now", "exit" to "exit", "toward" to "towards",
             "continue" to "Long straight", "reroute" to "New line, recalculating", "start" to "Let's go.",
+            "bLeft" to "left", "bRight" to "right", "hairpinLeft" to "hairpin left", "hairpinRight" to "hairpin right",
+            "long" to "long", "tightens" to "tightens", "opens" to "opens", "into" to "into", "caution" to "caution",
         ),
         "sk" to mapOf(
             "left" to "Doľava", "right" to "Doprava", "slightLeft" to "Mierne doľava", "slightRight" to "Mierne doprava",
@@ -120,6 +132,8 @@ object RallyCoDriverVoice : VoiceProfile {
             "merge" to "Zaraď sa", "ferry" to "Trajekt", "roundabout" to "Kruháč, # výjazd",
             "arrive" to "Cieľ! Sme na mieste", "now" to "teraz", "exit" to "výjazd", "toward" to "smer",
             "continue" to "Dlhá rovinka", "reroute" to "Nová stopa, prepočítavam", "start" to "Ideme.",
+            "bLeft" to "ľavá", "bRight" to "pravá", "hairpinLeft" to "vracák vľavo", "hairpinRight" to "vracák vpravo",
+            "long" to "dlhá", "tightens" to "zatvára", "opens" to "otvára", "into" to "do", "caution" to "pozor",
         ),
         "cs" to mapOf(
             "left" to "Doleva", "right" to "Doprava", "slightLeft" to "Mírně doleva", "slightRight" to "Mírně doprava",
@@ -129,6 +143,8 @@ object RallyCoDriverVoice : VoiceProfile {
             "merge" to "Zařaď se", "ferry" to "Trajekt", "roundabout" to "Kruháč, # výjezd",
             "arrive" to "Cíl! Jsme na místě", "now" to "teď", "exit" to "výjezd", "toward" to "směr",
             "continue" to "Dlouhá rovinka", "reroute" to "Nová stopa, přepočítávám", "start" to "Jedeme.",
+            "bLeft" to "levá", "bRight" to "pravá", "hairpinLeft" to "vracák vlevo", "hairpinRight" to "vracák vpravo",
+            "long" to "dlouhá", "tightens" to "utahuje", "opens" to "otevírá", "into" to "do", "caution" to "pozor",
         ),
     )
 
@@ -149,10 +165,44 @@ object RallyCoDriverVoice : VoiceProfile {
         return if (parts.isEmpty()) "" else ", " + parts.joinToString(", ")
     }
 
+    /** One pace note: "dlhá pravá 3 zatvára", "vracák vľavo". */
+    private fun note(c: Map<String, String>, b: Bend): String {
+        if (b.grade == 0) return c[if (b.left) "hairpinLeft" else "hairpinRight"]!!
+        val parts = ArrayList<String>()
+        if (b.long) parts += c["long"]!!
+        parts += c[if (b.left) "bLeft" else "bRight"]!! + " " + b.grade
+        if (b.tightens) parts += c["tightens"]!! else if (b.opens) parts += c["opens"]!!
+        return parts.joinToString(" ")
+    }
+
+    /** Gap to the next bend as co-drivers say it: rounded to 50 m ("100", "150"). */
+    private fun gap(m: Double) = (Math.round(m / 50.0) * 50).coerceAtLeast(50).toString()
+
     override fun phrase(a: Announcement): String? {
         val lang = l(a.lang) ?: return null // no phrases in this language: standard voice
         val c = calls[lang]!!
         return when (a.kind) {
+            Announcement.Kind.BEND -> {
+                val call = a.bend ?: return null
+                val b = call.bend
+                val n2 = call.into
+                var s = when {
+                    n2 == null -> note(c, b)
+                    // the same way twice in a row is one bend to a co-driver
+                    n2.left == b.left && b.grade > 0 && n2.grade > 0 -> when {
+                        n2.grade == b.grade -> note(c, b.copy(long = true, tightens = false, opens = false))
+                        n2.grade < b.grade -> note(c, b.copy(tightens = false, opens = false)) + " " + c["tightens"] + " " + c["into"] + " " + n2.grade
+                        else -> note(c, b.copy(tightens = false, opens = false)) + " " + c["opens"] + " " + c["into"] + " " + n2.grade
+                    }
+                    else -> note(c, b) + " " + c["into"] + " " + note(c, n2)
+                }
+                // the tightest calls get a "caution" first: understandable and safe at any speed
+                val tight = listOfNotNull(call.bend, call.into).any { it.grade <= 1 }
+                if (tight) s = c["caution"]!!.replaceFirstChar { it.uppercase() } + ", " + s
+                else s = s.replaceFirstChar { it.uppercase() }
+                call.gapToNextM?.let { s += ", " + gap(it) }
+                s
+            }
             Announcement.Kind.APPROACH -> {
                 val d = a.distanceM ?: return null
                 val turn = call(lang, a) ?: return null
@@ -168,9 +218,5 @@ object RallyCoDriverVoice : VoiceProfile {
         }
     }
 
-    // a quick "click-click", like a co-driver tapping the notes, only right before a turn
-    override fun sound(a: Announcement): SoundCue? =
-        if (a.kind == Announcement.Kind.NOW && a.type !in 4..6 && l(a.lang) != null) {
-            SoundCue.Tones(listOf(1500.0 to 35, 0.0 to 45, 1500.0 to 35), volume = 0.5)
-        } else null
+    // no clicks: with a call at every bend they'd only clutter the notes
 }

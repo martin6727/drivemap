@@ -109,8 +109,13 @@ class Voice(private val context: Context) {
         val p = profile
         val text = (try { p.phrase(a) } catch (_: Exception) { null })?.takeIf { it.isNotBlank() } ?: a.standardText ?: return
         val cue = try { p.sound(a) } catch (_: Exception) { null }
-        if (cue == null || muted || !ready) speak(text, flush) else cueThenSpeak(cue, text, flush)
+        // bends can repeat word for word ("pravá 4", "pravá 4"): never treat them as duplicates
+        val dedupe = a.kind != Announcement.Kind.BEND
+        if (cue == null || muted || !ready) speak(text, flush, dedupe) else cueThenSpeak(cue, text, flush)
     }
+
+    /** Something is being said or is waiting to be said. */
+    fun isBusy(): Boolean = pending.isNotEmpty() || tts?.isSpeaking == true
 
     /** Plays the profile's short sound, then speaks (no overlap; music stays ducked throughout). */
     private fun cueThenSpeak(cue: SoundCue, text: String, flush: Boolean) {
@@ -199,13 +204,14 @@ class Voice(private val context: Context) {
         if (ready) applyLanguage()
     }
 
-    fun speak(text: String, flush: Boolean = false) {
+    fun speak(text: String, flush: Boolean = false, dedupe: Boolean = true) {
         if (muted || !ready || text.isBlank()) return
         // the same sentence again within a few seconds (e.g. two triggers at once) is said once
         val now = System.currentTimeMillis()
-        if (text == lastText && now - lastAt < 4000) return
+        if (dedupe && text == lastText && now - lastAt < 4000) return
         lastText = text
         lastAt = now
+        android.util.Log.i("Voice", "say: $text")
         val t = tts ?: return
         val id = "u" + System.nanoTime()
         pending += id

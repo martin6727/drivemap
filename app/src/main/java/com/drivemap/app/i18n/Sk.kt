@@ -361,7 +361,7 @@ internal val SK: Map<String, String> = hashMapOf(
     "Standard" to "Štandardný",
     "Calm, complete instructions" to "Pokojné, úplné pokyny",
     "Rally co-driver" to "Rallye spolujazdec",
-    "Short, dynamic calls like a pace-note co-driver" to "Krátke, svižné povely ako spolujazdec s rozpisom trate",
+    "Calls every bend like a rally co-driver: left 4, right 2 tightens, hairpin…" to "Hlási každú zákrutu ako spolujazdec: ľavá 4, pravá 2 zatvára, vracák…",
     "Swap start and destination" to "Vymeniť štart a cieľ",
     "Search is busy. Try again in a minute." to "Vyhľadávanie je preťažené. Skús to o minútu.",
     "Search isn't reachable. Check your connection and try again." to "Vyhľadávanie je nedostupné. Skontroluj pripojenie a skús znova.",
