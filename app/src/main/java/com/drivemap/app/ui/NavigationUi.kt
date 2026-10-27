@@ -190,7 +190,11 @@ private fun ManeuverBanner(nav: NavState) {
     // a new current turn: show it
     androidx.compose.runtime.LaunchedEffect(first) { if (pager.currentPage != 0) pager.animateScrollToPage(0) }
     // "Re-centre" while looking at coming turns: back to the current one
-    androidx.compose.runtime.LaunchedEffect(Unit) { Ui.turnPreviewReset.collect { if (pager.currentPage != 0) pager.animateScrollToPage(0) } }
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        Ui.turnPreviewReset.collect {
+            if (pager.currentPage != 0) pager.animateScrollToPage(0, animationSpec = androidx.compose.animation.core.tween(420, easing = androidx.compose.animation.core.FastOutSlowInEasing))
+        }
+    }
     androidx.compose.runtime.LaunchedEffect(pager.settledPage) {
         val page = pager.settledPage
         if (page > 0) {
@@ -204,7 +208,7 @@ private fun ManeuverBanner(nav: NavState) {
                 Ui.camera.tryEmit(CameraCommand.Look(path.pointAt(m.alongM), 17.0, facing))
             }
             kotlinx.coroutines.delay(7000)
-            pager.animateScrollToPage(0)
+            pager.animateScrollToPage(0, animationSpec = androidx.compose.animation.core.tween(520, easing = androidx.compose.animation.core.FastOutSlowInEasing))
         } else if (previewing) {
             previewing = false
             Ui.overview.value = false
@@ -214,6 +218,14 @@ private fun ManeuverBanner(nav: NavState) {
     Column {
         androidx.compose.foundation.pager.HorizontalPager(
             state = pager, pageSpacing = 8.dp, beyondViewportPageCount = 1,
+            // soft, settled snap instead of the stiff default
+            flingBehavior = androidx.compose.foundation.pager.PagerDefaults.flingBehavior(
+                state = pager,
+                snapAnimationSpec = androidx.compose.animation.core.spring(
+                    dampingRatio = androidx.compose.animation.core.Spring.DampingRatioNoBouncy,
+                    stiffness = androidx.compose.animation.core.Spring.StiffnessMediumLow,
+                ),
+            ),
             verticalAlignment = Alignment.Top, modifier = Modifier.fillMaxWidth(),
         ) { page ->
             if (page == 0) CurrentTurn(nav) else mans.getOrNull(first + page)?.let { UpcomingTurn(nav, it, page, count - 1) }

@@ -468,7 +468,7 @@ class MapController(
         if (want == headingUp) return
         headingUp = want
         try {
-            lc.setCameraMode(if (want) CameraMode.TRACKING_GPS else CameraMode.TRACKING, 600, null, null, null, null)
+            lc.setCameraMode(if (want) CameraMode.TRACKING_GPS else CameraMode.TRACKING, 800, null, null, null, null)
         } catch (_: Exception) {
         }
     }
@@ -512,10 +512,15 @@ class MapController(
      * 2D / 3D tilt of navigation), e.g. to show a coming turn the way you'll drive into it.
      */
     fun lookAt(pos: LatLon, zoom: Double, bearing: Double) {
-        stopFollow()
+        // stop following but keep the screen padding: the turn lands exactly where your car was
+        // (resetting the padding first made the map jump before the animation)
+        navTracking = false
+        browseTracking = false
+        headingUp = false
+        if (locationReady) try { map.locationComponent.cameraMode = CameraMode.NONE } catch (_: Exception) {}
         val tilt = if (navRoute != null && view3d) NAV_TILT else 0.0
         val cp = CameraPosition.Builder().target(LatLng(pos.lat, pos.lon)).zoom(zoom).bearing(bearing).tilt(tilt).build()
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cp), 550)
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cp), 850)
     }
 
     fun fit(points: List<LatLon>, topDp: Int, bottomDp: Int, sideDp: Int = 40, leftDp: Int = 0) {
