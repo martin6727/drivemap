@@ -236,10 +236,14 @@ class RoutePlanner(
             }
         }
 
-        val unique = dedupe(candidates)
-        val mine = unique.firstOrNull { it.variant == "myroad" }
-        val rec = recommend(unique, req)
-        val best = if (preferMine(mine, rec) && compliant(mine!!, req)) mine else rec
+        val found = dedupe(candidates)
+        val mineFound = found.firstOrNull { it.variant == "myroad" }
+        val rec = recommend(found, req)
+        val best = if (preferMine(mineFound, rec) && compliant(mineFound!!, req)) mineFound else rec
+        // a route through your roads is only shown when it is the one to take (clearly shorter);
+        // otherwise it would just be a confusing extra option ("why via Nitra?")
+        val unique = if (mineFound != null && best !== mineFound) found.filter { it !== mineFound } else found
+        val mine = mineFound?.takeIf { it === best }
         tag(unique, req)
         mine?.tags?.add("Via your roads")
         // the "fastest" badge only when it really is the fastest with realistic times

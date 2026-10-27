@@ -59,12 +59,36 @@ object SearchRank {
      * kind of place ("lekáreň") was searched, so only distance matters.
      */
     fun rank(q: String, near: LatLon?, list: List<Place>, byDistance: Boolean = false): List<Place> {
-        data class Scored(val p: Place, val far: Boolean, val group: Int, val d: Double)
+        data class Scored(val p: Place, val far: Boolean, val group: Int, val kind: Int, val d: Double)
         return list.map { p ->
             val d = if (near != null) Geo.dist(near, p.pos) else 0.0
             val group = if (byDistance) 0 else when (val t = tier(q, p.name, p.address)) { 0, 1, 2 -> 0; else -> t }
-            Scored(p, d > NEAR_M, group, d)
-        }.sortedWith(compareBy<Scored>({ it.far }, { it.group }, { it.d })).map { it.p }
+            Scored(p, d > NEAR_M, group, if (byDistance) 1 else kind(p.category), d)
+        }.sortedWith(compareBy<Scored>({ it.far }, { it.group }, { it.kind }, { it.d })).map { it.p }
+    }
+
+    private val settlements = setOf("city", "town", "village", "municipality", "hamlet", "suburb", "borough", "quarter", "neighbourhood")
+    private val stops = setOf("bus_stop", "platform", "stop", "stop_position", "halt", "tram_stop", "stop_area")
+    private val clutter = setOf("cadastral_community", "locality", "district", "county", "region", "state")
+
+    /**
+     * Among equally good name matches: a town / village first (0), then ordinary places (1),
+     * then bus stops, platforms, cadastral areas, info boards and rivers that merely share the
+     * name (2). Railway and bus *stations* stay ordinary places: people do look for those.
+     */
+    fun kind(category: String): Int {
+        val key = category.substringBefore(':')
+        val value = category.substringAfter(':', "")
+        return when {
+            key == "place" && value in settlements -> 0
+            key == "boundary" && value == "administrative" -> 0
+            key == "highway" && value == "bus_stop" -> 2
+            key == "public_transport" && value != "station" -> 2
+            key == "railway" && value in stops -> 2
+            key == "place" && value in clutter -> 2
+            key == "information" || key == "waterway" -> 2
+            else -> 1
+        }
     }
 
     /**

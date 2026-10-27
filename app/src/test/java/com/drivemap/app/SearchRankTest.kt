@@ -90,6 +90,24 @@ class SearchRankTest {
     }
 
     @Test
+    fun townBeatsItsBusStopsAndRiver() {
+        val stop = Place("Banská Štiavnica, Banky", LatLon(48.47, 18.90), "", "highway:bus_stop")
+        val platform = Place("Banská Štiavnica", LatLon(48.46, 18.91), "", "public_transport:platform")
+        val cadastre = Place("Banská Štiavnica", LatLon(48.455, 18.90), "", "place:cadastral_community")
+        val town = Place("Banská Štiavnica", LatLon(48.449, 18.910), "", "place:town")
+        val near = LatLon(48.30, 18.10)
+        assertEquals(town, SearchRank.rank("banska stiavnica", near, listOf(stop, platform, cadastre, town)).first())
+        // Nitra: the town before the river and the railway platforms of the same name
+        val river = Place("Nitra", LatLon(48.30, 18.07), "", "waterway:river")
+        val plat = Place("Nitra", LatLon(48.315, 18.07), "", "railway:platform")
+        val nitra = Place("Nitra", LatLon(48.31, 18.09), "", "place:town")
+        assertEquals(nitra, SearchRank.rank("nitra", near, listOf(river, plat, nitra)).first())
+        // but a station is a normal place, nearest first among shops etc.
+        assertEquals(1, SearchRank.kind("railway:station"))
+        assertEquals(1, SearchRank.kind("shop:supermarket"))
+    }
+
+    @Test
     fun categoryWordsStillRecognised() {
         assertEquals(listOf("pharmacy"), Categories.match("lekáreň"))
         assertEquals(listOf("car repair"), Categories.match("autoservis blízko"))
