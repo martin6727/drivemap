@@ -101,8 +101,17 @@ class CarHomeScreen(carContext: CarContext, private val surface: CarMapSurface) 
                 )
             }
         }
-        strip.addAction(Action.Builder().setIcon(icon(R.drawable.ic_car_report)).setOnClickListener { screenManager.push(CarReportScreen(carContext)) }.build())
-        // convoy: members with live speed, "drive with me" and challenges (sound is in the gear menu)
+        // mute / unmute the voice in one tap (reporting a radar or police moved into the gear menu)
+        val muted = Core.voice.muted
+        strip.addAction(
+            Action.Builder().setIcon(icon(if (muted) R.drawable.ic_car_volume_off else R.drawable.ic_car_volume_on))
+                .setOnClickListener {
+                    Core.voice.muted = !Core.voice.muted
+                    CarToast.makeText(carContext, if (Core.voice.muted) t("Voice off") else t("Voice on"), CarToast.LENGTH_SHORT).show()
+                    invalidate()
+                }.build()
+        )
+        // convoy: members with live speed, "drive with me" and challenges
         strip.addAction(Action.Builder().setIcon(icon(R.drawable.ic_car_group)).setOnClickListener { screenManager.push(CarConvoyScreen(carContext, surface)) }.build())
         // the phone's other buttons (your car, settings…) live behind the gear
         strip.addAction(Action.Builder().setIcon(icon(R.drawable.ic_car_settings)).setOnClickListener { screenManager.push(CarMoreScreen(carContext, surface)) }.build())
@@ -492,6 +501,12 @@ class CarMoreScreen(carContext: CarContext, private val surface: CarMapSurface) 
         val convoy = Core.convoy.state.value
         val navigating = Core.navigator.state.value != null
         val list = ItemList.Builder()
+        // report a mobile radar / police check (was on the main screen, where mute is now)
+        list.addItem(
+            Row.Builder().setTitle(t("Report")).addText(t("Mobile radar or police check"))
+                .setImage(icon(R.drawable.ic_car_report)).setBrowsable(true)
+                .setOnClickListener { screenManager.push(CarReportScreen(carContext)) }.build()
+        )
         if (convoy != null) {
             list.addItem(
                 Row.Builder().setTitle(t("Convoy")).addText(tn(convoy.members.count { !it.isMe }, "{0} other driver", "{0} other drivers"))
@@ -510,11 +525,6 @@ class CarMoreScreen(carContext: CarContext, private val surface: CarMapSurface) 
                 )
             }
         }
-        list.addItem(
-            Row.Builder().setTitle(t("Sound"))
-                .setToggle(androidx.car.app.model.Toggle.Builder { on -> Core.voice.muted = !on }.setChecked(!Core.voice.muted).build())
-                .build()
-        )
         list.addItem(
             Row.Builder().setTitle(t("3D view"))
                 .setToggle(androidx.car.app.model.Toggle.Builder { on -> Core.settings.update { it.copy(view3d = on) } }.setChecked(s.view3d).build())

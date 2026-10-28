@@ -180,7 +180,7 @@ object Ui {
 
     /** Saved places first, then the rest without repeats, best name matches and nearest first. */
     private fun combine(q: String, near: LatLon?, saved: List<Place>, found: List<Place>): List<Place> =
-        merge(saved, SearchRank.rank(q, near, SearchRank.dedupe(found), byDistance = com.drivemap.app.net.Categories.match(q) != null))
+        merge(saved, SearchRank.rank(q, near, SearchRank.dedupe(SearchRank.declutter(found)), byDistance = com.drivemap.app.net.Categories.match(q) != null))
 
     /** Search results: best name matches first, nearest first among equals, far away last. */
     fun rank(q: String, near: LatLon?, list: List<Place>): List<Place> = SearchRank.rank(q, near, list)

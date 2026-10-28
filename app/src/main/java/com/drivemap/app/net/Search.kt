@@ -77,7 +77,9 @@ object Search {
             if (near != null) sb.append("&lat=").append(near.lat).append("&lon=").append(near.lon).append("&location_bias_scale=0.3")
             val json = JSONObject(photonGet(sb.toString()))
             // Photon returns e.g. the city, its county and its state with the same name: keep the first
-            parsePhoton(json).distinctBy { it.name.lowercase() + "|" + it.address.lowercase() }
+            // same name and address = the same thing (e.g. a station and its platforms): keep the most
+            // useful one (town > station / shop > platform / stop)
+            parsePhoton(json).sortedBy { SearchRank.kind(it.category) }.distinctBy { it.name.lowercase() + "|" + it.address.lowercase() }
         }
 
     /**

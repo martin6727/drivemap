@@ -92,6 +92,27 @@ object SearchRank {
     }
 
     /**
+     * When a town or village is among the results, the things that merely carry its name (its bus
+     * and rail stops, platforms, river sections, cadastral areas, info boards) are left out:
+     * searching "Nitra" gives the town, not four "Nitra"s. Stations stay (people look for them).
+     */
+    fun declutter(list: List<Place>): List<Place> {
+        val towns = list.filter { kind(it.category) == 0 }.map { compact(it.name) }.toSet()
+        if (towns.isEmpty()) return list
+        return list.filter { p -> !(kind(p.category) == 2 && compact(p.name.substringBefore(',')) in towns) }
+    }
+
+    /** A short type for results whose name alone doesn't say what they are (e.g. a station). */
+    fun typeLabel(category: String): String? = when (category) {
+        "railway:station", "public_transport:station" -> "Railway station"
+        "amenity:bus_station" -> "Bus station"
+        "railway:halt" -> "Railway stop"
+        "aeroway:aerodrome" -> "Airfield"
+        "aeroway:airport" -> "Airport"
+        else -> null
+    }
+
+    /**
      * Drops repeats of the same place from different sources: same name (ignoring case, accents
      * and spacing) within [withinM] metres. The first one wins, so put the preferred source first.
      */

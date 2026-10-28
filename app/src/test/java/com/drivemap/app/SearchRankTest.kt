@@ -108,6 +108,32 @@ class SearchRankTest {
     }
 
     @Test
+    fun stationSurvivesWhenItsPlatformComesFirst() {
+        val town = Place("Nitra", LatLon(48.31, 18.09), "", "place:town")
+        val platform = Place("Nitra", LatLon(48.30500, 18.07500), "Staničná", "railway:platform")
+        val station = Place("Nitra", LatLon(48.30520, 18.07530), "Staničná", "railway:station")
+        val airfield = Place("Nitra", LatLon(48.28, 18.13), "Michala Verešíka", "aeroway:aerodrome")
+        val out = SearchRank.dedupe(SearchRank.declutter(listOf(town, platform, station, airfield)))
+        assertEquals(listOf(town, station, airfield), out)
+        assertEquals("Airfield", SearchRank.typeLabel(airfield.category))
+    }
+
+    @Test
+    fun nitraGivesOneNitra() {
+        val town = Place("Nitra", LatLon(48.31, 18.09), "Slovensko", "place:town")
+        val stop = Place("Nitra", LatLon(48.30, 18.10), "Michala Verešíka", "railway:stop")
+        val river = Place("Nitra", LatLon(47.98, 18.16), "Nové Zámky", "waterway:river")
+        val cadastre = Place("Nitra", LatLon(48.32, 18.08), "", "place:cadastral_community")
+        val station = Place("Nitra", LatLon(48.305, 18.075), "Staničná", "railway:station")
+        val shop = Place("Nitra Centrum", LatLon(48.31, 18.08), "", "shop:mall")
+        val out = SearchRank.declutter(listOf(town, stop, river, cadastre, station, shop))
+        assertEquals(listOf(town, station, shop), out)
+        assertEquals("Railway station", SearchRank.typeLabel(station.category))
+        // without a town in the results nothing is hidden (e.g. a query for a stop's own name)
+        assertEquals(listOf(stop, river), SearchRank.declutter(listOf(stop, river)))
+    }
+
+    @Test
     fun categoryWordsStillRecognised() {
         assertEquals(listOf("pharmacy"), Categories.match("lekáreň"))
         assertEquals(listOf("car repair"), Categories.match("autoservis blízko"))

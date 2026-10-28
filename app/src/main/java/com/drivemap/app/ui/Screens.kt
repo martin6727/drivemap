@@ -204,7 +204,8 @@ fun SearchScreen() {
                 } else {
                     items(results) { p ->
                         val dist = fix?.let { Geo.formatDistance(Geo.dist(it.pos, p.pos)) } ?: ""
-                        PlaceRow(Icons.Default.LocationOn, p.name, listOf(p.address, dist).filter { it.isNotBlank() }.joinToString(" · "), Palette.Gray) { Ui.pick(p) }
+                        val type = com.drivemap.app.net.SearchRank.typeLabel(p.category)?.let { t(it) }
+                        PlaceRow(Icons.Default.LocationOn, p.name, listOf(type ?: "", p.address, dist).filter { it.isNotBlank() }.joinToString(" · "), Palette.Gray) { Ui.pick(p) }
                     }
                     if (!searching && results.isEmpty()) item { CenteredText(t("No results"), Modifier.padding(24.dp)) }
                     // the map doesn't know it (e.g. a new business): add it yourself at the real spot
